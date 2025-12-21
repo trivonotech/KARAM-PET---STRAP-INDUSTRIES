@@ -1,0 +1,71 @@
+.industriesSection {
+    padding: 4rem 0 6rem 0;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+    /* Center heading */
+}
+
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: left;
+    /* Wait, mockup shows heading left aligned or centered? */
+    /* Re-checking mockup: "INDUSTRIES SERVED" is left aligned above the logos? 
+     Actually looking at the second crop in the user prompt... 
+     "INDUSTRIES SERVED" seems aligned to the start of the logo row, but the row fades out on the sides.
+     It looks left-aligned relative to the content width. */
+    text-align: left;
+    padding-left: 2rem;
+    /* Match container padding/alignment */
+}
+
+.blackText {
+    color: #000;
+}
+
+.orangeText {
+    color: var(--primary);
+}
+
+.logoGrid {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    overflow-x: auto;
+    /* Allow scroll on small screens */
+    padding: 1rem 0;
+    /* Hide scrollbar for cleaner look */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.logoGrid::-webkit-scrollbar {
+    display: none;
+}
+
+.logoItem {
+    min-width: 150px;
+    height: 80px;
+    background: linear-gradient(180deg, #e6e6e6 0%, #cccccc 100%);
+    /* Grey gradient from mockup */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.logoText {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #666;
+    opacity: 0.8;
+}

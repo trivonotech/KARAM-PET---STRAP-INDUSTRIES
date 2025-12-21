@@ -1,8 +1,18 @@
+import Image from 'next/image';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
+      <div className={styles.logoContainer}>
+        <Image
+          src="/logo.png"
+          alt="KARAM PET Logo"
+          fill
+          className={styles.logoImage}
+          priority
+        />
+      </div>
       <ul className={styles.navLinks}>
         <li><a href="#" className={`${styles.navLink} ${styles.active}`}>Home</a></li>
         <li><a href="#" className={styles.navLink}>About</a></li>

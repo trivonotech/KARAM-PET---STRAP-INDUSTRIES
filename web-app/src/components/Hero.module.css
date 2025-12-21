@@ -1,17 +1,20 @@
 .heroContainer {
     position: relative;
-    width: 100%;
+    width: 95%;
+    /* Give some breathing room on sides like mockup */
     max-width: 1400px;
-    /* Constrain width */
     margin: 0 auto;
-    padding: 1rem 2rem;
+    /* padding: 1rem 2rem; Remove padding, image should fill */
     border-radius: 40px;
+    /* overflow: hidden;  <-- REMOVE this. We need the stats card to sit *on top* cleanly without being clipped if we do tricks, but actually simpler: */
+    /* If we use overflow: hidden, the stats card at bottom right works IF it's inside. */
     overflow: hidden;
-    /* Ensure image respects border radius */
     color: white;
-    min-height: 85vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
+    background-color: #000;
+    /* Fallback */
 }
 
 .backgroundImage {
@@ -21,71 +24,56 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
-    border-radius: 30px;
-    filter: brightness(0.7);
-    /* Darken for text readability */
+    z-index: 0;
+    /* border-radius: 30px; Remove interior radius, let container clip */
+    filter: brightness(0.65);
+    /* Slightly darker for contrast */
 }
-
-/* Custom shape for the bottom right cutout */
-.statsCard {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #fff;
-    padding: 2rem 4rem;
-    border-top-left-radius: 40px;
-    /* The inverse curve */
-    display: flex;
-    gap: 4rem;
-    color: #000;
-    z-index: 2;
-}
-
-/* To simulate the "cutout" accurately, we might need a pseudo-element 
-   if the image needs to show *behind* the curve. 
-   But simpler is: Image has simple border radius. 
-   Stats card sits on top with its own border radius.
-   Wait, if image has border-radius on bottom-right, and stats card is rect with top-left radius, 
-   there will be a gap.
-   The stats card needs to cover the bottom-right corner of the image entirely.
-   So the image should NOT have border-radius on bottom-right?
-   Let's just give the image a full container radius, and place the stats card on top.
-   The stats card background is white, same as page body.
-*/
 
 .content {
     position: relative;
     z-index: 1;
-    max-width: 60%;
-    padding-left: 4rem;
+    max-width: 65%;
+    padding-left: 5rem;
+    /* More left padding */
+    padding-top: 2rem;
 }
 
 .title {
-    font-size: 3.5rem;
+    font-size: 4rem;
+    /* Larger */
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-family: var(--font-outfit), sans-serif;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+    font-size: 1.15rem;
+    margin-bottom: 3rem;
     max-width: 600px;
     opacity: 0.9;
     line-height: 1.6;
+    font-weight: 400;
 }
 
 .ctaButton {
-    background-color: #fca311;
-    color: #000;
-    padding: 1rem 2rem;
-    border-radius: 30px;
+    background-color: var(--primary);
+    color: #ffffff;
+    /* White text usually pops better on this orange, or black? Mockup has white text on orange button? Let's check. */
+    /* Mockup: Button "Request A Quotation" -> Orange background. Text color white or black? 
+       Actually user's uploaded image: Text looks WHITE. 
+       Wait, let me look at the image again. 
+       "Request a Quotation >" -> Text is WHITE.
+    */
+    color: #ffffff;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
     border: none;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -93,22 +81,55 @@
 
 .ctaButton:hover {
     transform: translateY(-2px);
+    background-color: var(--primary-hover);
+}
+
+/* Stats Card Styling "Cutout" logic */
+.statsCard {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+    /* Must match body background */
+    padding: 2.5rem 4rem 2rem 4rem;
+    /* Top Right Bottom Left */
+
+    /* The Magic: Border-top-left-radius to create the inverse curve look? 
+    No. To look like the page background is "eating" into the image:
+    The stats card IS the page background.
+    So we place a white block over the image.
+    And give that white block a border-top-left-radius.
+    This makes the white block (which matches the page) look like it has a rounded corner.
+    Result: The *image* looks like it has an inverted rounded corner.
+    */
+    border-top-left-radius: 40px;
+
+    display: flex;
+    gap: 4rem;
+    color: #000;
+    z-index: 2;
+    min-width: 500px;
+    justify-content: space-around;
 }
 
 .statItem {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .statValue {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: #000;
-    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 1;
 }
 
 .statLabel {
     font-size: 0.9rem;
-    color: #666;
-    margin-top: 0.5rem;
-    display: block;
+    color: #444;
+    line-height: 1.2;
+    font-weight: 500;
 }
