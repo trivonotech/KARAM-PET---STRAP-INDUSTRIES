@@ -29,7 +29,6 @@
     width: 100%;
     height: 400px;
     border-radius: 30px;
-    border-bottom-right-radius: 0;
     overflow: hidden;
     margin-bottom: 3rem;
 }
@@ -40,19 +39,21 @@
 
 .moreButton {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 12px;
+    right: 12px;
     background-color: var(--primary);
     color: #ffffff;
-    padding: 1rem 3rem;
-    border-radius: 30px 0 0 0;
-    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    border: 8px solid #ffffff;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
+
 
 .moreButton:hover {
     background-color: var(--primary-hover);
@@ -69,10 +70,12 @@
     align-items: center;
     background-color: #d9d9d9;
     /* Light gray from mockup */
-    padding: 1.5rem;
-    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
     gap: 1.5rem;
+    align-items: center;
     transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .featureItem:hover {
@@ -80,8 +83,8 @@
 }
 
 .iconCircle {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     background-color: #ffffff;
     border-radius: 50%;
     display: flex;

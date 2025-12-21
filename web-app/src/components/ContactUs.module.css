@@ -1,0 +1,156 @@
+.contactSection {
+    padding: 0 5%;
+    margin-bottom: 5rem;
+}
+
+.heading {
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: 700;
+    /* Bold weight */
+    margin-bottom: 2rem;
+    font-family: var(--font-outfit), sans-serif;
+    /* Assuming Outfit or similar sans-serif */
+}
+
+.blackText {
+    color: #000000;
+}
+
+.orangeText {
+    color: var(--primary);
+}
+
+.bannerWrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    /* Adjust height as needed */
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Align card to right */
+    padding-right: 5%;
+    /* Space from right edge */
+}
+
+.bannerImage {
+    object-fit: cover;
+    z-index: 0;
+}
+
+.formCard {
+    position: relative;
+    /* For button positioning */
+    z-index: 10;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 60%;
+    /* Adjust width based on design */
+    max-width: 700px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.fullWidth {
+    grid-column: span 2;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    /* Orange labels */
+}
+
+.input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    border-color: var(--primary);
+}
+
+.submitButton {
+    position: absolute;
+    bottom: -25px;
+    /* Overlap the bottom edge */
+    right: -25px;
+    /* Overlap the right edge */
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    border: 8px solid #ffffff;
+    /* Thick white border for cutout effect */
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:hover {
+    background-color: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+    .bannerWrapper {
+        flex-direction: column;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+        overflow: visible;
+    }
+
+    .bannerImage {
+        position: relative !important;
+        height: 200px !important;
+        border-radius: 20px;
+        margin-bottom: -50px;
+        /* Overlap effect mobile? or just stack */
+    }
+
+    .formCard {
+        width: 90%;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .fullWidth {
+        grid-column: span 1;
+    }
+
+    .submitButton {
+        padding: 0.6rem 1.5rem;
+        right: 0;
+        bottom: -20px;
+    }
+}
