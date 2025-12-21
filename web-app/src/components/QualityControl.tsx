@@ -30,10 +30,7 @@ export default function QualityControl() {
                     ))}
                 </div>
 
-                <h2 className={styles.whyHeading}>
-                    <span className={styles.blackText}>WHY</span>{' '}
-                    <span className={styles.orangeText}>CHOOSE US</span>
-                </h2>
+
             </div>
         </section>
     );

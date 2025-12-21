@@ -4,6 +4,7 @@ import About from '@/components/About';
 import Industries from '@/components/Industries';
 import Products from '@/components/Products';
 import QualityControl from '@/components/QualityControl';
+import WhyChooseUs from '@/components/WhyChooseUs';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Industries />
         <Products />
         <QualityControl />
+        <WhyChooseUs />
       </div>
     </main>
   );
