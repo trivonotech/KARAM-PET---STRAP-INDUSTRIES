@@ -18,6 +18,7 @@ export default function ContactUs() {
                 />
 
                 <div className={styles.formCard}>
+                    <div className={styles.cardBackground}></div>
                     <form className={styles.formGrid}>
                         <div className={`${styles.inputGroup} ${styles.fullWidth}`}>
                             <label className={styles.label}>Name *</label>

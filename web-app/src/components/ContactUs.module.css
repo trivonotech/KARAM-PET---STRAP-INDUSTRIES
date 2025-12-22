@@ -7,10 +7,8 @@
     text-align: left;
     font-size: 2.5rem;
     font-weight: 700;
-    /* Bold weight */
     margin-bottom: 2rem;
     font-family: var(--font-outfit), sans-serif;
-    /* Assuming Outfit or similar sans-serif */
 }
 
 .blackText {
@@ -24,16 +22,13 @@
 .bannerWrapper {
     position: relative;
     width: 100%;
-    height: 500px;
-    /* Adjust height as needed */
+    min-height: 500px;
     border-radius: 30px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* Align card to right */
     padding-right: 5%;
-    /* Space from right edge */
 }
 
 .bannerImage {
@@ -43,21 +38,187 @@
 
 .formCard {
     position: relative;
-    /* For button positioning */
     z-index: 10;
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 2.5rem;
     width: 60%;
-    /* Adjust width based on design */
     max-width: 700px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Removed background-color and box-shadow from here, moved to cardBackground */
+    /* Padding bottom to make space for the button/cutout area */
+    padding: 2.5rem 2.5rem 6rem 2.5rem;
 }
+
+/* 
+   The Custom Background Shape
+   Constructed using the main div + pseudo elements to create an L-shape 
+   with a smooth concave corner.
+*/
+.cardBackground {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
+    /* Shadow on the shape */
+}
+
+/* The Main Top Body */
+.cardBackground::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 80px;
+    /* Leave space for button row */
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 20px;
+}
+
+/* The Bottom-Left Leg */
+.cardBackground::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 250px;
+    /* Stop short of the button */
+    height: 80px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 20px;
+}
+
+/* The Fillet (Inverted Rounded Corner) - Using a radial gradient on a pseudo-element of the FormCard itself? 
+   No, we can use a separate small div or just another pseudo if we had one. 
+   Since ::before/::after are used by cardBackground, we'll use a gradient on the cardBackground itself 
+   OR a child div. 
+   
+   Actually, let's use a "corner fixer" gradient on the `::after` element? No, ::after is a block.
+   
+   Solution: Add the fillet as part of the `::after` background? 
+   No, we need to draw OUTSIDE the box.
+   
+   Revision: We can attach the fillet to the `.submitButton`'s container?
+   Or just place a tiny absolute div in React.
+   But let's try to do it with CSS on `.cardBackground` using a helper gradient.
+   
+   Let's use `mask`? No.
+   
+   Let's use `radial-gradient` on the `.cardBackground` layer itself?
+   We can paint the background using gradients entirely?
+   
+   Linear Gradient 1 (Top Block): white, stops at bottom 80px.
+   Linear Gradient 2 (Left Leg): white, width X, height 80px, bottom left.
+   Radial Gradient (Fillet): white circle at corner? 
+   
+   Let's use the property `background-image` for the fillet! 
+   We will combine images on `.cardBackground`.
+*/
+
+.cardBackground {
+    /* 
+       1. Top Block (Solid White)
+       2. Left Leg (Solid White)
+       3. Fillet (Radial Gradient to fill the corner)
+    */
+    background-color: transparent;
+}
+
+/* We need actual DOM elements for border-radius to work nicely. 
+   So keep ::before and ::after as defined above. 
+   Use a "box-shadow hack" on ::after to make the fillet?
+   
+   If ::after is the left leg.
+   We want a curve at its TOP-RIGHT corner (which meets the bottom of Top Block).
+   
+   Wait, Top Block ends at 80px.
+   Left Leg height is 80px.
+   They meet flush.
+   The "cutout" is to the right of Left Leg.
+   Top Block *also* ends to the right? No, Top Block is full width.
+   
+   AH! Top Block is FULL WIDTH (behind Company Name).
+   Button is vertically *below* Company Name.
+   So Top Block covers the button area?
+   
+   IF Top Block covers the button area, then there is no cutout!
+   
+   Let's look at the image again.
+   "Company Name" is aligned right.
+   Button is *below* it.
+   The white card *must* stop before the button.
+   So "Company Name" must be to the left of the button?
+   No, layout is 2 columns.
+   Left: Email. Right: Company Name.
+   Button is aligned Right (under Company Name).
+   
+   IF the button is `absolute bottom right`, and Top Block stops `bottom: 80px`.
+   Then "Company Name" is inside Top Block.
+   The Button is *outside* Top Block (in the 80px strip).
+   The Left Leg extends that 80px strip on the left side.
+   So yes, the Logic holds:
+   - Top Body: Holds Inputs.
+   - Left Leg: Holds whitespace below "Email" input.
+   - Empty Space (Bottom Right): Holds Button.
+   
+   The Fillet: Connects Left Leg (Right edge) to Top Body (Bottom edge).
+   
+   We need a curve there.
+   We can add a `box-shadow` to `::after` (Left Leg).
+   `box-shadow: 20px -20px 0 white`?
+   No.
+   We use the `radial-gradient` trick on `.cardBackground` itself as a background image placed at that specific coordinate.
+   
+   Coordinate: `bottom: 80px`, `right: 250px`.
+   Size: `40px 40px`.
+   Image: `radial-gradient(circle at top left, transparent 40px, #ffffff 40.5px)`?
+   No. We want WHITE to be on Top and Left. Transparent on Bottom Right.
+   So `radial-gradient(circle at bottom right, transparent 40px, #ffffff 40.5px)`? 
+   That leaves a hole.
+   
+   We want the hole to be round.
+   Top Block is white. Left Leg is white.
+   The corner is 90 deg (Top of Leg meets Bottom of Body? No, they are contiguous).
+   Wait. 
+   Top of Leg connects to Bottom of Body. That is a flat line.
+   Right of Leg connects to Bottom of Body? 
+   Yes. That is a 270 deg reflexive corner.
+   We want to *add* material there to round it.
+   
+   So we need `radial-gradient(circle at bottom right, transparent 20px, white 20px)`.
+   Placed at `bottom: 80px`?
+   No.
+   Placed at `right: 250px` (the edge of the leg), `bottom: 80px` (the edge of the body).
+   Anchored: `bottom right` of the "Imaginary Square" that fills the corner.
+   The imaginary square is 40px x 40px.
+   Its Top-Left touches the corner.
+   If we fill it with white, it becomes a sharp corner.
+   If we fill it with `radial-gradient(center at bottom right, transparent, white)`, we get a concave curve!
+   
+   Wait. `circle at bottom right`.
+   Inside circle (near bottom right) is Transparent.
+   Outside (Top Left) is White.
+   YES. This creates the concave fillet!
+   
+   So: `background-image: radial-gradient(circle at 100% 100%, transparent 20px, #ffffff 20.5px)`.
+   Size: `20px 20px`.
+   Position: `bottom 80px right 250px`.
+   Repeat: no-repeat.
+*/
+
+.cardBackground {
+    background-image: radial-gradient(circle at 100% 100%, transparent 20px, #ffffff 20.5px);
+    background-size: 20px 20px;
+    background-position: right 250px bottom 80px;
+    background-repeat: no-repeat;
+}
+
 
 .formGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+    /* Content above background */
 }
 
 .fullWidth {
@@ -74,7 +235,6 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--primary);
-    /* Orange labels */
 }
 
 .input {
@@ -85,6 +245,8 @@
     color: #333;
     outline: none;
     transition: border-color 0.2s;
+    background: #fff;
+    /* Input background */
 }
 
 .input:focus {
@@ -93,64 +255,80 @@
 
 .submitButton {
     position: absolute;
-    bottom: -25px;
-    /* Overlap the bottom edge */
-    right: -25px;
-    /* Overlap the right edge */
+    bottom: 10px;
+    /* Positioned inside the cutout area */
+    right: 0;
+    /* Adjust width to standard pill */
+    width: 250px;
+    height: 60px;
+
     background-color: var(--primary);
     color: #ffffff;
-    padding: 0.8rem 2rem;
+
+    /* Pill shape */
     border-radius: 100px;
+
+    /* Thick white border */
     border: 8px solid #ffffff;
-    /* Thick white border for cutout effect */
+
+    /* Font styles */
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
+
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     white-space: nowrap;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    z-index: 20;
+    /* Above everything */
 }
 
 .submitButton:hover {
     background-color: var(--primary-hover);
 }
 
-@media (max-width: 768px) {
-    .bannerWrapper {
-        flex-direction: column;
-        height: auto;
-        padding: 0;
-        background-color: transparent;
-        overflow: visible;
-    }
+/* Arrow styling if needed */
+.submitButton svg {
+    width: 1.2em;
+    height: 1.2em;
+}
 
-    .bannerImage {
-        position: relative !important;
-        height: 200px !important;
-        border-radius: 20px;
-        margin-bottom: -50px;
-        /* Overlap effect mobile? or just stack */
-    }
 
+@media (max-width: 900px) {
     .formCard {
         width: 90%;
-        margin: 0 auto;
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
-    .formGrid {
-        grid-template-columns: 1fr;
+    /* Logic breaks down on mobile? 
+       Just make it a normal card on mobile 
+    */
+
+    .cardBackground {
+        /* Reset shape for mobile */
+        background-color: #ffffff;
+        border-radius: 20px;
     }
 
-    .fullWidth {
-        grid-column: span 1;
+    .cardBackground::before,
+    .cardBackground::after {
+        display: none;
     }
 
     .submitButton {
-        padding: 0.6rem 1.5rem;
-        right: 0;
-        bottom: -20px;
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 2rem;
+        width: 100%;
+        border: none;
+    }
+
+    .cardBackground {
+        background-image: none;
     }
 }
