@@ -3,27 +3,29 @@ import Image from 'next/image';
 
 export default function Hero() {
     return (
-        <section className={styles.heroContainer}>
-            <Image
-                src="/hero-bg.png"
-                alt="Industrial Factory"
-                fill
-                className={styles.backgroundImage}
-                priority
-            />
+        <section className={styles.heroWrapper}>
+            <div className={styles.imageContainer}>
+                <Image
+                    src="/hero-bg.png"
+                    alt="Industrial Factory"
+                    fill
+                    className={styles.backgroundImage}
+                    priority
+                />
 
-            <div className={styles.content}>
-                <h1 className={styles.title}>
-                    Manufacturer Of High-Precision<br />
-                    [Product Type] For Industrial<br />
-                    Applications
-                </h1>
-                <p className={styles.subtitle}>
-                    Serving Automotive, Construction, And OEM Clients With ISO-Certified Manufacturing And Scalable Production.
-                </p>
-                <button className={styles.ctaButton}>
-                    Request A Quotation ›
-                </button>
+                <div className={styles.content}>
+                    <h1 className={styles.title}>
+                        Manufacturer Of High-Precision<br />
+                        [Product Type] For Industrial<br />
+                        Applications
+                    </h1>
+                    <p className={styles.subtitle}>
+                        Serving Automotive, Construction, And OEM Clients With ISO-Certified Manufacturing And Scalable Production.
+                    </p>
+                    <button className={styles.ctaButton}>
+                        Request A Quotation ›
+                    </button>
+                </div>
             </div>
 
             <div className={styles.statsCard}>
