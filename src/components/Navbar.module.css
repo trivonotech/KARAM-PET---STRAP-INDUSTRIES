@@ -1,14 +1,24 @@
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 0;
+  /* Removing padding from outer shell */
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.navContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 4rem;
-  background-color: #ffffff;
-  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   gap: 1rem;
-  font-family: var(--font-outfit), sans-serif;
 }
 
 .navLinks {
