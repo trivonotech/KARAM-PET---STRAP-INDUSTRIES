@@ -12,7 +12,7 @@
     /* This clips the image */
     overflow: hidden;
     color: white;
-    min-height: 80vh;
+    min-height: 85vh;
     display: flex;
     align-items: center;
     background-color: #000;
