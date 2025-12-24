@@ -1,3 +1,4 @@
+import styles from './page.module.css';
 import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
 import About from '@/components/About';
@@ -12,7 +13,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <div style={{ paddingTop: '80px', paddingBottom: '2rem' }}>
+      <div className={styles.mainWrapper}>
         <Hero />
         <About />
         <Industries />
