@@ -1,0 +1,121 @@
+.wcuSection {
+    padding: 4rem 0 6rem 0;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.blackText {
+    color: #000;
+}
+
+.orangeText {
+    color: var(--primary);
+}
+
+.bannerWrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.bannerImage {
+    object-fit: cover;
+}
+
+.moreButton {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    border: 8px solid #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+
+.moreButton:hover {
+    background-color: var(--primary-hover);
+}
+
+.featureGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    background-color: #d9d9d9;
+    /* Light gray from mockup */
+    padding: 1rem 1.5rem;
+    border-radius: 9999px;
+    gap: 1.5rem;
+    align-items: center;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.featureItem:hover {
+    transform: translateY(-2px);
+}
+
+.iconCircle {
+    width: 48px;
+    height: 48px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.featureText {
+    font-size: 1.1rem;
+    /* Looking closer at mockup, it's fairly large text */
+    font-weight: 500;
+    color: #333;
+}
+
+@media (max-width: 900px) {
+    .featureGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+
+    .bannerWrapper {
+        height: 300px;
+    }
+}

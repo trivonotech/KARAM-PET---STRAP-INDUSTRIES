@@ -1,0 +1,76 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 1rem;
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  list-style: none;
+  margin-right: 1rem;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 0.95rem;
+  /* Slightly smaller, cleaner */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--primary);
+}
+
+.navLink.active {
+  color: var(--primary);
+}
+
+.contactButton {
+  background-color: var(--primary);
+  opacity: 0.8;
+  /* Style choice: transparent background or solid? Analysis said solid orange mostly. Let's use solid but maybe lighter opacity for button background? Mockup had light orange. */
+  /* Actually, let's stick to the mockup look but use our brand hue. */
+  background-color: rgba(239, 152, 0, 0.25);
+  /* #ef9800 at 25% */
+  color: #000;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.contactButton:hover {
+  background-color: rgba(239, 152, 0, 0.4);
+}
+
+.logoContainer {
+  position: relative;
+  height: 60px;
+  /* Adjust based on logo aspect ratio */
+  width: 250px;
+  /* Give it space */
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  object-fit: contain;
+  object-position: left;
+}

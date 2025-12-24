@@ -1,0 +1,26 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #ef9800;
+  --primary-hover: #d68800;
+  --text-gray: #787874;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
