@@ -33,15 +33,7 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                {/* Column 3: Contact Us */}
-                <div className={styles.linkColumn}>
-                    <h3 className={styles.columnTitle}>Contact Us</h3>
-                    <ul className={styles.linkList}>
-                        <li><span className={styles.linkItem}>1234567890</span></li>
-                        <li><span className={styles.linkItem}>college@gmail.com</span></li>
-                        <li><span className={styles.linkItem}>Location</span></li>
-                    </ul>
-                </div>
+
 
                 {/* Column 4: Follow On */}
                 <div className={styles.linkColumn}>

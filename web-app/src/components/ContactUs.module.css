@@ -24,7 +24,7 @@
     width: 100%;
     min-height: 550px;
     /* Increased height for better breathing room */
-    border-radius: 30px;
+    border-radius: 0;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -46,57 +46,38 @@
     padding: 3rem 3rem 7rem 3rem;
 }
 
-/* --- Background Cutout Logic --- */
-/* 
-   We want a white card with a "bite" (cutout) taken out of the bottom-right.
-   This allows the button to sit in that space.
-*/
+/* --- Background Structure (Explicit Blocks) --- */
 
-.cardBackground {
+.whiteCardBackground {
     position: absolute;
     inset: 0;
     z-index: -1;
-    pointer-events: none;
     filter: drop-shadow(0 4px 25px rgba(0, 0, 0, 0.1));
-
-    /* The "Fillet" (Concave Corner) 
-       This gradient draws the inverse rounded corner connecting the top body and left leg.
-       Position: slightly inset from right to match button width.
-    */
-    background-image: radial-gradient(circle at 100% 100%, transparent 40px, #ffffff 40.5px);
-    background-size: 40px 40px;
-    background-position: right 300px bottom 100px;
-    background-repeat: no-repeat;
+    pointer-events: none;
+    /* Container only */
 }
 
-/* Top Body (Main White Area) */
-.cardBackground::before {
-    content: '';
+.wbMain {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 100px;
-    /* Leaves 100px at bottom for the leg/cutout area */
     background-color: #ffffff;
-
-    /* Round Top-Left, Top-Right, and Bottom-Right (above the button). 
-       Keep Bottom-Left sharp (0) to merge seamlessly with the leg below. */
-    border-radius: 20px 20px 20px 0;
+    border-radius: 0;
 }
 
-/* Left Leg (Bottom Left White Area) */
-.cardBackground::after {
-    content: '';
+.wbLeg {
     position: absolute;
+    top: auto;
     bottom: 0;
     left: 0;
-    right: 300px;
-    /* Stop 300px from right to create the cutout */
+    width: calc(100% - 300px);
     height: 100px;
     background-color: #ffffff;
-    border-bottom-left-radius: 20px;
+    border-radius: 0;
 }
+
 
 /* --- Form Grid & Input Styling --- */
 
@@ -130,8 +111,8 @@
     padding: 1rem 1.2rem;
     border: 1px solid #ccc;
     /* Softer border */
-    border-radius: 12px;
-    /* Smooth rounded corners */
+    border-radius: 0;
+    /* Sharp corners */
     font-size: 1rem;
     color: #333;
     outline: none;
@@ -160,8 +141,8 @@
     background-color: var(--primary);
     color: #ffffff;
 
-    /* Softly rounded */
-    border-radius: 20px;
+    /* Sharp corners */
+    border-radius: 0;
     border: none;
 
     font-family: var(--font-outfit), sans-serif;
@@ -206,15 +187,15 @@
     }
 
     /* Reset background to simple card on mobile */
-    .cardBackground {
+    .whiteCardBackground {
         background-image: none;
         background-color: #ffffff;
-        border-radius: 20px;
+        border-radius: 0;
         inset: 0;
     }
 
-    .cardBackground::before,
-    .cardBackground::after {
+    .whiteCardBackground::before,
+    .whiteCardBackground::after {
         display: none;
     }
 
