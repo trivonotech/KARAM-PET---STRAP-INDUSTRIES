@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import React from 'react';
 import styles from './page.module.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -118,32 +119,34 @@ export default function ProductsPage() {
                 </div>
 
                 {products.map((product, index) => (
-                    <section
-                        key={product.id}
-                        className={`${styles.productSection} ${index % 2 !== 0 ? styles.reversed : ''}`}
-                    >
-                        <div className={styles.productInfo}>
-                            <h2 className={styles.productTitle}>{product.title}</h2>
-                            <table className={styles.specsTable}>
-                                <tbody>
-                                    {product.specs.map((spec, i) => (
-                                        <tr key={i}>
-                                            <td className={styles.specLabel}>{spec.label}</td>
-                                            <td className={styles.specValue}>{spec.value}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className={styles.productImageContainer}>
-                            <Image
-                                src={product.imageSrc}
-                                alt={product.title}
-                                fill
-                                className={styles.productImage}
-                            />
-                        </div>
-                    </section>
+                    <React.Fragment key={product.id}>
+                        <section
+                            className={`${styles.productSection} ${index % 2 !== 0 ? styles.reversed : ''}`}
+                        >
+                            <div className={styles.productInfo}>
+                                <h2 className={styles.productTitle}>{product.title}</h2>
+                                <table className={styles.specsTable}>
+                                    <tbody>
+                                        {product.specs.map((spec, i) => (
+                                            <tr key={i}>
+                                                <td className={styles.specLabel}>{spec.label}</td>
+                                                <td className={styles.specValue}>{spec.value}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className={styles.productImageContainer}>
+                                <Image
+                                    src={product.imageSrc}
+                                    alt={product.title}
+                                    fill
+                                    className={styles.productImage}
+                                />
+                            </div>
+                        </section>
+                        {index < products.length - 1 && <hr className={styles.separator} />}
+                    </React.Fragment>
                 ))}
             </div>
             <Footer />

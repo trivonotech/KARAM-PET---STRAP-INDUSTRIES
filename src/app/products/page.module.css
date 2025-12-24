@@ -35,12 +35,19 @@
 }
 
 /* Product Section Layout */
+/* Product Section Layout */
 .productSection {
     display: flex;
     align-items: center;
     gap: 4rem;
-    margin-bottom: 6rem;
-    padding: 0 2rem;
+    margin-bottom: 0;
+    padding: 2rem 2rem;
+}
+
+.separator {
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 4rem 2rem;
 }
 
 .productSection.reversed {
