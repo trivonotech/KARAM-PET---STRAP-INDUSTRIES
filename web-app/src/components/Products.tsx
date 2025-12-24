@@ -26,9 +26,11 @@ export default function Products() {
                             className={styles.productImage}
                         />
                     </div>
-                    <button className={styles.moreButton}>
-                        More ↗
-                    </button>
+                    <div className={styles.cutoutWrapper}>
+                        <button className={styles.floatingButton}>
+                            More ↗
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
