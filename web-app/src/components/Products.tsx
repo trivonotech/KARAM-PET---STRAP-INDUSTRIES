@@ -25,10 +25,10 @@ export default function Products() {
                             fill
                             className={styles.productImage}
                         />
-                        <button className={styles.moreButton}>
-                            More ↗
-                        </button>
                     </div>
+                    <button className={styles.moreButton}>
+                        More ↗
+                    </button>
                 </div>
             </div>
         </section>

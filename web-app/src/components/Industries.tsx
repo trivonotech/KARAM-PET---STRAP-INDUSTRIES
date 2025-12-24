@@ -13,13 +13,15 @@ export default function Industries() {
                     <span className={styles.orangeText}>SERVED</span>
                 </h2>
 
-                <div className={styles.logoGrid}>
-                    {logos.map((_, index) => (
-                        <div key={index} className={styles.logoItem}>
-                            <span className={styles.logoText}>Logo</span>
-                        </div>
-                    ))}
-                    {/* Duplicate for visual effect if needed, or just list 7 as in mockup */}
+                <div className={styles.marqueeContainer}>
+                    <div className={styles.marqueeTrack}>
+                        {/* Duplicate the logos to ensure seamless scrolling */}
+                        {[...logos, ...logos].map((_, index) => (
+                            <div key={index} className={styles.logoItem}>
+                                <span className={styles.logoText}>Logo</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
