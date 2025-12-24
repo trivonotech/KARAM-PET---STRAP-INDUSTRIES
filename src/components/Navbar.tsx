@@ -15,9 +15,9 @@ export default function Navbar() {
           />
         </div>
         <ul className={styles.navLinks}>
-          <li><a href="#" className={`${styles.navLink} ${styles.active}`}>Home</a></li>
+          <li><a href="/" className={`${styles.navLink} ${styles.active}`}>Home</a></li>
           <li><a href="#" className={styles.navLink}>About</a></li>
-          <li><a href="#" className={styles.navLink}>Products</a></li>
+          <li><a href="/products" className={styles.navLink}>Products</a></li>
           <li><a href="#" className={styles.navLink}>Industries</a></li>
           <li><a href="#" className={styles.navLink}>Infrastructure</a></li>
         </ul>
