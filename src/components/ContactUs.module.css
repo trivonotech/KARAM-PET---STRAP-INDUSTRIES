@@ -106,8 +106,10 @@
     background-color: #ffffff;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
-    border-bottom-left-radius: 24px;
-    /* We need this if the content ends here? No. */
+    border-bottom-left-radius: 0;
+    /* Flatten for seamless join */
+    border-bottom-right-radius: 24px;
+    /* Curve the outer corner above button */
 }
 
 .shapeBottom {
@@ -115,10 +117,13 @@
     bottom: 0;
     left: 0;
     width: calc(100% - 280px);
-    /* Leave 280px for button */
     height: 80px;
     background-color: #ffffff;
     border-bottom-left-radius: 24px;
+    border-top-left-radius: 0;
+    /* Flatten for seamless join */
+    border-bottom-right-radius: 0;
+    /* Sharp corner to meet connector */
 }
 
 .shapeConnector {
