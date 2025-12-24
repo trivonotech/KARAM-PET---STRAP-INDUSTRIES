@@ -6,6 +6,7 @@ import Industries from '@/components/Industries';
 import Products from '@/components/Products';
 import QualityControl from '@/components/QualityControl';
 import WhyChooseUs from '@/components/WhyChooseUs';
+import ContactUs from '@/components/ContactUs';
 
 import Footer from '@/components/Footer';
 
@@ -20,6 +21,7 @@ export default function Home() {
         <Products />
         <QualityControl />
         <WhyChooseUs />
+        <ContactUs />
 
       </div>
       <Footer />

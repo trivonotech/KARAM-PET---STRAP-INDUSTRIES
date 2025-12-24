@@ -1,0 +1,255 @@
+.contactSection {
+    padding: 6rem 0;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.blackText {
+    color: #000;
+}
+
+.orangeText {
+    color: var(--primary);
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    /* Adjust based on form height */
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Form on the right */
+    padding: 2rem;
+}
+
+.backgroundImage {
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Form Card Construction */
+.formCard {
+    position: relative;
+    width: 600px;
+    z-index: 10;
+    /* Transparent background because we build the shape with children */
+    display: flex;
+    flex-direction: column;
+}
+
+/* The visual white background parts */
+.cardTop {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 2rem 2rem 0 2rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    /* Temporary, will be covered or connected */
+    /* Actually we need to be careful with content flow */
+}
+
+/* Alternative: Use a single content div with padding, and use absolute positioned "masks" or "patches" */
+/* But the hole allows the bg image to be seen. Masking is best. */
+
+.formContent {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    /* We will use a unique styling to cut the corner */
+    position: relative;
+    /* Clip-path approach for the cutout */
+    /* This polygon cuts the bottom right corner */
+    clip-path: polygon(0 0,
+            100% 0,
+            100% calc(100% - 80px),
+            calc(100% - 280px) calc(100% - 80px),
+            calc(100% - 280px) 100%,
+            0 100%);
+    /* NOTE: simple polygon doesn't do rounded corners. */
+}
+
+/* Reverting to the "Composite Shape" approach which allows border-radius */
+.cardShape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+    /* drop-shadow works on the composite shape! */
+}
+
+.shapeTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 80px);
+    background-color: #ffffff;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    /* We need this if the content ends here? No. */
+}
+
+.shapeBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 280px);
+    /* Leave 280px for button */
+    height: 80px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 24px;
+}
+
+.shapeConnector {
+    position: absolute;
+    bottom: 40px;
+    right: 240px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 100% 100%, transparent 40px, #ffffff 40.5px);
+}
+
+.formInner {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem;
+    padding-bottom: 7rem;
+    /* Make space for the cutout area if content flows there? No, content should be above. */
+}
+
+.inputRow {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--primary);
+    /* Orange labels as per image */
+    font-size: 0.9rem;
+}
+
+.label.required::after {
+    content: " *";
+    color: var(--primary);
+}
+
+.input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: var(--primary);
+}
+
+.submitButton {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 260px;
+    height: 60px;
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+    background-color: var(--primary-hover);
+}
+
+@media (max-width: 900px) {
+    .wrapper {
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .formCard {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .inputRow {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .shapeBottom {
+        width: 100%;
+        border-bottom-right-radius: 24px;
+    }
+
+    .shapeConnector {
+        display: none;
+    }
+
+    .submitButton {
+        position: static;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .cardShape {
+        display: none;
+        /* Just use simple bg on mobile */
+    }
+
+    .formCard {
+        background: #ffffff;
+        border-radius: 24px;
+        overflow: hidden;
+    }
+
+    .formInner {
+        padding: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .shapeTop {
+        display: none;
+    }
+}
