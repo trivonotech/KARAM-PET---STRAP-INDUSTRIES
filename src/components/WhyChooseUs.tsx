@@ -18,15 +18,19 @@ export default function WhyChooseUs() {
                 </h2>
 
                 <div className={styles.bannerWrapper}>
-                    <Image
-                        src="/hero-bg.png" /* Placeholder for banner */
-                        alt="Why Choose Us Banner"
-                        fill
-                        className={styles.bannerImage}
-                    />
-                    <button className={styles.moreButton}>
-                        More ↗
-                    </button>
+                    <div className={styles.imageContainer}>
+                        <Image
+                            src="/hero-bg.png" /* Placeholder for banner */
+                            alt="Why Choose Us Banner"
+                            fill
+                            className={styles.bannerImage}
+                        />
+                    </div>
+                    <div className={styles.cutoutWrapper}>
+                        <button className={styles.moreButton}>
+                            More ↗
+                        </button>
+                    </div>
                 </div>
 
                 <div className={styles.featureGrid}>

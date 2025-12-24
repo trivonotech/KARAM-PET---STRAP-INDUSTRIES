@@ -28,34 +28,76 @@
     position: relative;
     width: 100%;
     height: 400px;
+    margin-bottom: 3rem;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
     border-radius: 30px;
     overflow: hidden;
-    margin-bottom: 3rem;
+    /* This ensures the image has corners, but we'll mask the bottom-right via the cutout overlay if needed, 
+       or just rely on the cutout wrapper sitting on top. 
+       Actually, to "cut" the image corner, we need the cutout wrapper to matching the background color. 
+       The background is white. */
 }
 
 .bannerImage {
     object-fit: cover;
 }
 
-.moreButton {
+.cutoutWrapper {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #ffffff;
+    /* Match section background */
+    padding: 0.5rem;
+    border-top-left-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Connectors (Fillet) for smooth corner */
+.cutoutWrapper::after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 0 0, transparent 20px, #ffffff 20px);
+}
+
+.cutoutWrapper::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 0 0, transparent 20px, #ffffff 20px);
+}
+
+.moreButton {
     background-color: var(--primary);
     color: #ffffff;
-    padding: 0.7rem 2rem;
-    border-radius: 100px;
-    border: 8px solid #ffffff;
+    border: none;
+    padding: 0.5rem 3.5rem;
+    border-radius: 8px;
+    /* Changed to match Our Products button style which is usually less rounded or has specific rounding */
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.2s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    transition: transform 0.2s;
+    white-space: nowrap;
 }
 
-
 .moreButton:hover {
+    transform: translateY(-2px);
     background-color: var(--primary-hover);
 }
 
