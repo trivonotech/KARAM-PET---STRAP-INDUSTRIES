@@ -102,7 +102,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 55px);
     background-color: #ffffff;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
@@ -116,23 +116,23 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: calc(100% - 280px);
-    height: 80px;
+    width: calc(100% - 360px);
+    height: 55px;
     background-color: #ffffff;
     border-bottom-left-radius: 24px;
     border-top-left-radius: 0;
     /* Flatten for seamless join */
-    border-bottom-right-radius: 0;
-    /* Sharp corner to meet connector */
+    border-bottom-right-radius: 24px;
+    /* Round the inner corner next to button */
 }
 
 .shapeConnector {
     position: absolute;
-    bottom: 40px;
-    right: 240px;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle at 100% 100%, transparent 40px, #ffffff 40.5px);
+    bottom: 35px;
+    right: 340px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 100% 100%, transparent 20px, #ffffff 20.5px);
 }
 
 .formInner {
@@ -186,8 +186,8 @@
     position: absolute;
     bottom: 0px;
     right: 0px;
-    width: 260px;
-    height: 60px;
+    width: 350px;
+    height: 45px;
     background-color: var(--primary);
     color: #ffffff;
     border: none;
