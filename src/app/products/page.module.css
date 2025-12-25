@@ -84,18 +84,18 @@
 /* Specs Table Styling */
 .specsTable {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 1rem;
+    border-collapse: collapse;
 }
 
-.specsTable tr {
-    border-bottom: 1px solid #eee;
+.specsTable tr:last-child td {
+    border-bottom: none;
 }
 
 .specsTable td {
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     vertical-align: top;
     font-size: 1rem;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .specLabel {
