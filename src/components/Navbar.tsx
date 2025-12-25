@@ -1,7 +1,13 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContent}>
@@ -15,11 +21,32 @@ export default function Navbar() {
           />
         </div>
         <ul className={styles.navLinks}>
-          <li><a href="/" className={`${styles.navLink} ${styles.active}`}>Home</a></li>
-          <li><a href="#" className={styles.navLink}>About</a></li>
-          <li><a href="/products" className={styles.navLink}>Products</a></li>
-          <li><a href="#" className={styles.navLink}>Industries</a></li>
-          <li><a href="#" className={styles.navLink}>Infrastructure</a></li>
+          <li>
+            <Link
+              href="/"
+              className={`${styles.navLink} ${pathname === '/' ? styles.active : ''}`}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className={`${styles.navLink} ${pathname === '/about' ? styles.active : ''}`}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/products"
+              className={`${styles.navLink} ${pathname === '/products' ? styles.active : ''}`}
+            >
+              Products
+            </Link>
+          </li>
+          <li><Link href="#" className={styles.navLink}>Industries</Link></li>
+          <li><Link href="#" className={styles.navLink}>Infrastructure</Link></li>
         </ul>
         <a href="#" className={styles.contactButton}>
           <span>📞</span> Contact

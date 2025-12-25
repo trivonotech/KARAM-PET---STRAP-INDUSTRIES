@@ -1,0 +1,230 @@
+.main {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-outfit), sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header Section */
+.headerSection {
+    padding: 4rem 0 2rem;
+    text-align: left;
+}
+
+.mainTitle {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+.orangeText {
+    color: #FF9933;
+    /* Approximate orange from design */
+}
+
+.introText {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 900px;
+}
+
+.heroImageContainer {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+}
+
+.heroImage {
+    object-fit: cover;
+}
+
+/* Company Overview */
+.overviewSection {
+    margin-bottom: 4rem;
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.overviewDescription {
+    color: #555;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.subSection {
+    margin-bottom: 3rem;
+}
+
+.subTitle {
+    font-size: 1.5rem;
+    color: #FF9933;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.textBlock {
+    color: #555;
+    line-height: 1.6;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+    color: #555;
+}
+
+.list li::before {
+    content: "•";
+    color: #FF9933;
+    position: absolute;
+    left: 0;
+}
+
+/* Consistency Section (Orange BG) */
+.consistencySection {
+    background-color: #FFCC80;
+    /* Light orange background */
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.consistencyTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #000;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featureCard {
+    border: 1px solid rgba(255, 153, 51, 0.3);
+    padding: 2rem 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.iconWrapper {
+    font-size: 2rem;
+    color: #E65100;
+    /* Darker orange for icons */
+    margin-bottom: 1rem;
+}
+
+.featureText {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Trust Section */
+.trustSection {
+    padding-bottom: 6rem;
+}
+
+.trustContent {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.trustImageContainer {
+    flex: 1;
+    height: 350px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.trustTextContent {
+    flex: 1;
+}
+
+.trustList {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.trustList li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+}
+
+.trustList li::before {
+    content: "•";
+    color: #FF9933;
+    /* Orange bullet */
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .featuresGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trustContent {
+        flex-direction: column-reverse;
+        /* Image on top on mobile? Or bottom. Design shows text list and image side by side. Stack vertically on mobile. */
+    }
+
+    .trustImageContainer {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .featuresGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .mainTitle,
+    .sectionTitle,
+    .consistencyTitle {
+        font-size: 2rem;
+    }
+}
