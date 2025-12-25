@@ -8,7 +8,7 @@ export default function AboutPage() {
     return (
         <main className={styles.main}>
             <Navbar />
-
+            
             <section className={styles.container}>
                 <div className={styles.headerSection}>
                     <h1 className={styles.mainTitle}>
@@ -64,7 +64,7 @@ export default function AboutPage() {
                         </ul>
                     </div>
 
-                    <div className={styles.subSection}>
+                     <div className={styles.subSection}>
                         <h3 className={styles.subTitle}>3. WHO WE SERVE</h3>
                         <p className={styles.textBlock} style={{ marginBottom: '1rem' }}>
                             We Supply Strapping Solutions To:
@@ -74,13 +74,13 @@ export default function AboutPage() {
                             <li>Packaging And Logistics Companies</li>
                             <li>Export-Oriented Industries</li>
                             <li>Warehousing Facilities</li>
-                            <li>Heavy-Duty And High-Volume Production Setups</li>
+                             <li>Heavy-Duty And High-Volume Production Setups</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section className={styles.consistencySection}>
+             <section className={styles.consistencySection}>
                 <h2 className={styles.consistencyTitle}>
                     HOW WE <span className={styles.orangeText}>ENSURE CONSISTENCY</span>
                 </h2>
@@ -98,24 +98,24 @@ export default function AboutPage() {
                         </p>
                     </div>
                     <div className={styles.featureCard}>
-                        <div className={styles.iconWrapper}>🏠</div> {/* Placeholder Icon */}
+                         <div className={styles.iconWrapper}>🏠</div> {/* Placeholder Icon */}
                         <p className={styles.featureText}>
-                            Lab-Tested For Break<br />Strength & Elongation
+                           Lab-Tested For Break<br />Strength & Elongation
                         </p>
                     </div>
-                    <div className={styles.featureCard}>
-                        <div className={styles.iconWrapper}>🚚</div> {/* Placeholder Icon */}
+                     <div className={styles.featureCard}>
+                         <div className={styles.iconWrapper}>🚚</div> {/* Placeholder Icon */}
                         <p className={styles.featureText}>
-                            Reliable Production<br />For Heavy Industrial<br />Demand
+                           Reliable Production<br />For Heavy Industrial<br />Demand
                         </p>
                     </div>
                 </div>
             </section>
 
             <section className={styles.container}>
-                <div className={`${styles.trustSection} ${styles.trustContent}`}>
+                 <div className={`${styles.trustSection} ${styles.trustContent}`}>
                     <div className={styles.trustImageContainer}>
-                        <Image
+                         <Image
                             src="/hero-bg.png" /* Placeholder */
                             alt="Trust Us"
                             fill
@@ -123,7 +123,7 @@ export default function AboutPage() {
                         />
                     </div>
                     <div className={styles.trustTextContent}>
-                        <h2 className={styles.sectionTitle} style={{ fontSize: '2.5rem' }}>
+                        <h2 className={styles.sectionTitle} style={{fontSize: '2.5rem'}}>
                             WHY CLIENTS <span className={styles.orangeText}>TRUST US</span>
                         </h2>
                         <ul className={styles.trustList}>
@@ -131,10 +131,10 @@ export default function AboutPage() {
                             <li>Stable Bulk Supply With Consistent Lead Times</li>
                             <li>Competitive Industrial Pricing</li>
                             <li>Fast Communication & Responsive Support</li>
-                            <li>15+ Years Of Technical Expertise Backing Every Shipment</li>
+                             <li>15+ Years Of Technical Expertise Backing Every Shipment</li>
                         </ul>
                     </div>
-                </div>
+                 </div>
             </section>
 
             <Footer />
