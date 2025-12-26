@@ -12,7 +12,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (user) {
-            router.push('/dashboard');
+            router.push('/admin');
         }
     }, [user, router]);
 
@@ -57,7 +57,7 @@ export default function LoginPage() {
                     Welcome Admin
                 </h1>
                 <p style={{ color: '#6b7280', marginBottom: '32px' }}>
-                    Sign in to access the dashboard
+                    Sign in to access the Admin Panel
                 </p>
 
                 {error && (

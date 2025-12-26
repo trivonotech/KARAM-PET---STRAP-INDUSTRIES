@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
-import DashboardSidebar from '../../components/DashboardSidebar';
+import AdminSidebar from '../../components/AdminSidebar';
 
 export default function DashboardLayout({
     children,
@@ -33,7 +33,7 @@ export default function DashboardLayout({
 
     return (
         <div style={{ display: 'flex', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
-            <DashboardSidebar />
+            <AdminSidebar />
             <main style={{ marginLeft: '260px', width: 'calc(100% - 260px)', padding: '32px' }}>
                 {children}
             </main>

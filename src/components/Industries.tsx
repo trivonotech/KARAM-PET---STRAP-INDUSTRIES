@@ -8,7 +8,7 @@ export default function Industries() {
     const { config } = useSiteConfig();
 
     // Filter out empty strings
-    let validLogos = config.industryLogos.filter(url => url && url.length > 0);
+    let validLogos = config.clientLogos.filter(url => url && url.length > 0);
 
     // If no logos, use placeholders
     // If we have logos but fewer than 7, repeat them to enough length for smooth scroll

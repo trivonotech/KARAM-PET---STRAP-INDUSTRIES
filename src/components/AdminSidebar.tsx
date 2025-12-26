@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import styles from './DashboardSidebar.module.css';
+import styles from './AdminSidebar.module.css';
 
-const DashboardSidebar = () => {
+const AdminSidebar = () => {
     return (
         <aside className={styles.sidebar}>
             <div className={styles.logoContainer}>
@@ -11,7 +11,7 @@ const DashboardSidebar = () => {
             </div>
 
             <nav className={styles.nav}>
-                <Link href="/dashboard" className={`${styles.navItem} ${styles.active}`}>
+                <Link href="/admin" className={`${styles.navItem} ${styles.active}`}>
                     <span>🏠</span>
                     <span>Home Page</span>
                 </Link>
@@ -28,4 +28,4 @@ const DashboardSidebar = () => {
     );
 };
 
-export default DashboardSidebar;
+export default AdminSidebar;
