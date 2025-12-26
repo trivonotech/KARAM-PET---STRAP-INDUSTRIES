@@ -112,9 +112,7 @@ export default function ProductsPage() {
                 <div className={styles.headerSection}>
                     <h1 className={styles.title}>OUR <span>PRODUCTS</span></h1>
                     <p className={styles.description}>
-                        Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry.
-                        Lorem Ipsum Has Been The Industry&#39;s Standard Dummy Text Ever Since The 1500s,
-                        When An Unknown Printer Took A Galley Of Type And Scrambled It To Make A Type Specimen Book.
+                        Explore our comprehensive range of ISO-certified strapping solutions designed for durability, shock absorption, and industrial-grade performance. From PET to PP and Cord straps, we deliver consistent quality for all your packaging needs.
                     </p>
                 </div>
 

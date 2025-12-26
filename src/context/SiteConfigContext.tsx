@@ -38,12 +38,12 @@ const defaultLogos = Array(7).fill('');
 const defaultClientLogos: ClientLogo[] = [];
 
 const defaultHomeContent: HomeContent = {
-    heroTitle: 'Manufacturer Of High-Precision\n[Product Type] For Industrial\nApplications',
-    heroSubtitle: 'Serving Automotive, Construction, And OEM Clients With ISO-Certified Manufacturing And Scalable Production.',
+    heroTitle: 'Manufacturer Of High-Performance\nPET, PP & Cord Strapping Solutions',
+    heroSubtitle: 'Serving Steel, Aluminium, Packaging And Export Industries With Durable, Shock-Absorbent And Machine-Compatible Strapping Made Using 100% Recycled Raw Materials.',
     stats: [
-        { value: '15+', label: 'Years\nExperience' },
+        { value: '14+', label: 'Years\nExperience' },
         { value: '9001:2015', label: 'Iso' },
-        { value: '15+', label: 'Monthly\nCapacity' },
+        { value: '11 T', label: 'Monthly\nCapacity' },
     ]
 };
 

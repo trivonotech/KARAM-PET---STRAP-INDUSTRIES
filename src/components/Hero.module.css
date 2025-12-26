@@ -29,28 +29,28 @@
     width: 100%;
     max-width: 1400px;
     /* Ensure content obeys container max-width */
-    padding-left: 8rem;
-    /* Match the wide left spacing in visual */
-    padding-right: 4rem;
+    padding-left: 6rem;
+    padding-right: 2rem;
     box-sizing: border-box;
 }
 
 .title {
-    font-size: 3.8rem;
-    /* Slightly reduced to handle 3 lines gracefully */
+    font-size: 3.5rem;
+    /* Adjusted for better fit */
     font-weight: 700;
     line-height: 1.15;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-family: var(--font-outfit), sans-serif;
     text-transform: capitalize;
-    max-width: 850px;
-    /* Force wrap before hitting right edge */
+    max-width: 1000px;
+    /* Increased to allow "Manufacturer Of High-Performance" on one line */
 }
 
 .subtitle {
     font-size: 1.1rem;
     margin-bottom: 2.5rem;
-    max-width: 650px;
+    max-width: 750px;
+    /* Increased for better subtitle flow */
     opacity: 0.95;
     line-height: 1.6;
     font-weight: 400;
