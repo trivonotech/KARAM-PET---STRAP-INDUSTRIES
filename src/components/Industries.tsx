@@ -46,22 +46,17 @@ export default function Industries() {
                 <div className={styles.marqueeContainer}>
                     <div className={styles.marqueeTrack}>
                         {marqueeLogos.map((logoUrl, index) => (
-                            <div key={index} className={styles.logoItem} style={{
-                                background: logoUrl ? 'white' : 'linear-gradient(180deg, #e6e6e6 0%, #cccccc 100%)',
-                                position: 'relative' // For Image fill
-                            }}>
-                                {logoUrl ? (
-                                    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px' }}>
+                            <div key={index} className={styles.logoItem}>
+                                {logoUrl && (
+                                    <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <Image
                                             src={logoUrl}
                                             alt={`Industry Partner ${index}`}
                                             fill
-                                            style={{ objectFit: 'contain', padding: '8px' }}
+                                            style={{ objectFit: 'contain' }}
                                             sizes="(max-width: 768px) 150px, 200px"
                                         />
                                     </div>
-                                ) : (
-                                    <span className={styles.logoText}>Logo</span>
                                 )}
                             </div>
                         ))}

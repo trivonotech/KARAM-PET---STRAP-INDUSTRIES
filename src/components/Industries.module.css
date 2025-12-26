@@ -67,13 +67,16 @@
 
 .logoItem {
     min-width: 150px;
-    height: 80px;
-    background: linear-gradient(180deg, #e6e6e6 0%, #cccccc 100%);
-    /* Grey gradient from mockup */
+    height: 100px;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.logoItem:hover {
+    transform: scale(1.05);
 }
 
 .logoText {
