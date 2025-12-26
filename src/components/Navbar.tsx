@@ -47,9 +47,9 @@ export default function Navbar() {
           </li>
 
         </ul>
-        <a href="#" className={styles.contactButton}>
+        <Link href="/contact" className={styles.contactButton}>
           <span>📞</span> Contact
-        </a>
+        </Link>
       </div>
     </nav>
   );

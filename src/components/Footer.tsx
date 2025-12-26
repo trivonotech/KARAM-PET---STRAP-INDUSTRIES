@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -7,18 +8,26 @@ export default function Footer() {
             <div className={styles.container}>
                 {/* Column 1: Brand & Address */}
                 <div className={styles.brandColumn}>
-                    <div className={styles.logoPlaceholder}>Logo</div>
+                    <div className={styles.logoContainer}>
+                        <Image src="/logo.png" alt="KARAM PET Logo" fill className={styles.logoImage} objectFit="contain" />
+                    </div>
 
                     <div className={styles.addressGroup}>
                         <h3 className={styles.columnTitle}>Address</h3>
                         <p className={styles.text}>
-                            Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry
+                            KARAM PET STRAP INDUSTRIES<br />
+                            Survey No. 258, Plot No. 03, Captain Polyplast Gate,<br />
+                            Near Precision Techno Cast Pvt. Ltd.,<br />
+                            Shapar (Veraval), Rajkot — 360024,<br />
+                            Gujarat, India.
                         </p>
                     </div>
 
-                    <button className={styles.pricingButton}>
-                        Get PET Strap Pricing
-                    </button>
+                    <Link href="/contact">
+                        <button className={styles.pricingButton}>
+                            Get PET Strap Pricing
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Column 2: Quick Links */}
@@ -28,8 +37,6 @@ export default function Footer() {
                         <li><Link href="/" className={styles.linkItem}>Home</Link></li>
                         <li><Link href="/about" className={styles.linkItem}>About</Link></li>
                         <li><Link href="/products" className={styles.linkItem}>Products</Link></li>
-                        <li><Link href="/industries" className={styles.linkItem}>Industries</Link></li>
-                        <li><Link href="/infrastructure" className={styles.linkItem}>Infrastructure</Link></li>
                     </ul>
                 </div>
 

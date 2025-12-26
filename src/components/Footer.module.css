@@ -23,17 +23,17 @@
     gap: 1.5rem;
 }
 
-.logoPlaceholder {
-    width: 150px;
+.logoContainer {
+    width: 200px;
     height: 80px;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 4px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.logoImage {
+    object-position: center;
 }
 
 .addressGroup {
