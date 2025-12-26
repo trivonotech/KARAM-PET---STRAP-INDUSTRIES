@@ -1,14 +1,34 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-
-
+import { useSiteConfig } from '@/context/SiteConfigContext';
 
 export default function AboutPage() {
+    const { config } = useSiteConfig();
+    const clientLogos = config.clientLogos || Array(18).fill('');
+
+    const renderClientLogo = (index: number) => {
+        const url = clientLogos[index];
+        return (
+            <div className={styles.clientPlaceholder} style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {url ? (
+                    <Image
+                        src={url}
+                        alt={`Client ${index + 1}`}
+                        fill
+                        style={{ objectFit: 'contain', padding: '15px' }}
+                    />
+                ) : null}
+            </div>
+        );
+    };
+
     return (
         <main className={styles.main}>
+            {/* ... header ... */}
             <Navbar />
 
             <section className={styles.container}>
@@ -16,6 +36,7 @@ export default function AboutPage() {
                     <h1 className={styles.mainTitle}>
                         ABOUT <span className={styles.orangeText}>COMPANY</span>
                     </h1>
+                    {/* ... rest of header ... */}
                     <p className={styles.introText}>
                         With over 15 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India's most
                         reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have
@@ -170,11 +191,40 @@ export default function AboutPage() {
                     <h2 className={styles.sectionTitle}>
                         OUR <span className={styles.orangeText}>CLIENTS</span>
                     </h2>
-                    <div className={styles.clientsGrid}>
-                        {/* Generating grid of client placeholders */}
-                        {Array.from({ length: 14 }).map((_, index) => (
-                            <div key={index} className={styles.clientPlaceholder}></div>
-                        ))}
+                    <div className={styles.clientsContainer}>
+                        {/* Row 1: 4 Items */}
+                        <div className={styles.clientsRow}>
+                            {renderClientLogo(0)}
+                            {renderClientLogo(1)}
+                            {renderClientLogo(2)}
+                            {renderClientLogo(3)}
+                        </div>
+                        {/* Row 2: 3 Items */}
+                        <div className={styles.clientsRow}>
+                            {renderClientLogo(4)}
+                            {renderClientLogo(5)}
+                            {renderClientLogo(6)}
+                        </div>
+                        {/* Row 3: 4 Items */}
+                        <div className={styles.clientsRow}>
+                            {renderClientLogo(7)}
+                            {renderClientLogo(8)}
+                            {renderClientLogo(9)}
+                            {renderClientLogo(10)}
+                        </div>
+                        {/* Row 4: 3 Items */}
+                        <div className={styles.clientsRow}>
+                            {renderClientLogo(11)}
+                            {renderClientLogo(12)}
+                            {renderClientLogo(13)}
+                        </div>
+                        {/* Row 5: 4 Items */}
+                        <div className={styles.clientsRow}>
+                            {renderClientLogo(14)}
+                            {renderClientLogo(15)}
+                            {renderClientLogo(16)}
+                            {renderClientLogo(17)}
+                        </div>
                     </div>
                 </div>
 

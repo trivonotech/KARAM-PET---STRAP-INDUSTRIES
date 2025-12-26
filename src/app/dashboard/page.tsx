@@ -2,20 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import { useSiteConfig } from '../../context/SiteConfigContext';
-import { storage } from '../../lib/firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { convertImageToWebP } from '../../lib/imageUtils';
+import { auth } from '../../lib/firebase';
+import { convertImageToBase64 } from '../../lib/imageUtils';
 import styles from './page.module.css';
 import Image from 'next/image';
 
 export default function DashboardPage() {
-    const { config, updateHomeContent, updateIndustryLogos } = useSiteConfig();
+    const { config, updateHomeContent, updateClientLogos } = useSiteConfig();
     const [heroTitle, setHeroTitle] = useState('');
     const [heroSubtitle, setHeroSubtitle] = useState('');
     const [stats, setStats] = useState<{ value: string; label: string }[]>([]);
-    const [industryInputs, setIndustryInputs] = useState<string[]>([]);
+
+    // Client Logos Logic
+    const [clientInputs, setClientInputs] = useState<string[]>(Array(18).fill(''));
+    const [clientUploadingIndex, setClientUploadingIndex] = useState<number | null>(null);
+
     const [showSuccess, setShowSuccess] = useState(false);
-    const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
+
+    const [uploadError, setUploadError] = useState<string | null>(null);
 
     useEffect(() => {
         if (config.homeContent) {
@@ -23,8 +27,14 @@ export default function DashboardPage() {
             setHeroSubtitle(config.homeContent.heroSubtitle);
             setStats(config.homeContent.stats);
         }
-        if (config.industryLogos) {
-            setIndustryInputs(config.industryLogos);
+        if (config.clientLogos) {
+            // Ensure we have 18 slots, pad if necessary
+            const loaded = config.clientLogos;
+            if (loaded.length < 18) {
+                setClientInputs([...loaded, ...Array(18 - loaded.length).fill('')]);
+            } else {
+                setClientInputs(loaded.slice(0, 18));
+            }
         }
     }, [config]);
 
@@ -34,36 +44,58 @@ export default function DashboardPage() {
         setStats(newStats);
     };
 
-    const handleImageUpload = async (index: number, file: File) => {
+    const handleClientImageUpload = async (index: number, file: File) => {
         if (!file) return;
 
+        // Reset error
+        setUploadError(null);
+
+        // 1. Auth Check
+        if (!auth.currentUser) {
+            setUploadError("You are not logged in! Please refresh the page.");
+            return;
+        }
+
         try {
-            setUploadingIndex(index);
-            // 1. Convert to WebP
-            const webpBlob = await convertImageToWebP(file);
+            setClientUploadingIndex(index);
+            console.log(`Starting processing for slot ${index}...`);
 
-            // 2. Upload to Firebase Storage
-            const filename = `industries/logo-${Date.now()}-${index}.webp`;
-            const storageRef = ref(storage, filename);
+            // 2. Convert to Base64 (Firestore-only mode)
+            const base64String = await convertImageToBase64(file);
+            console.log("Converted to Base64. Length:", base64String.length);
 
-            await uploadBytes(storageRef, webpBlob);
-            const downloadURL = await getDownloadURL(storageRef);
+            // 3. Update State AND Firestore (Auto-Save)
+            const newInputs = [...clientInputs];
+            newInputs[index] = base64String;
+            setClientInputs(newInputs);
 
-            // 3. Update state
-            const newInputs = [...industryInputs];
-            newInputs[index] = downloadURL;
-            setIndustryInputs(newInputs);
-        } catch (error) {
-            console.error("Upload failed", error);
-            alert("Failed to upload image. Please check your Storage rules.");
+            console.log("Saving to Firestore...");
+            await updateClientLogos(newInputs);
+            console.log("Saved.");
+
+        } catch (error: any) {
+            console.error("Client Logo Save failed detailed:", error);
+            // Show error ON SCREEN
+            setUploadError(`Save failed: ${error.message || error}`);
+            // Also alert just in case
+            alert(`Error: ${error.message}`);
         } finally {
-            setUploadingIndex(null);
+            setClientUploadingIndex(null);
         }
     };
 
-    const removeLogo = (index: number) => {
-        const newInputs = industryInputs.filter((_, i) => i !== index);
-        setIndustryInputs(newInputs);
+    const removeClientLogo = async (index: number) => {
+        if (!confirm("Are you sure you want to remove this logo?")) return;
+
+        try {
+            const newInputs = [...clientInputs];
+            newInputs[index] = ''; // Clear slot but keep index
+            setClientInputs(newInputs);
+            await updateClientLogos(newInputs); // Auto-Save
+        } catch (error) {
+            console.error("Failed to remove logo", error);
+            setUploadError("Failed to save changes.");
+        }
     };
 
     const handleSave = () => {
@@ -72,7 +104,7 @@ export default function DashboardPage() {
             heroSubtitle,
             stats
         });
-        updateIndustryLogos(industryInputs);
+        updateClientLogos(clientInputs); // Save Clients
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 3000);
     };
@@ -80,8 +112,8 @@ export default function DashboardPage() {
     return (
         <div>
             <div className={styles.header}>
-                <h1 className={styles.title}>Home Page Manager</h1>
-                <p className={styles.subtitle}>Edit the content of your website's landing page.</p>
+                <h1 className={styles.title}>Home & About Page Manager</h1>
+                <p className={styles.subtitle}>Edit site content and upload logos.</p>
             </div>
 
             <div className={styles.contentGrid} style={{ display: 'flex', flexDirection: 'column', maxWidth: '800px' }}>
@@ -187,94 +219,124 @@ export default function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Industries Section Card */}
+                {/* Clients Section Card */}
                 <div className={styles.card} style={{ marginTop: '24px' }}>
                     <div style={{ marginBottom: '32px' }}>
-                        <h2 className={styles.cardTitle} style={{ marginBottom: '16px' }}>Industries Served & Partner Logos</h2>
+                        <h2 className={styles.cardTitle} style={{ marginBottom: '16px' }}>About Page: Our Clients</h2>
+                        {uploadError && (
+                            <div style={{ backgroundColor: '#fee2e2', color: '#b91c1c', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '0.9rem', border: '1px solid #fecaca' }}>
+                                <strong>Error:</strong> {uploadError}
+                            </div>
+                        )}
                         <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '16px' }}>
-                            Upload logos (JPG/PNG). They will be automatically converted to WebP.
+                            Manage the 18 client logo slots (displayed precisely as below).
                         </p>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                            {industryInputs.map((url, index) => (
-                                <div key={index} style={{ marginBottom: '8px', padding: '12px', border: '1px solid #e5e7eb', borderRadius: '8px', backgroundColor: 'white' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                                        <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#374151' }}>
-                                            Logo #{index + 1}
-                                        </label>
-                                        <button
-                                            onClick={() => removeLogo(index)}
-                                            style={{ color: '#ef4444', fontSize: '0.75rem', background: 'none', border: 'none', cursor: 'pointer' }}
-                                        >
-                                            Remove
-                                        </button>
-                                    </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+                            {/* Helper to render a group of inputs */}
+                            {[
+                                [0, 1, 2, 3],       // Row 1: 4
+                                [4, 5, 6],          // Row 2: 3
+                                [7, 8, 9, 10],      // Row 3: 4
+                                [11, 12, 13],       // Row 4: 3
+                                [14, 15, 16, 17]    // Row 5: 4
+                            ].map((rowIndices, rowIndex) => (
+                                <div key={rowIndex} style={{ display: 'flex', gap: '12px', justifyContent: 'center', width: '100%' }}>
+                                    {rowIndices.map((index) => {
+                                        const url = clientInputs[index];
+                                        return (
+                                            <div key={index} style={{
+                                                width: '120px',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                gap: '4px'
+                                            }}>
+                                                <div style={{
+                                                    height: '60px',
+                                                    width: '100%',
+                                                    backgroundColor: url ? '#f3f4f6' : '#f9fafb',
+                                                    border: url ? '1px solid #d1d5db' : '1px dashed #d1d5db',
+                                                    borderRadius: '8px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    position: 'relative',
+                                                    overflow: 'hidden'
+                                                }}>
+                                                    {url ? (
+                                                        <>
+                                                            <Image
+                                                                src={url}
+                                                                alt={`Slot ${index + 1}`}
+                                                                fill
+                                                                style={{ objectFit: 'contain', padding: '8px' }}
+                                                                unoptimized
+                                                            />
+                                                            <button
+                                                                onClick={() => removeClientLogo(index)}
+                                                                style={{
+                                                                    position: 'absolute',
+                                                                    top: '2px',
+                                                                    right: '2px',
+                                                                    background: 'rgba(255,255,255,0.8)',
+                                                                    borderRadius: '50%',
+                                                                    width: '16px',
+                                                                    height: '16px',
+                                                                    display: 'flex',
+                                                                    alignItems: 'center',
+                                                                    justifyContent: 'center',
+                                                                    border: 'none',
+                                                                    cursor: 'pointer',
+                                                                    color: 'red',
+                                                                    fontSize: '10px',
+                                                                    fontWeight: 'bold'
+                                                                }}
+                                                                title="Remove"
+                                                            >
+                                                                ✕
+                                                            </button>
+                                                        </>
+                                                    ) : (
+                                                        <span style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Slot {index + 1}</span>
+                                                    )}
 
-                                    {url ? (
-                                        <div style={{ marginBottom: '12px', position: 'relative', height: '60px', width: '100%', backgroundColor: '#f3f4f6', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <Image
-                                                src={url}
-                                                alt={`Logo ${index + 1}`}
-                                                width={100}
-                                                height={50}
-                                                style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }}
-                                                unoptimized
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div style={{ height: '60px', backgroundColor: '#f9fafb', border: '1px dashed #d1d5db', borderRadius: '4px', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', color: '#9ca3af' }}>
-                                            No Image
-                                        </div>
-                                    )}
+                                                    {clientUploadingIndex === index && (
+                                                        <div style={{
+                                                            position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.8)',
+                                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                            fontSize: '0.65rem', fontWeight: 'bold', color: '#2563eb'
+                                                        }}>
+                                                            ...
+                                                        </div>
+                                                    )}
+                                                </div>
 
-                                    <div style={{ position: 'relative' }}>
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={(e) => {
-                                                const file = e.target.files?.[0];
-                                                if (file) handleImageUpload(index, file);
-                                            }}
-                                            disabled={uploadingIndex === index}
-                                            style={{
-                                                width: '100%',
-                                                fontSize: '0.8rem',
-                                                color: '#6b7280',
-                                                fileSelectorButton: {
-                                                    marginRight: '8px',
-                                                    border: 'none',
-                                                    background: '#e5e7eb',
-                                                    padding: '6px 12px',
-                                                    borderRadius: '4px',
-                                                    cursor: 'pointer'
-                                                }
-                                            } as React.CSSProperties}
-                                        />
-                                        {uploadingIndex === index && (
-                                            <div style={{ position: 'absolute', top: 0, right: 0, fontSize: '0.75rem', color: '#2563eb', fontWeight: 500 }}>
-                                                Uploading...
+                                                <label style={{
+                                                    display: 'block',
+                                                    textAlign: 'center',
+                                                    fontSize: '0.7rem',
+                                                    color: '#2563eb',
+                                                    cursor: 'pointer',
+                                                    padding: '2px',
+                                                }}>
+                                                    {url ? 'Change' : '+ Upload'}
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        style={{ display: 'none' }}
+                                                        onChange={(e) => {
+                                                            const file = e.target.files?.[0];
+                                                            if (file) handleClientImageUpload(index, file);
+                                                        }}
+                                                        disabled={clientUploadingIndex === index}
+                                                    />
+                                                </label>
                                             </div>
-                                        )}
-                                    </div>
+                                        );
+                                    })}
                                 </div>
                             ))}
                         </div>
-                        <button
-                            onClick={() => setIndustryInputs([...industryInputs, ''])}
-                            style={{
-                                marginTop: '12px',
-                                padding: '8px 16px',
-                                background: '#f3f4f6',
-                                border: 'none',
-                                borderRadius: '6px',
-                                fontSize: '0.875rem',
-                                fontWeight: 500,
-                                cursor: 'pointer',
-                                color: '#374151'
-                            }}
-                        >
-                            + Add Another Logo
-                        </button>
                     </div>
                 </div>
 
