@@ -4,13 +4,13 @@
     overflow-x: hidden;
     font-family: var(--font-outfit), sans-serif;
     background-color: #fff;
-    padding-bottom: 4rem;
+    padding-bottom: 0;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 2rem 4rem 2rem;
 }
 
 /* Header Section */
