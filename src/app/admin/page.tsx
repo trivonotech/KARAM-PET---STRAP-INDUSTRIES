@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSiteConfig } from '../../context/SiteConfigContext';
+import { useSiteConfig, ClientLogo } from '../../context/SiteConfigContext';
 import { auth } from '../../lib/firebase';
 import { convertImageToBase64 } from '../../lib/imageUtils';
 import styles from './page.module.css';
@@ -14,7 +14,7 @@ export default function DashboardPage() {
     const [stats, setStats] = useState<{ value: string; label: string }[]>([]);
 
     // Client Logos Logic
-    const [clientInputs, setClientInputs] = useState<string[]>(Array(18).fill(''));
+    const [clientInputs, setClientInputs] = useState<ClientLogo[]>(Array(18).fill({ url: '', isFavorite: false }));
     const [clientUploadingIndex, setClientUploadingIndex] = useState<number | null>(null);
 
     const [showSuccess, setShowSuccess] = useState(false);
@@ -31,7 +31,8 @@ export default function DashboardPage() {
             // Ensure we have 18 slots, pad if necessary
             const loaded = config.clientLogos;
             if (loaded.length < 18) {
-                setClientInputs([...loaded, ...Array(18 - loaded.length).fill('')]);
+                // If config has fewer, pad with empty objects
+                setClientInputs([...loaded, ...Array(18 - loaded.length).fill({ url: '', isFavorite: false })]);
             } else {
                 setClientInputs(loaded.slice(0, 18));
             }
@@ -66,7 +67,8 @@ export default function DashboardPage() {
 
             // 3. Update State AND Firestore (Auto-Save)
             const newInputs = [...clientInputs];
-            newInputs[index] = base64String;
+            // Keep existing favorite status if any, simply update URL
+            newInputs[index] = { ...newInputs[index], url: base64String };
             setClientInputs(newInputs);
 
             console.log("Saving to Firestore...");
@@ -88,12 +90,25 @@ export default function DashboardPage() {
         // Removed confirm dialog for faster interaction
         try {
             const newInputs = [...clientInputs];
-            newInputs[index] = ''; // Clear slot but keep index
+            // Clear URL but keep object structure. Optionally reset favorite? Let's reset favorite too to be clean.
+            newInputs[index] = { url: '', isFavorite: false };
             setClientInputs(newInputs);
             await updateClientLogos(newInputs); // Auto-Save
         } catch (error) {
             console.error("Failed to remove logo", error);
             setUploadError("Failed to save changes.");
+        }
+    };
+
+    const toggleFavorite = async (index: number) => {
+        try {
+            const newInputs = [...clientInputs];
+            const currentItem = newInputs[index];
+            newInputs[index] = { ...currentItem, isFavorite: !currentItem.isFavorite };
+            setClientInputs(newInputs);
+            await updateClientLogos(newInputs);
+        } catch (error) {
+            console.error("Failed to toggle favorite", error);
         }
     };
 
@@ -204,18 +219,40 @@ export default function DashboardPage() {
                 </p>
 
                 <div className={styles.logoGrid}>
-                    {clientInputs.map((url, index) => (
+                    {clientInputs.map((item, index) => (
                         <div key={index} className={styles.logoSlot}>
-                            <div className={`${styles.imageContainer} ${url ? styles.filled : ''}`}>
-                                {url ? (
+                            <div className={`${styles.imageContainer} ${item.url ? styles.filled : ''}`}>
+                                {item.url ? (
                                     <>
                                         <Image
-                                            src={url}
+                                            src={item.url}
                                             alt={`Slot ${index + 1}`}
                                             fill
                                             style={{ objectFit: 'contain', padding: '12px' }}
                                             unoptimized
                                         />
+                                        {/* Favorite Toggle */}
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                toggleFavorite(index);
+                                            }}
+                                            style={{
+                                                position: 'absolute',
+                                                top: '6px',
+                                                left: '6px',
+                                                zIndex: 10,
+                                                background: 'transparent',
+                                                border: 'none',
+                                                cursor: 'pointer',
+                                                fontSize: '1.2rem',
+                                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))'
+                                            }}
+                                            title={item.isFavorite ? "Remove from Industries Served" : "Add to Industries Served"}
+                                        >
+                                            {item.isFavorite ? '⭐' : '☆'}
+                                        </button>
+
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -239,7 +276,7 @@ export default function DashboardPage() {
                             </div>
 
                             <label className={styles.uploadLabel}>
-                                {url ? 'Change Logo' : '+ Upload Logo'}
+                                {item.url ? 'Change Logo' : '+ Upload Logo'}
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -270,6 +307,6 @@ export default function DashboardPage() {
                     Save Changes
                 </button>
             </div>
-        </div>
+        </div >
     );
 }

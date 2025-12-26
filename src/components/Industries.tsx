@@ -7,8 +7,8 @@ import { useSiteConfig } from '../context/SiteConfigContext';
 export default function Industries() {
     const { config } = useSiteConfig();
 
-    // Filter out empty strings
-    let validLogos = config.clientLogos.filter(url => url && url.length > 0);
+    // Filter out empty strings and keep only favorites
+    let validLogos = config.clientLogos.filter(item => item.url && item.url.length > 0 && item.isFavorite).map(item => item.url);
 
     // If no logos, use placeholders
     // If we have logos but fewer than 7, repeat them to enough length for smooth scroll

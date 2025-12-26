@@ -8,10 +8,11 @@ import { useSiteConfig } from '@/context/SiteConfigContext';
 
 export default function AboutPage() {
     const { config } = useSiteConfig();
-    const clientLogos = config.clientLogos || Array(18).fill('');
+    const clientLogos = config.clientLogos || Array(18).fill({ url: '', isFavorite: false });
 
     const renderClientLogo = (index: number) => {
-        const url = clientLogos[index];
+        const item = clientLogos[index];
+        const url = item ? item.url : '';
         return (
             <div className={styles.clientPlaceholder} style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {url ? (
