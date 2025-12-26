@@ -193,38 +193,52 @@ export default function AboutPage() {
                         OUR <span className={styles.orangeText}>CLIENTS</span>
                     </h2>
                     <div className={styles.clientsContainer}>
-                        {/* Row 1: 4 Items */}
-                        <div className={styles.clientsRow}>
-                            {renderClientLogo(0)}
-                            {renderClientLogo(1)}
-                            {renderClientLogo(2)}
-                            {renderClientLogo(3)}
-                        </div>
-                        {/* Row 2: 3 Items */}
-                        <div className={styles.clientsRow}>
-                            {renderClientLogo(4)}
-                            {renderClientLogo(5)}
-                            {renderClientLogo(6)}
-                        </div>
-                        {/* Row 3: 4 Items */}
-                        <div className={styles.clientsRow}>
-                            {renderClientLogo(7)}
-                            {renderClientLogo(8)}
-                            {renderClientLogo(9)}
-                            {renderClientLogo(10)}
-                        </div>
-                        {/* Row 4: 3 Items */}
-                        <div className={styles.clientsRow}>
-                            {renderClientLogo(11)}
-                            {renderClientLogo(12)}
-                            {renderClientLogo(13)}
-                        </div>
-                        {/* Row 5: 4 Items */}
-                        <div className={styles.clientsRow}>
-                            {renderClientLogo(14)}
-                            {renderClientLogo(15)}
-                            {renderClientLogo(16)}
-                            {renderClientLogo(17)}
+                        <div className={styles.clientsMarquee}>
+                            {[0, 1].map((copyIndex) => (
+                                <div key={copyIndex} className={styles.clientsGridBlock}>
+                                    {(() => {
+                                        const pattern = [4, 3];
+                                        const patternSum = 7;
+
+                                        // If no logos, show nothing
+                                        if (!clientLogos || clientLogos.length === 0) return null;
+
+                                        // We want to fill a certain amount of rows to ensure scroll works.
+                                        // Let's say we want at least 42 items (6 cycles of 7) to be safe for height.
+                                        const totalItemsToRender = Math.max(clientLogos.length, 42);
+
+                                        // Adjust total items to be a multiple of 7 so the pattern joins seamlessly
+                                        const adjustedTotal = totalItemsToRender + (totalItemsToRender % patternSum === 0 ? 0 : (patternSum - (totalItemsToRender % patternSum)));
+
+                                        const rows = [];
+                                        let currentIndex = 0;
+                                        let patternIndex = 0;
+
+                                        while (currentIndex < adjustedTotal) {
+                                            const size = pattern[patternIndex % pattern.length];
+                                            const rowItems = [];
+                                            for (let i = 0; i < size; i++) {
+                                                // REPETITIVE LOGIC: Modulus ensures we loop through available logos
+                                                // This satisfies "repetitive logo" request
+                                                const logoIndex = (currentIndex + i) % clientLogos.length;
+                                                // Ensure we use renderClientLogo but we might need to bypass it if it doesn't handle explicit item passing well,
+                                                // or just trust it uses clientLogos[index]. 
+                                                // However, renderClientLogo(index) likely looks up clientLogos[index]. 
+                                                // If we pass an index < length, it's fine.
+                                                rowItems.push(renderClientLogo(logoIndex));
+                                            }
+                                            rows.push(
+                                                <div key={currentIndex} className={styles.clientsRow}>
+                                                    {rowItems}
+                                                </div>
+                                            );
+                                            currentIndex += size;
+                                            patternIndex++;
+                                        }
+                                        return rows;
+                                    })()}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

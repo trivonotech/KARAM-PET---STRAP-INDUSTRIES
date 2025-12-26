@@ -290,6 +290,31 @@ export default function DashboardPage() {
                             </label>
                         </div>
                     ))}
+
+                    {/* Add New Slot Button */}
+                    <button
+                        onClick={() => {
+                            setClientInputs(prev => [...prev, { url: '', isFavorite: false }]);
+                        }}
+                        style={{
+                            minHeight: '150px',
+                            border: '2px dashed #ccc',
+                            borderRadius: '8px',
+                            background: 'rgba(255, 255, 255, 0.5)',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#666',
+                            fontSize: '1rem',
+                            gap: '8px'
+                        }}
+                        title="Add a new empty logo slot"
+                    >
+                        <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>+</span>
+                        <span>Add Slot</span>
+                    </button>
                 </div>
             </div>
 

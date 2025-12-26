@@ -35,7 +35,7 @@ interface SiteConfigContextType {
 }
 
 const defaultLogos = Array(7).fill('');
-const defaultClientLogos: ClientLogo[] = Array(18).fill({ url: '', isFavorite: false });
+const defaultClientLogos: ClientLogo[] = [];
 
 const defaultHomeContent: HomeContent = {
     heroTitle: 'Manufacturer Of High-Precision\n[Product Type] For Industrial\nApplications',
@@ -66,20 +66,14 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
                     const data = docSnap.data();
 
                     // Normalize clientLogos for backward compatibility (string[] -> ClientLogo[])
-                    let normalizedClientLogos = defaultClientLogos;
+                    let normalizedClientLogos: ClientLogo[] = [];
                     if (data.clientLogos) {
                         normalizedClientLogos = data.clientLogos.map((item: any) => {
                             if (typeof item === 'string') {
                                 return { url: item, isFavorite: false };
                             }
-                            return item; // Assume it's already ClientLogo object
+                            return item;
                         });
-                        // Ensure it's exactly 18 length
-                        if (normalizedClientLogos.length < 18) {
-                            normalizedClientLogos = [...normalizedClientLogos, ...Array(18 - normalizedClientLogos.length).fill({ url: '', isFavorite: false })];
-                        } else {
-                            normalizedClientLogos = normalizedClientLogos.slice(0, 18);
-                        }
                     }
 
                     setConfig(prev => ({

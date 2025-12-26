@@ -227,16 +227,47 @@
 }
 
 .clientsContainer {
+    position: relative;
+    height: 600px;
+    /* Adjust height to show approx 4 rows */
+    overflow: hidden;
+    margin-top: 3rem;
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.clientsMarquee {
+    display: flex;
+    flex-direction: column;
+    animation: scrollUp 30s linear infinite;
+}
+
+.clientsGridBlock {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-top: 3rem;
+    padding-bottom: 1.5rem;
+    /* Gap between the two sets */
+}
+
+.clientsMarquee:hover {
+    animation-play-state: paused;
 }
 
 .clientsRow {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+}
+
+@keyframes scrollUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
 }
 
 .clientPlaceholder {
@@ -249,6 +280,12 @@
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     /* Soft, slight shadow */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 /* Trust Section */
