@@ -85,8 +85,7 @@ export default function DashboardPage() {
     };
 
     const removeClientLogo = async (index: number) => {
-        if (!confirm("Are you sure you want to remove this logo?")) return;
-
+        // Removed confirm dialog for faster interaction
         try {
             const newInputs = [...clientInputs];
             newInputs[index] = ''; // Clear slot but keep index
@@ -273,25 +272,30 @@ export default function DashboardPage() {
                                                                 unoptimized
                                                             />
                                                             <button
-                                                                onClick={() => removeClientLogo(index)}
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    removeClientLogo(index);
+                                                                }}
                                                                 style={{
                                                                     position: 'absolute',
-                                                                    top: '2px',
-                                                                    right: '2px',
-                                                                    background: 'rgba(255,255,255,0.8)',
+                                                                    top: '4px',
+                                                                    right: '4px',
+                                                                    background: 'rgba(255,255,255,0.9)',
                                                                     borderRadius: '50%',
-                                                                    width: '16px',
-                                                                    height: '16px',
+                                                                    width: '24px',
+                                                                    height: '24px',
                                                                     display: 'flex',
                                                                     alignItems: 'center',
                                                                     justifyContent: 'center',
-                                                                    border: 'none',
+                                                                    border: '1px solid #fee2e2',
                                                                     cursor: 'pointer',
-                                                                    color: 'red',
-                                                                    fontSize: '10px',
-                                                                    fontWeight: 'bold'
+                                                                    color: '#ef4444',
+                                                                    fontSize: '14px',
+                                                                    fontWeight: 'bold',
+                                                                    zIndex: 10,
+                                                                    boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
                                                                 }}
-                                                                title="Remove"
+                                                                title="Remove Logo"
                                                             >
                                                                 ✕
                                                             </button>
