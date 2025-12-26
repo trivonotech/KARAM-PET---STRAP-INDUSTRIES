@@ -45,8 +45,7 @@ export default function Navbar() {
               Products
             </Link>
           </li>
-          <li><Link href="#" className={styles.navLink}>Industries</Link></li>
-          <li><Link href="#" className={styles.navLink}>Infrastructure</Link></li>
+
         </ul>
         <a href="#" className={styles.contactButton}>
           <span>📞</span> Contact
