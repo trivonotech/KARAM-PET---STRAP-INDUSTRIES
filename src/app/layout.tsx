@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { SiteConfigProvider } from "../context/SiteConfigContext";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
   description: "Manufacturer of High-Precision Strapping Products",
 };
 
+import { AuthProvider } from "../context/AuthContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        {children}
+        <AuthProvider>
+          <SiteConfigProvider>
+            {children}
+          </SiteConfigProvider>
+        </AuthProvider>
       </body>
     </html>
   );

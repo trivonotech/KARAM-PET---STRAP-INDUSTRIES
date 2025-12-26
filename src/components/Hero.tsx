@@ -1,7 +1,13 @@
+'use client';
+
 import styles from './Hero.module.css';
 import Image from 'next/image';
+import { useSiteConfig } from '../context/SiteConfigContext';
 
 export default function Hero() {
+    const { config } = useSiteConfig();
+    const { heroTitle, heroSubtitle, stats } = config.homeContent;
+
     return (
         <section className={styles.heroWrapper}>
             <div className={styles.imageContainer}>
@@ -14,13 +20,11 @@ export default function Hero() {
                 />
 
                 <div className={styles.content}>
-                    <h1 className={styles.title}>
-                        Manufacturer Of High-Precision<br />
-                        [Product Type] For Industrial<br />
-                        Applications
+                    <h1 className={styles.title} style={{ whiteSpace: 'pre-line' }}>
+                        {heroTitle}
                     </h1>
                     <p className={styles.subtitle}>
-                        Serving Automotive, Construction, And OEM Clients With ISO-Certified Manufacturing And Scalable Production.
+                        {heroSubtitle}
                     </p>
                     <button className={styles.ctaButton}>
                         Request A Quotation ›
@@ -29,18 +33,12 @@ export default function Hero() {
             </div>
 
             <div className={styles.statsCard}>
-                <div className={styles.statItem}>
-                    <span className={styles.statValue}>15+</span>
-                    <span className={styles.statLabel}>Years<br />Experience</span>
-                </div>
-                <div className={styles.statItem}>
-                    <span className={styles.statValue}>9001:2015</span>
-                    <span className={styles.statLabel}>Iso</span>
-                </div>
-                <div className={styles.statItem}>
-                    <span className={styles.statValue}>15+</span>
-                    <span className={styles.statLabel}>Monthly<br />Capacity</span>
-                </div>
+                {stats.map((stat, index) => (
+                    <div key={index} className={styles.statItem}>
+                        <span className={styles.statValue}>{stat.value}</span>
+                        <span className={styles.statLabel} style={{ whiteSpace: 'pre-line' }}>{stat.label}</span>
+                    </div>
+                ))}
             </div>
         </section>
     );

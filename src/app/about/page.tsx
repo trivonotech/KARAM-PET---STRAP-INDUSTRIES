@@ -4,6 +4,8 @@ import styles from './page.module.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+
+
 export default function AboutPage() {
     return (
         <main className={styles.main}>
@@ -12,7 +14,7 @@ export default function AboutPage() {
             <section className={styles.container}>
                 <div className={styles.headerSection}>
                     <h1 className={styles.mainTitle}>
-                        ABOUT <span className={styles.orangeText}>US</span>
+                        ABOUT <span className={styles.orangeText}>COMPANY</span>
                     </h1>
                     <p className={styles.introText}>
                         With over 15 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India's most
@@ -30,56 +32,98 @@ export default function AboutPage() {
                     </div>
                 </div>
 
-                <div className={styles.overviewSection}>
+                {/* Cards Section */}
+                <div className={styles.cardsSection}>
+                    <div className={styles.cardsGrid}>
+                        {/* Card 1 */}
+                        <div className={styles.infoCard}>
+                            <div className={styles.cardHeader}>
+                                <h3 className={styles.cardTitle}>WHO WE ARE</h3>
+                            </div>
+                            <div className={styles.cardContent}>
+                                <p>
+                                    We Are A Dedicated Manufacturing Unit Focused On Delivering Reliable, Durable, And Industry-Grade Strapping Solutions.
+                                    With 15+ Years Of Technical And Market Experience, Our Director Leads The Company With Deep Product Knowledge And
+                                    Operational Expertise.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className={styles.infoCard}>
+                            <div className={styles.cardHeader}>
+                                <h3 className={styles.cardTitle}>WHAT WE MANUFACTURE</h3>
+                            </div>
+                            <div className={styles.cardContent}>
+                                <p>We Produce A Complete Range Of Packaging And Strapping Products:</p>
+                                <ul className={styles.cardList}>
+                                    <li>PET Strap</li>
+                                    <li>PP Strap (Semi-Automatic & Fully Automatic)</li>
+                                    <li>Cord Strap</li>
+                                    <li>Sealing Clips & Buckles</li>
+                                    <li>Pneumatic Tools</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Card 3 */}
+                        <div className={styles.infoCard}>
+                            <div className={styles.cardHeader}>
+                                <h3 className={styles.cardTitle}>WHO WE SERVE</h3>
+                            </div>
+                            <div className={styles.cardContent}>
+                                <p>We Supply Strapping Solutions To:</p>
+                                <ul className={styles.cardList}>
+                                    <li>Manufacturing & Industrial Units</li>
+                                    <li>Packaging And Logistics Companies</li>
+                                    <li>Export-Oriented Industries</li>
+                                    <li>Warehousing Facilities</li>
+                                    <li>Heavy-Duty And High-Volume Production Setups</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Leadership Section */}
+                <div className={styles.leadershipSection}>
                     <h2 className={styles.sectionTitle}>
-                        COMPANY <span className={styles.orangeText}>OVERVIEW</span>
+                        COMPANY <span className={styles.orangeText}>LEADERSHIP</span>
                     </h2>
-                    <p className={styles.overviewDescription}>
-                        KARAM PET STRAP INDUSTRIES Is A Manufacturer, Exporter, And Trading Company Specializing In PET Strap, PP Strap (Semi-
-                        Automatic & Fully Automatic), Cord Strap, Sealing Clips & Buckles, And Pneumatic Tools.
-                        Our Manufacturing Plant Is Located At NH-27, Shapar (Rajkot), Equipped With Modern Machinery And An In-House
-                        Laboratory To Ensure Strict Quality Control At Every Stage.
-                    </p>
 
-                    <div className={styles.subSection}>
-                        <h3 className={styles.subTitle}>1. WHO WE ARE</h3>
-                        <p className={styles.textBlock}>
-                            We Are A Dedicated Manufacturing Unit Focused On Delivering Reliable, Durable, And Industry-Grade Strapping Solutions.
-                            With 15+ Years Of Technical And Market Experience, Our Director Leads The Company With Deep Product Knowledge And
-                            Operational Expertise.
-                        </p>
+                    {/* Leader 1 */}
+                    <div className={styles.leaderCard}>
+                        <div className={styles.leaderImageContainer}>
+                            {/* Placeholder for Leader 1 Image */}
+                            <div style={{ width: '100%', height: '100%', background: '#333' }}></div>
+                        </div>
+                        <div className={styles.leaderInfo}>
+                            <h3 className={styles.leaderName}>NAME</h3>
+                            <p className={styles.leaderTitle}>(Title / Position)</p>
+                            <p className={styles.leaderBio}>
+                                With Over 15 Years Of Experience In Strapping Solutions, KARAM PET STRAP INDUSTRIES Has Grown Into One Of India's Most Reliable Manufacturers Of PET And PP Strapping Products. Known For Consistent Quality And Dependable Service, We Have Earned A Trustworthy Reputation Across Domestic And International Markets. Our Focus Is Simple — Deliver Superior Straps Backed By Technical Expertise, Strong Manufacturing, And Customer-First Operations.
+                            </p>
+                        </div>
                     </div>
 
-                    <div className={styles.subSection}>
-                        <h3 className={styles.subTitle}>2. WHAT WE MANUFACTURE</h3>
-                        <p className={styles.textBlock} style={{ marginBottom: '1rem' }}>
-                            We Produce A Complete Range Of Packaging And Strapping Products:
-                        </p>
-                        <ul className={styles.list}>
-                            <li>PET Strap</li>
-                            <li>PP Strap (Semi-Automatic & Fully Automatic)</li>
-                            <li>Cord Strap</li>
-                            <li>Sealing Clips & Buckles</li>
-                            <li>Pneumatic Tools</li>
-                        </ul>
-                    </div>
-
-                    <div className={styles.subSection}>
-                        <h3 className={styles.subTitle}>3. WHO WE SERVE</h3>
-                        <p className={styles.textBlock} style={{ marginBottom: '1rem' }}>
-                            We Supply Strapping Solutions To:
-                        </p>
-                        <ul className={styles.list}>
-                            <li>Manufacturing & Industrial Units</li>
-                            <li>Packaging And Logistics Companies</li>
-                            <li>Export-Oriented Industries</li>
-                            <li>Warehousing Facilities</li>
-                            <li>Heavy-Duty And High-Volume Production Setups</li>
-                        </ul>
+                    {/* Leader 2 */}
+                    <div className={`${styles.leaderCard} ${styles.leaderCardReverse}`}>
+                        <div className={styles.leaderImageContainer}>
+                            {/* Placeholder for Leader 2 Image */}
+                            <div style={{ width: '100%', height: '100%', background: '#333' }}></div>
+                        </div>
+                        <div className={styles.leaderInfo}>
+                            <h3 className={styles.leaderName}>NAME</h3>
+                            <p className={styles.leaderTitle}>(Title / Position)</p>
+                            <p className={styles.leaderBio}>
+                                With Over 15 Years Of Experience In Strapping Solutions, KARAM PET STRAP INDUSTRIES Has Grown Into One Of India's Most Reliable Manufacturers Of PET And PP Strapping Products. Known For Consistent Quality And Dependable Service, We Have Earned A Trustworthy Reputation Across Domestic And International Markets. Our Focus Is Simple — Deliver Superior Straps Backed By Technical Expertise, Strong Manufacturing, And Customer-First Operations.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            {/* Consistency Section */}
             <section className={styles.consistencySection}>
                 <h2 className={styles.consistencyTitle}>
                     HOW WE <span className={styles.orangeText}>ENSURE CONSISTENCY</span>
@@ -121,6 +165,20 @@ export default function AboutPage() {
             </section>
 
             <section className={styles.container}>
+                {/* Clients Section */}
+                <div className={styles.clientsSection}>
+                    <h2 className={styles.sectionTitle}>
+                        OUR <span className={styles.orangeText}>CLIENTS</span>
+                    </h2>
+                    <div className={styles.clientsGrid}>
+                        {/* Generating grid of client placeholders */}
+                        {Array.from({ length: 14 }).map((_, index) => (
+                            <div key={index} className={styles.clientPlaceholder}></div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Trust Section */}
                 <div className={`${styles.trustSection} ${styles.trustContent}`}>
                     <div className={styles.trustImageContainer}>
                         <Image
@@ -131,8 +189,8 @@ export default function AboutPage() {
                         />
                     </div>
                     <div className={styles.trustTextContent}>
-                        <h2 className={styles.sectionTitle} style={{ fontSize: '2.5rem' }}>
-                            WHY CLIENTS <span className={styles.orangeText}>TRUST US</span>
+                        <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLeft}`} style={{ fontSize: '2.5rem' }}>
+                            WHY CLIENTS <br /><span className={styles.orangeText}>TRUST US</span>
                         </h2>
                         <ul className={styles.trustList}>
                             <li>Machine-Compatible Straps Trusted Across Industries</li>
