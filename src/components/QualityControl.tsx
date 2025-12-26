@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 export default function QualityControl() {
     const images = [
-        { src: "/hero-bg.png", alt: "Quality Control 1" }, // Placeholders
-        { src: "/hero-bg.png", alt: "Quality Control 2" },
-        { src: "/hero-bg.png", alt: "Quality Control 3" },
-        { src: "/hero-bg.png", alt: "Quality Control 4" },
+        { src: "/hero-bg.png", alt: "Testing Machine 1" },
+        { src: "/hero-bg.png", alt: "Testing Process" },
+        { src: "/hero-bg.png", alt: "Strap Testing" },
+        { src: "/hero-bg.png", alt: "Warehouse Stock" },
     ];
 
     return (

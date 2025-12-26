@@ -1,19 +1,21 @@
+/* Why Choose Us Section */
 .wcuSection {
-    padding: 4rem 0 6rem 0;
-    background-color: #ffffff;
+    padding: 6rem 0;
+    background-color: #fff;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 4rem;
+    padding: 0 2rem;
 }
 
 .heading {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 2rem;
-    line-height: 1.2;
+    margin-bottom: 3rem;
+    text-align: left;
+    text-transform: uppercase;
 }
 
 .blackText {
@@ -24,140 +26,59 @@
     color: var(--primary);
 }
 
-.bannerWrapper {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    margin-bottom: 3rem;
-}
-
-.imageContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    overflow: hidden;
-    /* This ensures the image has corners, but we'll mask the bottom-right via the cutout overlay if needed, 
-       or just rely on the cutout wrapper sitting on top. 
-       Actually, to "cut" the image corner, we need the cutout wrapper to matching the background color. 
-       The background is white. */
-}
-
-.bannerImage {
-    object-fit: cover;
-}
-
-.cutoutWrapper {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 10;
-    background-color: #ffffff;
-    /* Match section background */
-    padding: 0.5rem;
-    border-top-left-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Connectors (Fillet) for smooth corner */
-.cutoutWrapper::after {
-    content: "";
-    position: absolute;
-    right: 100%;
-    bottom: 0;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle at 0 0, transparent 20px, #ffffff 20px);
-}
-
-.cutoutWrapper::before {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle at 0 0, transparent 20px, #ffffff 20px);
-}
-
-.moreButton {
-    background-color: var(--primary);
-    color: #ffffff;
-    border: none;
-    padding: 0.5rem 3.5rem;
-    border-radius: 8px;
-    /* Changed to match Our Products button style which is usually less rounded or has specific rounding */
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s;
-    white-space: nowrap;
-}
-
-.moreButton:hover {
-    transform: translateY(-2px);
-    background-color: var(--primary-hover);
-}
-
 .featureGrid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
-.featureItem {
-    display: flex;
-    align-items: center;
-    background-color: #d9d9d9;
-    /* Light gray from mockup */
-    padding: 1rem 1.5rem;
-    border-radius: 9999px;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    align-items: center;
-    transition: transform 0.2s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.featureItem:hover {
-    transform: translateY(-2px);
+.featureCard {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    /* Taller cards */
+    border-radius: 20px;
+    overflow: hidden;
+    /* Optional: shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.iconCircle {
-    width: 48px;
-    height: 48px;
-    background-color: #ffffff;
-    border-radius: 50%;
+.cardImage {
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.featureCard:hover .cardImage {
+    transform: scale(1.05);
+}
+
+.textOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: #C69C6D;
+    /* Brownish/Gold color from image */
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-}
-
-.featureText {
-    font-size: 1.1rem;
-    /* Looking closer at mockup, it's fairly large text */
-    font-weight: 500;
-    color: #333;
 }
 
 @media (max-width: 900px) {
     .featureGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 600px) {
-    .container {
-        padding: 0 2rem;
-    }
-
-    .heading {
-        font-size: 2rem;
-    }
-
-    .bannerWrapper {
-        height: 300px;
+    .featureGrid {
+        grid-template-columns: 1fr;
     }
 }

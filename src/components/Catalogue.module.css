@@ -1,4 +1,4 @@
-.aboutSection {
+.catalogueSection {
     padding: 6rem 0;
     background-color: #ffffff;
 }
@@ -19,10 +19,11 @@
 }
 
 .heading {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    line-height: 1.2;
+    line-height: 1.1;
+    text-transform: uppercase;
 }
 
 .blackText {
@@ -31,50 +32,57 @@
 
 .orangeText {
     color: var(--primary);
+    /* Assuming var(--primary) is the orange */
 }
 
 .description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6;
-    color: #333;
-    font-weight: 500;
+    color: #666;
     margin-bottom: 3rem;
-    text-align: justify;
+    max-width: 550px;
 }
 
-.moreButton {
+.downloadButton {
     background-color: var(--primary);
     color: #fff;
+    border: none;
     padding: 1rem 2rem;
     border-radius: 50px;
-    border: none;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.moreButton:hover {
-    background-color: var(--primary-hover);
+.downloadButton:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .imageColumn {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .imageWrapper {
-    position: relative;
     width: 100%;
     max-width: 500px;
-    height: 400px;
-    border-radius: 30px;
+    aspect-ratio: 1;
+    position: relative;
+    background-color: #fcece9;
+    /* Light pinkish bg from mockup */
+    border-radius: 20px;
     overflow: hidden;
 }
 
-.aboutImage {
-    object-fit: cover;
+.catalogueImage {
+    object-fit: contain;
+    /* Since it's a person holding a paper */
 }
 
 @media (max-width: 900px) {
@@ -86,10 +94,5 @@
     .contentColumn {
         max-width: 100%;
         margin-bottom: 3rem;
-    }
-
-    .imageWrapper {
-        width: 100%;
-        height: 300px;
     }
 }

@@ -1,20 +1,21 @@
+/* Quality Control Section */
 .qcSection {
     padding: 6rem 0;
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 4rem;
-    text-align: center;
+    padding: 0 2rem;
 }
 
 .heading {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     line-height: 1.2;
+    text-transform: uppercase;
 }
 
 .blackText {
@@ -28,18 +29,15 @@
 .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-bottom: 6rem;
+    gap: 1.5rem;
 }
 
 .imageWrapper {
     position: relative;
     width: 100%;
     aspect-ratio: 1;
-    /* Square images or maybe taller? Mockup looks square/slightly varied. Square is safe. */
-    height: 300px;
-    /* Fixed height from mockup looks somewhat tall */
-    border-radius: 24px;
+    /* Square images */
+    border-radius: 16px;
     overflow: hidden;
 }
 

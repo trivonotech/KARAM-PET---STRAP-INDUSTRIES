@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import About from '@/components/About';
 import Industries from '@/components/Industries';
 import Products from '@/components/Products';
+import Catalogue from '@/components/Catalogue';
 import QualityControl from '@/components/QualityControl';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import ContactUs from '@/components/ContactUs';
@@ -19,6 +20,7 @@ export default function Home() {
         <About />
         <Industries />
         <Products />
+        <Catalogue />
         <QualityControl />
         <WhyChooseUs />
         <ContactUs />

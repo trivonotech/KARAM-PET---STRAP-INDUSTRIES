@@ -1,15 +1,14 @@
+/* Products Section */
 .productsSection {
     padding: 6rem 0;
-    background-color: #ffcf96;
-    /* Light peach/orange matching mockup */
-    /* Or use a tinted var(--primary) for consistency? 
-     Mockup looks like a solid pastel orange. #ffcf96 is a good approximation of that peach tone. */
+    /* Light Orange Background matches the mockup */
+    background-color: #FFD180;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 4rem;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     gap: 4rem;
@@ -24,47 +23,50 @@
 .heading {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     line-height: 1.2;
+    text-transform: uppercase;
 }
 
 .blackText {
     color: #000;
 }
 
-.orangeText {
-    color: var(--primary);
-    /* Use brand orange for text to link it back */
-    /* Mockup shows the "PRODUCTS" text is orange, but on an orange background? 
-     Wait, in the mockup attached: "OUR PRODUCTS". "OUR" is Black. "PRODUCTS" is... also Orange (darker than bg).
-     Contrast check: var(--primary) (#ef9800) on #ffcf96 might be low contrast.
-     But let's stick to the design intent. */
+.orangeMainText {
+    color: #E67E22;
+    /* Slightly darker/richer orange for text on light orange bg */
+}
+
+.subHeading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #E67E22;
+    /* Orange */
+    margin-bottom: 1.5rem;
 }
 
 .description {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #333;
-    font-weight: 500;
-    margin-bottom: 3rem;
+    color: #4a4a4a;
+    font-weight: 400;
+    margin-bottom: 0;
 }
 
 .imageColumn {
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    position: relative;
-    /* Anchor for the absolute button */
 }
 
-/* Container clipped, bottom-right sharp to accommodate the cutout button */
 .imageWrapper {
     position: relative;
     width: 100%;
     max-width: 500px;
     height: 400px;
-    /* Maintain curves except bottom-right */
-    border-radius: 30px;
+    border-radius: 20px;
+    /* Featured styling: only bottom-right has "cutout" effect via the button */
+    /* We'll just round all corners for now */
     overflow: hidden;
 }
 
@@ -72,61 +74,26 @@
     object-fit: cover;
 }
 
-.cutoutWrapper {
+.moreButton {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 10;
-    background-color: #ffcf96;
-    /* Match section background */
-    padding: 1rem;
-    border-top-left-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Top Connector (Fillet) */
-
-
-/* Left Connector (Fillet) */
-.cutoutWrapper::after {
-    content: "";
-    position: absolute;
-    right: 100%;
-    bottom: 0;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle at 0 0, transparent 20px, #ffcf96 20px);
-    /* Clean radial fillet */
-}
-
-.cutoutWrapper::before {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle at 0 0, transparent 20px, #ffcf96 20px);
-    /* Clean radial fillet */
-}
-
-.floatingButton {
-    background-color: #ffffff;
-    color: var(--primary);
-    border: none;
-    padding: 0.8rem 2.5rem;
-    border-radius: 8px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #E67E22;
+    border: 1px solid #E67E22;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    /* Rounded pill shape */
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.2s;
-    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.floatingButton:hover {
+.moreButton:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 900px) {
@@ -141,7 +108,6 @@
     }
 
     .imageWrapper {
-        width: 100%;
         height: 300px;
     }
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import styles from './ContactUs.module.css';
 import Image from 'next/image';
 
@@ -10,54 +12,64 @@ export default function ContactUs() {
                     <span className={styles.orangeText}>US</span>
                 </h2>
 
-                <div className={styles.wrapper}>
-                    <Image
-                        src="/hero-bg.png" /* Placeholder bg */
-                        alt="Factory Background"
-                        fill
-                        className={styles.backgroundImage}
-                    />
+                <div className={styles.formSectionWrapper}>
+                    {/* Background Image */}
+                    <div className={styles.formBackground}>
+                        <Image
+                            src="/hero-bg.png"
+                            alt="Factory Background"
+                            fill
+                            className={styles.formBgImage}
+                        />
+                    </div>
 
+                    {/* Floating Form */}
                     <div className={styles.formCard}>
-                        {/* Composite Shape Background */}
-                        <div className={styles.cardShape}>
-                            <div className={styles.shapeTop}></div>
-                            <div className={styles.shapeBottom}></div>
-                            <div className={styles.shapeConnector}></div>
-                        </div>
-
-                        <div className={styles.formInner}>
-                            <div className={styles.inputGroup} style={{ marginBottom: '1.5rem' }}>
-                                <label className={`${styles.label} ${styles.required}`}>Name</label>
-                                <input type="text" placeholder="Your Name" className={styles.input} />
+                        <form className={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
+                            <div className={styles.formGrid}>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>Name *</label>
+                                    <input type="text" className={styles.input} placeholder="Your Name" />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>E-mail *</label>
+                                    <input type="email" className={styles.input} placeholder="your@company.com" />
+                                </div>
                             </div>
 
-                            <div className={styles.inputRow}>
-                                <div className={styles.inputGroup}>
+                            <div className={styles.formGrid}>
+                                <div className={styles.formGroup}>
                                     <label className={styles.label}>Number</label>
-                                    <input type="text" placeholder="Phone Number" className={styles.input} />
+                                    <input type="tel" className={styles.input} placeholder="Phone Number" />
                                 </div>
-                                <div className={styles.inputGroup}>
+                                <div className={styles.formGroup}>
                                     <label className={styles.label}>Required strap specification</label>
-                                    <input type="text" placeholder="ABC" className={styles.input} />
+                                    <input type="text" className={styles.input} placeholder="ABC" />
                                 </div>
                             </div>
 
-                            <div className={styles.inputRow}>
-                                <div className={styles.inputGroup}>
-                                    <label className={`${styles.label} ${styles.required}`}>E-mail</label>
-                                    <input type="email" placeholder="you@company.com" className={styles.input} />
-                                </div>
-                                <div className={styles.inputGroup}>
+                            <div className={styles.formGrid}>
+                                <div className={styles.formGroup}>
                                     <label className={styles.label}>Company name</label>
-                                    <input type="text" placeholder="Company name" className={styles.input} />
+                                    <input type="text" className={styles.input} placeholder="Company name" />
+                                </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>Quantity</label>
+                                    <input type="text" className={styles.input} placeholder="XYZ" />
                                 </div>
                             </div>
-                        </div>
 
-                        <button className={styles.submitButton}>
-                            Get PET Strap Pricing ↗
-                        </button>
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Message</label>
+                                <textarea className={styles.textarea} placeholder="Company name..."></textarea>
+                            </div>
+
+                            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+                                <button type="submit" className={styles.submitButton}>
+                                    Get PET Strap Pricing ↗
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

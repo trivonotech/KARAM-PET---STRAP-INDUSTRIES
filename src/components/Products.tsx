@@ -8,23 +8,27 @@ export default function Products() {
                 <div className={styles.contentColumn}>
                     <h2 className={styles.heading}>
                         <span className={styles.blackText}>OUR</span>{' '}
-                        <span className={styles.orangeText}>PRODUCTS</span>
+                        <span className={styles.orangeMainText}>PRODUCTS</span>
                     </h2>
+
+                    <h3 className={styles.subHeading}>PET Polyester Strap</h3>
+
                     <p className={styles.description}>
-                        "High-strength, elastic, shock-absorbent straps made from 100% recycled bottle flakes and shredded PET. Suitable for lightweight to heavy industrial loads (200–1090 kg)."
+                        High-Strength, Elastic, Shock-Absorbent Straps Made From 100%
+                        Recycled Bottle Flakes And Shredded PET. Suitable For Lightweight To
+                        Heavy Industrial Loads (200–1090 Kg).
                     </p>
                 </div>
+
                 <div className={styles.imageColumn}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src="/hero-bg.png" /* Placeholder, reusing hero since we don't have a specific product image yet */
-                            alt="Our Products"
+                            src="/hero-bg.png" /* Placeholder */
+                            alt="PET Polyester Strap Rolls"
                             fill
                             className={styles.productImage}
                         />
-                    </div>
-                    <div className={styles.cutoutWrapper}>
-                        <button className={styles.floatingButton}>
+                        <button className={styles.moreButton}>
                             More ↗
                         </button>
                     </div>
