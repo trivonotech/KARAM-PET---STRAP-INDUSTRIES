@@ -11,10 +11,7 @@ export default function About() {
                         <span className={styles.orangeText}>THE COMPANY</span>
                     </h2>
                     <p className={styles.description}>
-                        "Founded In 2009, KP Strap Industries Is A [Location]-Based Manufacturing
-                        Company Specializing In [Exact Process/Product]. We Serve Both
-                        Domestic And Export Clients With A Focus On Consistency,
-                        Compliance, And Long-Term Partnerships."
+                        "With over 13 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India’s most reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have earned a trustworthy reputation across domestic and international markets. Our focus is simple — deliver superior straps backed by technical expertise, strong manufacturing, and customer-first operations."
                     </p>
                     <button className={styles.moreButton}>
                         More About The Company ›

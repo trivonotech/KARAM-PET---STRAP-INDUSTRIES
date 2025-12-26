@@ -11,10 +11,7 @@ export default function Products() {
                         <span className={styles.orangeText}>PRODUCTS</span>
                     </h2>
                     <p className={styles.description}>
-                        "Founded In 2009, XYZ Industries Is A [Location]-Based Manufacturing
-                        Company Specializing In [Exact Process/Product]. We Serve Both
-                        Domestic And Export Clients With A Focus On Consistency,
-                        Compliance, And Long-Term Partnerships."
+                        "High-strength, elastic, shock-absorbent straps made from 100% recycled bottle flakes and shredded PET. Suitable for lightweight to heavy industrial loads (200–1090 kg)."
                     </p>
                 </div>
                 <div className={styles.imageColumn}>
