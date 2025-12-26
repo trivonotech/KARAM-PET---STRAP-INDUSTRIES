@@ -40,9 +40,8 @@
 .subHeading {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #E67E22;
-    /* Orange */
-    margin-bottom: 1.5rem;
+    color: #4a4a4a;
+    margin-top: 1rem;
 }
 
 .description {
@@ -51,6 +50,7 @@
     color: #4a4a4a;
     font-weight: 400;
     margin-bottom: 0;
+    text-align: justify;
 }
 
 .imageColumn {

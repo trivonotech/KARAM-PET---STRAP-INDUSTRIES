@@ -3,72 +3,64 @@
     width: 95%;
     max-width: 1400px;
     margin: 0 auto;
-    /* Wrapper doesn't clip, so stats card can stand out if needed, but we want it to overlay the image. */
 }
 
 .imageContainer {
     position: relative;
-    border-radius: 21px;
-    /* This clips the image */
+    border-radius: 24px;
     overflow: hidden;
     color: white;
     min-height: 85vh;
     display: flex;
     align-items: center;
+    /* Vertically center the content */
     background-color: #000;
 }
 
 .backgroundImage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     z-index: 0;
-    /* border-radius: 30px; Remove interior radius, let container clip */
     filter: brightness(0.65);
-    /* Slightly darker for contrast */
 }
 
 .content {
     position: relative;
     z-index: 1;
-    max-width: 75%;
-    padding-left: 5rem;
-    /* More left padding */
-    padding-top: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    /* Ensure content obeys container max-width */
+    padding-left: 8rem;
+    /* Match the wide left spacing in visual */
+    padding-right: 4rem;
+    box-sizing: border-box;
 }
 
 .title {
-    font-size: 4rem;
-    /* Larger */
+    font-size: 3.8rem;
+    /* Slightly reduced to handle 3 lines gracefully */
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 2rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
     font-family: var(--font-outfit), sans-serif;
+    text-transform: capitalize;
+    max-width: 850px;
+    /* Force wrap before hitting right edge */
 }
 
 .subtitle {
-    font-size: 1.15rem;
-    margin-bottom: 3rem;
-    max-width: 600px;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+    opacity: 0.95;
     line-height: 1.6;
     font-weight: 400;
 }
 
 .ctaButton {
-    background-color: var(--primary);
+    background-color: #F39C12;
+    /* Explicit Orange */
     color: #ffffff;
-    /* White text usually pops better on this orange, or black? Mockup has white text on orange button? Let's check. */
-    /* Mockup: Button "Request A Quotation" -> Orange background. Text color white or black? 
-       Actually user's uploaded image: Text looks WHITE. 
-       Wait, let me look at the image again. 
-       "Request a Quotation >" -> Text is WHITE.
-    */
-    color: #ffffff;
-    padding: 1.2rem 2.5rem;
+    padding: 1rem 2.5rem;
     border-radius: 50px;
     border: none;
     font-weight: 600;
@@ -82,50 +74,54 @@
 
 .ctaButton:hover {
     transform: translateY(-2px);
-    background-color: var(--primary-hover);
+    background-color: #E67E22;
 }
 
-/* Stats Card Styling "Cutout" logic */
+/* Stats Card - Cleaner Rounded Design */
 .statsCard {
     position: absolute;
     bottom: 0;
     right: 0;
     background-color: #ffffff;
-    padding: 2.5rem 4rem 2rem;
-    border-top-left-radius: 24px;
+    padding: 2rem 4rem;
+
+    /* Create the rounded top-left corner */
+    border-top-left-radius: 40px;
+
+    /* Ensure bottom-right matches container if needed, but container clips it usually. 
+       Actually container clips the image, but statsCard is outside 'imageContainer' div?
+       Check DOM structure: 
+       <section styling wrapper>
+         <div imageContainer>...</div>
+         <div statsCard>...</div>
+       </section>
+       
+       So statsCard is SIBLING to imageContainer via absolute pos?
+       If so, it renders ON TOP of imageContainer?
+       Wrapper: relative.
+       ImageContainer: min-height 85vh.
+       StatsCard: absolute bottom 0 right 0.
+       
+       Correct. It sits on top.
+       So putting border-top-left-radius: 40px makes it looked like a rounded card.
+       Perfect.
+    */
 
     display: flex;
     gap: 4rem;
     color: #000;
-    z-index: 2;
+    z-index: 10;
     min-width: 500px;
     justify-content: space-around;
+    align-items: center;
+    box-shadow: -5px -5px 20px rgba(0, 0, 0, 0.05);
+    /* Subtle lift */
 }
 
-/* The "Mask" or "Connector" creating the inverse radius */
-.statsCard::before {
-    content: "";
-    background: none;
-    border-bottom-right-radius: 23px;
-    width: 73px;
-    height: 55px;
-    position: absolute;
-    top: -55px;
-    left: 479px;
-    box-shadow: 0 30px #ffffff;
-}
-
-/* Second Mask for the other side/corner as requested */
+/* Remove old complex masks */
+.statsCard::before,
 .statsCard::after {
-    content: "";
-    background: none;
-    border-bottom-right-radius: 40px;
-    width: 40px;
-    height: 24px;
-    position: absolute;
-    bottom: 0;
-    left: -40px;
-    box-shadow: 20px 0 #ffffff;
+    display: none;
 }
 
 .statItem {
@@ -136,16 +132,67 @@
 }
 
 .statValue {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: #000;
-    margin-bottom: 0.5rem;
+    color: #555;
+    /* Dark grey for stats usually looks premium */
+    margin-bottom: 0.2rem;
     line-height: 1;
 }
 
 .statLabel {
     font-size: 0.9rem;
-    color: #444;
+    color: #666;
     line-height: 1.2;
     font-weight: 500;
+    text-transform: capitalize;
+}
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 3rem;
+    }
+
+    .content {
+        padding-left: 3rem;
+        max-width: 90%;
+    }
+
+    .statsCard {
+        min-width: auto;
+        padding: 2rem;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .imageContainer {
+        min-height: 700px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .content {
+        padding: 2rem;
+        text-align: center;
+        max-width: 100%;
+        padding-top: 4rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .statsCard {
+        position: relative;
+        width: 100%;
+        border-radius: 0;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+
+    .statValue {
+        font-size: 2rem;
+    }
 }
