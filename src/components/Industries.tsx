@@ -7,10 +7,19 @@ import { useSiteConfig } from '../context/SiteConfigContext';
 export default function Industries() {
     const { config } = useSiteConfig();
 
-    // Filter out empty strings and keep only favorites
-    let validLogos = config.clientLogos.filter(item => item.url && item.url.length > 0 && item.isFavorite).map(item => item.url);
+    // 1. Get all valid uploaded logos
+    const allUploaded = config.clientLogos.filter(item => item.url && item.url.length > 0);
 
-    // If no logos, use placeholders
+    // 2. Filter for favorites
+    const favorites = allUploaded.filter(item => item.isFavorite);
+
+    // 3. Smart Fallback: If user has favorites, show ONLY them. 
+    //    If NO favorites are selected yet, show ALL uploaded logos (so the section isn't empty).
+    const sourceLogos = favorites.length > 0 ? favorites : allUploaded;
+
+    let validLogos = sourceLogos.map(item => item.url);
+
+    // If still no logos (total empty), use placeholders
     // If we have logos but fewer than 7, repeat them to enough length for smooth scroll
     let displayLogos: string[] = [];
 
@@ -41,7 +50,7 @@ export default function Industries() {
                                 background: logoUrl ? 'white' : 'linear-gradient(180deg, #e6e6e6 0%, #cccccc 100%)',
                                 position: 'relative' // For Image fill
                             }}>
-                                {logoUrl && logoUrl.startsWith('http') ? (
+                                {logoUrl ? (
                                     <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px' }}>
                                         <Image
                                             src={logoUrl}
