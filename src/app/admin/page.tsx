@@ -14,7 +14,7 @@ export default function DashboardPage() {
     const [stats, setStats] = useState<{ value: string; label: string }[]>([]);
 
     // Client Logos Logic
-    const [clientInputs, setClientInputs] = useState<ClientLogo[]>(Array(18).fill({ url: '', isFavorite: false }));
+    const [clientInputs, setClientInputs] = useState<ClientLogo[]>([]);
     const [clientUploadingIndex, setClientUploadingIndex] = useState<number | null>(null);
 
     const [showSuccess, setShowSuccess] = useState(false);
@@ -28,14 +28,8 @@ export default function DashboardPage() {
             setStats(config.homeContent.stats);
         }
         if (config.clientLogos) {
-            // Ensure we have 18 slots, pad if necessary
-            const loaded = config.clientLogos;
-            if (loaded.length < 18) {
-                // If config has fewer, pad with empty objects
-                setClientInputs([...loaded, ...Array(18 - loaded.length).fill({ url: '', isFavorite: false })]);
-            } else {
-                setClientInputs(loaded.slice(0, 18));
-            }
+            // Load exact logos from DB, do not pad or slice
+            setClientInputs(config.clientLogos);
         }
     }, [config]);
 
@@ -87,11 +81,10 @@ export default function DashboardPage() {
     };
 
     const removeClientLogo = async (index: number) => {
-        // Removed confirm dialog for faster interaction
         try {
             const newInputs = [...clientInputs];
-            // Clear URL but keep object structure. Optionally reset favorite? Let's reset favorite too to be clean.
-            newInputs[index] = { url: '', isFavorite: false };
+            // REMOVE the slot entirely
+            newInputs.splice(index, 1);
             setClientInputs(newInputs);
             await updateClientLogos(newInputs); // Auto-Save
         } catch (error) {
@@ -268,6 +261,19 @@ export default function DashboardPage() {
                                     <span className={styles.placeholderText}>Slot {index + 1}</span>
                                 )}
 
+                                {/* Always show remove button to allow deleting empty slots */}
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        removeClientLogo(index);
+                                    }}
+                                    className={styles.removeButton}
+                                    title="Remove Slot"
+                                    style={{ display: 'block' }} // Ensure visibility
+                                >
+                                    ✕
+                                </button>
+
                                 {clientUploadingIndex === index && (
                                     <div className={styles.uploadOverlay}>
                                         Uploading...
@@ -292,10 +298,8 @@ export default function DashboardPage() {
                     ))}
 
                     {/* Add New Slot Button */}
-                    <button
-                        onClick={() => {
-                            setClientInputs(prev => [...prev, { url: '', isFavorite: false }]);
-                        }}
+                    {/* Add New Logo Direct */}
+                    <label
                         style={{
                             minHeight: '150px',
                             border: '2px dashed #ccc',
@@ -308,13 +312,53 @@ export default function DashboardPage() {
                             justifyContent: 'center',
                             color: '#666',
                             fontSize: '1rem',
-                            gap: '8px'
+                            gap: '8px',
+                            position: 'relative' // for loading overlay
                         }}
-                        title="Add a new empty logo slot"
+                        title="Directly upload a new logo"
                     >
                         <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>+</span>
-                        <span>Add Slot</span>
-                    </button>
+                        <span>Add Logo</span>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            hidden
+                            onChange={async (e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+
+                                if (!auth.currentUser) {
+                                    alert("You are not logged in!");
+                                    return;
+                                }
+
+                                try {
+                                    // 1. Show global loading or local text?
+                                    // Since we don't have an index, we can't use clientUploadingIndex easily unless we use -1 or similar.
+                                    // Let's just block UI or show text.
+                                    // Reuse setClientUploadingIndex(-1) to indicate "Adding New"
+                                    setClientUploadingIndex(-1);
+
+                                    const base64String = await convertImageToBase64(file);
+
+                                    const newInputs = [...clientInputs, { url: base64String, isFavorite: false }];
+                                    setClientInputs(newInputs);
+
+                                    await updateClientLogos(newInputs);
+
+                                } catch (error: any) {
+                                    alert(`Failed to add logo: ${error.message}`);
+                                } finally {
+                                    setClientUploadingIndex(null);
+                                    // Reset input value to allow adding same file again if needed
+                                    e.target.value = '';
+                                }
+                            }}
+                        />
+                        {clientUploadingIndex === -1 && (
+                            <div className={styles.uploadOverlay}>Uploading...</div>
+                        )}
+                    </label>
                 </div>
             </div>
 
