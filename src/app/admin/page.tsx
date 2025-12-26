@@ -208,7 +208,7 @@ export default function DashboardPage() {
                     </div>
                 )}
                 <p className={styles.subtitle} style={{ marginBottom: '16px' }}>
-                    Manage the 18 logos displayed in the 'Industries Served' marquee (Home) and 'Our Clients' grid (About).
+                    Manage logos displayed in the 'Industries Served' marquee (Home) and 'Our Clients' grid (About).
                 </p>
 
                 <div className={styles.logoGrid}>
@@ -322,10 +322,11 @@ export default function DashboardPage() {
                         <input
                             type="file"
                             accept="image/*"
+                            multiple // Allow multiple files
                             hidden
                             onChange={async (e) => {
-                                const file = e.target.files?.[0];
-                                if (!file) return;
+                                const files = e.target.files;
+                                if (!files || files.length === 0) return;
 
                                 if (!auth.currentUser) {
                                     alert("You are not logged in!");
@@ -333,24 +334,28 @@ export default function DashboardPage() {
                                 }
 
                                 try {
-                                    // 1. Show global loading or local text?
-                                    // Since we don't have an index, we can't use clientUploadingIndex easily unless we use -1 or similar.
-                                    // Let's just block UI or show text.
-                                    // Reuse setClientUploadingIndex(-1) to indicate "Adding New"
                                     setClientUploadingIndex(-1);
 
-                                    const base64String = await convertImageToBase64(file);
+                                    // Process all files
+                                    const newLogos: ClientLogo[] = [];
 
-                                    const newInputs = [...clientInputs, { url: base64String, isFavorite: false }];
+                                    // Promise.all to convert all images in parallel
+                                    const conversionPromises = Array.from(files).map(async (file) => {
+                                        const base64String = await convertImageToBase64(file);
+                                        return { url: base64String, isFavorite: false };
+                                    });
+
+                                    const convertedLogos = await Promise.all(conversionPromises);
+
+                                    const newInputs = [...clientInputs, ...convertedLogos];
                                     setClientInputs(newInputs);
 
                                     await updateClientLogos(newInputs);
 
                                 } catch (error: any) {
-                                    alert(`Failed to add logo: ${error.message}`);
+                                    alert(`Failed to add logos: ${error.message}`);
                                 } finally {
                                     setClientUploadingIndex(null);
-                                    // Reset input value to allow adding same file again if needed
                                     e.target.value = '';
                                 }
                             }}
