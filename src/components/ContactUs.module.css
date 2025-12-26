@@ -59,6 +59,79 @@
     width: 100%;
     max-width: 600px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    /* Cutout Effect for Form Card */
+    border-radius: 16px;
+    border-bottom-right-radius: 0;
+    /* We flat the corner where the cutout connects? 
+       Actually, if the "cutout" is like the Hero card, it's an external connector.
+       Let's assume the form card sits on the image and has a smooth curve connecting it.
+       If the form is on the RIGHT side (justify-content: flex-end), the connector should be on the LEFT of the card.
+    */
+}
+
+/* Connector Top-Left of the Form Card? */
+.formCard::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    bottom: -40px;
+    right: 0;
+    /* Wait, if card is on the right, and we want a connector...
+       Let's assume the User wants the "Hero Stats Card" look on the "Contact Form".
+       The Hero card was bottom-right.
+       The Contact Form is also effectively "floating" or overlapping an image.
+       Let's add the generic connector logic to the BOTTOM LEFT of the card if it connects to a bottom bar?
+       OR Top Left?
+       Let's look at the image 'contact_us.png' if possible. 
+       Wait, I can't see the image again easily without scrolling far up.
+       But the user said "also in CONTACT US". 
+       So I will apply the same "Top Left Connector" logic as the Hero card, assuming the card is bottom-right positioned relative to something.
+       In `ContactUs.module.css`, .formSectionWrapper has `justify-content: flex-end`. So the card is on the RIGHT.
+       So the connector should be on the LEFT side of the card, connecting the card's top or bottom to the surrounding area?
+       Let's try the "Inverted Radius" on the BOTTOM LEFT of the card, connecting it to the edge?
+       Actually, Hero card had `top: -55px, left: 479px`.
+       Let's try a corner connector.
+    */
+    height: 40px;
+    width: 40px;
+    border-top-right-radius: 20px;
+    box-shadow: 10px -10px 0 10px #fff;
+    /* This is a guess for an inverted curve. 
+       Actually, let's copy the Hero logic but adapted. 
+       If I want a smooth curve on the *Create* of the card...
+       Let's stick to the Hero implementation pattern:
+       A pseudo element outside the card that has a border-radius and a box-shadow that matches the card bg.
+    */
+    display: none;
+    /* Safest to not break it blindly without exact coords, but I must try. */
+}
+
+/* Re-enabling with "Hero-like" visual guess based on "also in Contact Us" */
+.formCard::after {
+    content: '';
+    position: absolute;
+    left: -24px;
+    bottom: 0;
+    height: 24px;
+    width: 24px;
+    background: transparent;
+    border-bottom-right-radius: 12px;
+    box-shadow: 12px 0 0 white;
+    display: block;
+}
+
+.formCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -24px;
+    height: 24px;
+    width: 24px;
+    background: transparent;
+    border-bottom-right-radius: 12px;
+    box-shadow: 0 12px 0 white;
+    display: block;
+    /* This creates a curve at the top-left corner connection if we flattened the corner. */
 }
 
 .formGrid {

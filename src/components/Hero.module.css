@@ -85,8 +85,8 @@
     background-color: #ffffff;
     padding: 2rem 4rem;
 
-    /* Create the rounded top-left corner */
-    border-top-left-radius: 40px;
+    /* Revert to 24px to match the connector system */
+    border-top-left-radius: 24px;
 
     /* Ensure bottom-right matches container if needed, but container clips it usually. 
        Actually container clips the image, but statsCard is outside 'imageContainer' div?
@@ -118,10 +118,69 @@
     /* Subtle lift */
 }
 
-/* Remove old complex masks */
-.statsCard::before,
+/* The "Mask" or "Connector" creating the inverse radius */
+.statsCard::before {
+    content: "";
+    background: none;
+    border-bottom-right-radius: 23px;
+    width: 73px;
+    height: 55px;
+    position: absolute;
+    top: -55px;
+    left: 479px;
+    /* Adjust based on new card width? Card width is min 500px, padding 4rem. 
+                  Wait, previously left was 479px. 
+                  Card min-width: 500px. Padding 4rem left/right.
+                  If width is auto, left 479px is risky.
+                  Let's use right: 40px or something relative? 
+                  The connector is usually on the LEFT TOP corner of the card?
+                  Yes, `border-top-left-radius` creates the main curve.
+                  The connector joins the card to the side?
+                  Actually, looking at the previous code:
+                  top: -55px, left: 479px.
+                  This implies the connector is on the RIGHT? 
+                  But the card is at bottom:0, right:0.
+                  If the connector is at left:479, it's far to the right side of the card.
+                  
+                  Let's re-examine image 1.
+                  The card is White, bottom-right.
+                  The "cutout" or "connector" is on the LEFTSIDE of the card, connecting the top of the card to the image vertical line?
+                  OR connecting the card's left side to the image bottom line?
+                  Typically inverted radius is at the junction.
+                  
+                  If I use `border-top-left-radius: 40px` on the card, that makes the card corner round.
+                  If the user wants an "inverted" cutout, it usually means the card is rectangular, but the IMAGE has a bite taken out of it?
+                  OR the card has a "scoop".
+                  
+                  Let's replicate the exact previous code the user liked.
+                  They had:
+                  .statsCard { border-top-left-radius: 24px; ... }
+                  .statsCard::before { top: -55px; left: 479px; box-shadow: 0 30px #ffffff; ... }
+                  .statsCard::after { bottom: 0; left: -40px; box-shadow: 20px 0 #ffffff; ... }
+                  
+                  Left: 479px seems specific to a fixed width card.
+                  The card had `min-width: 500px`.
+                  If I restore this, I must ensure it aligns.
+                  I will restore the exact logic but with `display: block`.
+                  */
+    display: block;
+    box-shadow: 0 30px #ffffff;
+    /* This creates the white fill outside the rounded border */
+}
+
+/* Second Mask for the other side/corner */
 .statsCard::after {
-    display: none;
+    content: "";
+    background: none;
+    border-bottom-right-radius: 40px;
+    width: 40px;
+    height: 24px;
+    position: absolute;
+    bottom: 0;
+    left: -40px;
+    /* Positions it to the left of the card */
+    display: block;
+    box-shadow: 20px 0 #ffffff;
 }
 
 .statItem {

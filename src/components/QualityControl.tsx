@@ -13,7 +13,7 @@ export default function QualityControl() {
         <section className={styles.qcSection}>
             <div className={styles.container}>
                 <h2 className={styles.heading}>
-                    <span className={styles.blackText}>QUALITY CONTROL &</span>{' '}
+                    <span className={styles.blackText}>QUALITY CONTROL &</span><br />
                     <span className={styles.orangeText}>CERTIFICATIONS</span>
                 </h2>
 

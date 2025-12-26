@@ -20,8 +20,8 @@ export default function Home() {
         <About />
         <Industries />
         <Products />
-        <Catalogue />
         <QualityControl />
+        <Catalogue />
         <WhyChooseUs />
         <ContactUs />
 
