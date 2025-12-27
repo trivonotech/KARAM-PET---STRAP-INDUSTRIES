@@ -47,11 +47,7 @@ export default function Catalogue() {
                             Download Catalogue ⬇
                         </button>
                     )}
-                    {!config.catalogueUrl && (
-                        <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '8px' }}>
-                            * Catalogue update in progress
-                        </p>
-                    )}
+
                 </div>
 
                 <div className={styles.imageColumn}>
