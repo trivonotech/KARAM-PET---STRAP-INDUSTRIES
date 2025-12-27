@@ -10,11 +10,11 @@ export default function AboutPage() {
     const { config } = useSiteConfig();
     const clientLogos = config.clientLogos || Array(18).fill({ url: '', isFavorite: false });
 
-    const renderClientLogo = (index: number) => {
+    const renderClientLogo = (index: number, key: string | number) => {
         const item = clientLogos[index];
         const url = item ? item.url : '';
         return (
-            <div className={styles.clientPlaceholder} style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div key={key} className={styles.clientPlaceholder} style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {url ? (
                     <Image
                         src={url}
@@ -225,7 +225,7 @@ export default function AboutPage() {
                                                 // or just trust it uses clientLogos[index]. 
                                                 // However, renderClientLogo(index) likely looks up clientLogos[index]. 
                                                 // If we pass an index < length, it's fine.
-                                                rowItems.push(renderClientLogo(logoIndex));
+                                                rowItems.push(renderClientLogo(logoIndex, i));
                                             }
                                             rows.push(
                                                 <div key={currentIndex} className={styles.clientsRow}>
