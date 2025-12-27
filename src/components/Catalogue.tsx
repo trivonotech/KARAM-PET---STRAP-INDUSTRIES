@@ -9,7 +9,13 @@ export default function Catalogue() {
 
     const handleDownload = () => {
         if (config.catalogueUrl) {
-            window.open(config.catalogueUrl, '_blank');
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = config.catalogueUrl;
+            link.download = 'KARAM-PET-Catalogue.pdf'; // Force download name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         } else {
             alert('The catalogue is currently being updated. Please check back soon!');
         }
@@ -37,9 +43,9 @@ export default function Catalogue() {
                     <button
                         className={styles.downloadButton}
                         onClick={handleDownload}
-                        title={config.catalogueUrl ? "Click to download" : "Catalogue unavailable"}
+                        title={config.catalogueUrl ? "Click to download PDF" : "Catalogue unavailable"}
                     >
-                        Download Catalogue ↗
+                        Download Catalogue ⬇
                     </button>
                     {!config.catalogueUrl && (
                         <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '8px' }}>
