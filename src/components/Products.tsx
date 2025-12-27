@@ -16,7 +16,7 @@ export default function Products() {
                     <p className={styles.description}>
                         High-Strength, Elastic, Shock-Absorbent Straps Made From 100%
                         Recycled Bottle Flakes And Shredded PET. Suitable For Lightweight To
-                        Heavy Industrial Loads (200–1090 Kg).
+                        Heavy Industrial Loads.
                     </p>
                 </div>
 

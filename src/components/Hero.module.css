@@ -127,8 +127,9 @@
     height: 55px;
     position: absolute;
     top: -55px;
-    left: 479px;
-  
+    right: -10px;
+    /* Aligns to right edge instead of fixed left pixel value */
+
     display: block;
     box-shadow: 0 30px #ffffff;
     /* This creates the white fill outside the rounded border */
