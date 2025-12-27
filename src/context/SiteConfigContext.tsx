@@ -25,6 +25,7 @@ interface SiteConfig {
     industryLogos: string[]; // Keeping for legacy/compatibility if needed
     clientLogos: ClientLogo[];
     homeContent: HomeContent;
+    catalogueUrl?: string; // Optional URL for the PDF catalogue
 }
 
 interface SiteConfigContextType {
@@ -32,6 +33,7 @@ interface SiteConfigContextType {
     updateIndustryLogos: (urls: string[]) => void;
     updateClientLogos: (logos: ClientLogo[]) => void;
     updateHomeContent: (content: HomeContent) => void;
+    updateCatalogueUrl: (url: string) => void;
 }
 
 const defaultLogos = Array(7).fill('');
@@ -108,8 +110,13 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
         await setDoc(docRef, { homeContent: content }, { merge: true });
     };
 
+    const updateCatalogueUrl = async (url: string) => {
+        const docRef = doc(db, 'settings', 'global');
+        await setDoc(docRef, { catalogueUrl: url }, { merge: true });
+    };
+
     return (
-        <SiteConfigContext.Provider value={{ config, updateIndustryLogos, updateClientLogos, updateHomeContent }}>
+        <SiteConfigContext.Provider value={{ config, updateIndustryLogos, updateClientLogos, updateHomeContent, updateCatalogueUrl }}>
             {children}
         </SiteConfigContext.Provider>
     );

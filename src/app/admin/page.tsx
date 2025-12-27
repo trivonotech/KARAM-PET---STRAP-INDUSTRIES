@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { useSiteConfig, ClientLogo } from '../../context/SiteConfigContext';
 import { auth } from '../../lib/firebase';
 import { convertImageToBase64 } from '../../lib/imageUtils';
+import { uploadFile } from '../../lib/fileUpload';
 import styles from './page.module.css';
 import Image from 'next/image';
 
 export default function DashboardPage() {
-    const { config, updateHomeContent, updateClientLogos } = useSiteConfig();
+    const { config, updateHomeContent, updateClientLogos, updateCatalogueUrl } = useSiteConfig();
     const [heroTitle, setHeroTitle] = useState('');
     const [heroSubtitle, setHeroSubtitle] = useState('');
     const [stats, setStats] = useState<{ value: string; label: string }[]>([]);
@@ -16,6 +17,7 @@ export default function DashboardPage() {
     // Client Logos Logic
     const [clientInputs, setClientInputs] = useState<ClientLogo[]>([]);
     const [clientUploadingIndex, setClientUploadingIndex] = useState<number | null>(null);
+    const [uploadingCatalogue, setUploadingCatalogue] = useState(false);
 
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -114,6 +116,38 @@ export default function DashboardPage() {
         updateClientLogos(clientInputs); // Save Clients
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 3000);
+    };
+
+    const handleCatalogueUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        if (!auth.currentUser) {
+            setUploadError("You are not logged in!");
+            return;
+        }
+
+        try {
+            setUploadingCatalogue(true);
+            setUploadError(null);
+
+            // Upload to Firestore Storage
+            // Using a constant path so it overwrites the old one (optional strategy, or use unique names)
+            const downloadUrl = await uploadFile(file, `catalogue/catalogue_${Date.now()}.pdf`);
+
+            // Update Context/DB
+            await updateCatalogueUrl(downloadUrl);
+
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
+
+        } catch (error: any) {
+            console.error("Catalogue upload failed:", error);
+            setUploadError(`Catalogue upload failed: ${error.message}`);
+        } finally {
+            setUploadingCatalogue(false);
+            e.target.value = ''; // Reset input
+        }
     };
 
     return (
@@ -364,6 +398,67 @@ export default function DashboardPage() {
                             <div className={styles.uploadOverlay}>Uploading...</div>
                         )}
                     </label>
+                </div>
+            </div>
+
+            {/* Catalogue Management Card */}
+            <div className={styles.card}>
+                <div className={styles.cardHeader}>
+                    <h2 className={styles.cardTitle}>Catalogue Management</h2>
+                </div>
+                <div style={{ padding: '0 0 16px 0' }}>
+                    <p className={styles.subtitle} style={{ marginBottom: '16px' }}>
+                        Upload a PDF catalogue to allow users to download it from the website.
+                    </p>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                        {config.catalogueUrl ? (
+                            <div style={{
+                                padding: '12px 16px',
+                                backgroundColor: '#ecfdf5',
+                                border: '1px solid #10b981',
+                                borderRadius: '8px',
+                                color: '#065f46',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                fontSize: '0.9rem'
+                            }}>
+                                <span>📄 Current Catalogue Active</span>
+                                <a
+                                    href={config.catalogueUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ textDecoration: 'underline', color: '#059669', fontWeight: 600 }}
+                                >
+                                    View File
+                                </a>
+                            </div>
+                        ) : (
+                            <div style={{
+                                padding: '12px 16px',
+                                backgroundColor: '#fef2f2',
+                                border: '1px solid #ef4444',
+                                borderRadius: '8px',
+                                color: '#991b1b',
+                                fontSize: '0.9rem'
+                            }}>
+                                ⚠️ No catalogue uploaded yet.
+                            </div>
+                        )}
+
+                        <label className={styles.saveButton} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#3b82f6' }}>
+                            {uploadingCatalogue ? 'Uploading...' : 'Upload New PDF'}
+                            <input
+                                type="file"
+                                accept="application/pdf"
+                                style={{ display: 'none' }}
+                                disabled={uploadingCatalogue}
+                                onChange={handleCatalogueUpload}
+                            />
+                        </label>
+                    </div>
+                    {uploadingCatalogue && <p style={{ marginTop: '8px', fontSize: '0.875rem', color: '#6b7280' }}>Please wait, uploading large files may take a moment...</p>}
                 </div>
             </div>
 

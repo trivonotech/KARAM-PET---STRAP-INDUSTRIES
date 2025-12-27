@@ -1,7 +1,20 @@
+'use client';
+
+import { useSiteConfig } from '../context/SiteConfigContext';
 import styles from './Catalogue.module.css';
 import Image from 'next/image';
 
 export default function Catalogue() {
+    const { config } = useSiteConfig();
+
+    const handleDownload = () => {
+        if (config.catalogueUrl) {
+            window.open(config.catalogueUrl, '_blank');
+        } else {
+            alert('The catalogue is currently being updated. Please check back soon!');
+        }
+    };
+
     return (
         <section className={styles.catalogueSection}>
             <div className={styles.container}>
@@ -21,9 +34,18 @@ export default function Catalogue() {
                         Expertise, Strong Manufacturing, And Customer-First Operations.
                     </p>
 
-                    <button className={styles.downloadButton}>
+                    <button
+                        className={styles.downloadButton}
+                        onClick={handleDownload}
+                        title={config.catalogueUrl ? "Click to download" : "Catalogue unavailable"}
+                    >
                         Download Catalogue ↗
                     </button>
+                    {!config.catalogueUrl && (
+                        <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '8px' }}>
+                            * Catalogue update in progress
+                        </p>
+                    )}
                 </div>
 
                 <div className={styles.imageColumn}>
