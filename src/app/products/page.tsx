@@ -118,7 +118,10 @@ export default function ProductsPage() {
                                 Explore our comprehensive range of ISO-certified strapping solutions designed for durability, shock absorption, and industrial-grade performance. From PET to PP and Cord straps, we deliver consistent quality for all your packaging needs.
                             </p>
                         </div>
-                        <DownloadCatalogueButton />
+                        <div className={styles.downloadWrapper}>
+                            <span className={styles.downloadLabel}>Get Full Product List</span>
+                            <DownloadCatalogueButton />
+                        </div>
                     </div>
                 </div>
 
