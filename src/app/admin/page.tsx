@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useSiteConfig, ClientLogo } from '../../context/SiteConfigContext';
 import { auth } from '../../lib/firebase';
 import { convertImageToBase64 } from '../../lib/imageUtils';
-import { convertFileToBase64 } from '../../lib/base64Utils';
+import { storage } from '../../lib/firebase';
+import { ref, uploadBytes, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import styles from './page.module.css';
 import Image from 'next/image';
 
@@ -18,6 +19,7 @@ export default function DashboardPage() {
     const [clientInputs, setClientInputs] = useState<ClientLogo[]>([]);
     const [clientUploadingIndex, setClientUploadingIndex] = useState<number | null>(null);
     const [uploadingCatalogue, setUploadingCatalogue] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -138,22 +140,48 @@ export default function DashboardPage() {
 
         try {
             setUploadingCatalogue(true);
+            setUploadProgress(0);
             setUploadError(null);
 
-            // Convert to Base64
-            const base64String = await convertFileToBase64(file);
+            // Upload to Firebase Storage
+            const storageRef = ref(storage, 'catalogue/KARAM-PET-STRAP-INDUSTRIES--Catalogue.pdf');
 
-            // Update Context/DB with Base64 String directly
-            await updateCatalogueUrl(base64String);
+            console.log("Uploading to Firebase Storage...");
+            const uploadTask = uploadBytesResumable(storageRef, file);
 
-            setShowSuccess(true);
-            setTimeout(() => setShowSuccess(false), 3000);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    setUploadProgress(Math.round(progress));
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    console.error("Catalogue upload failed:", error);
+                    setUploadError(`Catalogue upload failed: ${error.message}`);
+                    setUploadingCatalogue(false);
+                },
+                async () => {
+                    console.log("Upload complete, fetching URL...");
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                    console.log("Got URL:", downloadURL);
+
+                    // Update Context/DB with Storage URL
+                    await updateCatalogueUrl(downloadURL);
+
+                    setShowSuccess(true);
+                    setUploadingCatalogue(false);
+                    setTimeout(() => setShowSuccess(false), 3000);
+
+                    // Reset input manually if needed, though e.target.value = '' handles it below
+                }
+            );
 
         } catch (error: any) {
-            console.error("Catalogue upload failed:", error);
+            // Catch sync errors
+            console.error("Catalogue upload setup failed:", error);
             setUploadError(`Catalogue upload failed: ${error.message}`);
-        } finally {
             setUploadingCatalogue(false);
+        } finally {
             e.target.value = ''; // Reset input
         }
     };
@@ -466,7 +494,9 @@ export default function DashboardPage() {
                             />
                         </label>
                     </div>
-                    {uploadingCatalogue && <p style={{ marginTop: '8px', fontSize: '0.875rem', color: '#6b7280' }}>Please wait, uploading large files may take a moment...</p>}
+                    {uploadingCatalogue && <p style={{ marginTop: '8px', fontSize: '0.875rem', color: '#6b7280' }}>
+                        Uploading: {uploadProgress}% - Please wait...
+                    </p>}
                 </div>
             </div>
 

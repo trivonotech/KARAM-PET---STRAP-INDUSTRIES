@@ -10,7 +10,7 @@ export default function DownloadCatalogueButton() {
         return (
             <a
                 href={config.catalogueUrl}
-                download="KARAM-PET-Catalogue.pdf"
+                download="KARAM-PET-STRAP-INDUSTRIES--Catalogue.pdf"
                 className={styles.downloadButton}
                 style={{ textDecoration: 'none', display: 'inline-flex' }}
                 title="Click to download PDF"
