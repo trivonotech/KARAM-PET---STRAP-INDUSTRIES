@@ -14,8 +14,7 @@ export default function ContactPage() {
 
                 {/* Header Section */}
                 <section className={styles.headerSection}>
-                    <h1 className={styles.titleMain}>Get In Touch With</h1>
-                    <h2 className={styles.titleHighlight}>KARAM PET STRAP INDUSTRIES</h2>
+                    <h1 className={styles.title}>GET IN <span>TOUCH</span></h1>
                     <p className={styles.subtitle}>
                         For pricing, technical support, bulk orders, or custom specifications — reach us directly using the details below.
                     </p>

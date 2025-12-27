@@ -16,30 +16,28 @@
 /* Header Section */
 .headerSection {
     padding: 120px 0 4rem;
-    text-align: center;
+    text-align: left;
 }
 
-.titleMain {
-    font-size: 2.5rem;
+.title {
+    font-size: 3rem;
+    text-transform: uppercase;
     font-weight: 700;
+    margin-bottom: 1rem;
     color: #000;
-    margin-bottom: 0.5rem;
 }
 
-.titleHighlight {
-    font-size: 2.5rem;
-    font-weight: 700;
+.title span {
     color: #FF9933;
     /* Orange */
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
 }
 
 .subtitle {
     color: #666;
     font-size: 1rem;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0;
+    text-align: justify;
 }
 
 /* Info Cards Grid */
