@@ -58,8 +58,8 @@
     left: 0;
     width: 100%;
     padding: 1.5rem;
-    background-color: #C69C6D;
-    /* Brownish/Gold color from image */
+    background-color: rgba(198, 156, 109, 0.85);
+    /* Brownish/Gold color from image with transparency */
     color: #fff;
     font-weight: 600;
     text-align: center;
