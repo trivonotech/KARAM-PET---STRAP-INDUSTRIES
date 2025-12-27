@@ -5,19 +5,19 @@ export default function WhyChooseUs() {
     const features = [
         {
             text: "In-House Testing For Breaking Strength, Elongation & Load Stability",
-            image: "/hero-bg.png"
+            image: "/images/why-choose-us/testing.png"
         },
         {
             text: "High-Strength, Machine-Compatible Strapping",
-            image: "/hero-bg.png"
+            image: "/images/why-choose-us/strapping.png"
         },
         {
             text: "100% Recycled PET With Controlled Extrusion For Consistent Quality",
-            image: "/hero-bg.png"
+            image: "/images/why-choose-us/extrusion.png"
         },
         {
             text: "Reliable Bulk Supply With Full Product Range",
-            image: "/hero-bg.png"
+            image: "/images/why-choose-us/bulk.png"
         },
     ];
 
