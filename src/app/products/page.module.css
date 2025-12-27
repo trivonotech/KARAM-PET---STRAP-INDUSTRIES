@@ -2,6 +2,8 @@
     padding-top: 120px;
     /* Match global padding adjustment */
     padding-bottom: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -11,7 +13,7 @@
 .headerSection {
     text-align: center;
     margin-bottom: 4rem;
-    padding: 0 1rem;
+    padding: 0;
 }
 
 .headerContent {
@@ -53,7 +55,7 @@
     align-items: center;
     gap: 4rem;
     margin-bottom: 0;
-    padding: 2rem 2rem;
+    padding: 2rem 0;
 }
 
 .separator {
