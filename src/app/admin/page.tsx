@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSiteConfig, ClientLogo } from '../../context/SiteConfigContext';
 import { auth } from '../../lib/firebase';
 import { convertImageToBase64 } from '../../lib/imageUtils';
-import { storage } from '../../lib/firebase';
-import { ref, uploadBytes, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { convertFileToBase64 } from '../../lib/base64Utils';
 import styles from './page.module.css';
 import Image from 'next/image';
 
@@ -19,7 +18,6 @@ export default function DashboardPage() {
     const [clientInputs, setClientInputs] = useState<ClientLogo[]>([]);
     const [clientUploadingIndex, setClientUploadingIndex] = useState<number | null>(null);
     const [uploadingCatalogue, setUploadingCatalogue] = useState(false);
-    const [uploadProgress, setUploadProgress] = useState(0);
 
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -129,59 +127,30 @@ export default function DashboardPage() {
             return;
         }
 
-        // 750KB Check REMOVED as per user request.
-        // NOTE: Firestore limit is 1MB. Files > ~750KB might still fail in database save.
-        /*
+        // 750KB Check (approx 768,000 bytes) to save room for Base64 overhead (1MB Firestore limit)
         if (file.size > 768000) {
             setUploadError("File is too large! For database storage, please upload a PDF smaller than 750KB.");
             return;
         }
-        */
 
         try {
             setUploadingCatalogue(true);
-            setUploadProgress(0);
             setUploadError(null);
 
-            // Upload to Firebase Storage
-            const storageRef = ref(storage, 'catalogue/KARAM-PET-STRAP-INDUSTRIES--Catalogue.pdf');
+            // Convert to Base64
+            const base64String = await convertFileToBase64(file);
 
-            console.log("Uploading to Firebase Storage...");
-            const uploadTask = uploadBytesResumable(storageRef, file);
+            // Update Context/DB with Base64 String directly
+            await updateCatalogueUrl(base64String);
 
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setUploadProgress(Math.round(progress));
-                    console.log('Upload is ' + progress + '% done');
-                },
-                (error) => {
-                    console.error("Catalogue upload failed:", error);
-                    setUploadError(`Catalogue upload failed: ${error.message}`);
-                    setUploadingCatalogue(false);
-                },
-                async () => {
-                    console.log("Upload complete, fetching URL...");
-                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                    console.log("Got URL:", downloadURL);
-
-                    // Update Context/DB with Storage URL
-                    await updateCatalogueUrl(downloadURL);
-
-                    setShowSuccess(true);
-                    setUploadingCatalogue(false);
-                    setTimeout(() => setShowSuccess(false), 3000);
-
-                    // Reset input manually if needed, though e.target.value = '' handles it below
-                }
-            );
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
 
         } catch (error: any) {
-            // Catch sync errors
-            console.error("Catalogue upload setup failed:", error);
+            console.error("Catalogue upload failed:", error);
             setUploadError(`Catalogue upload failed: ${error.message}`);
-            setUploadingCatalogue(false);
         } finally {
+            setUploadingCatalogue(false);
             e.target.value = ''; // Reset input
         }
     };
@@ -494,9 +463,7 @@ export default function DashboardPage() {
                             />
                         </label>
                     </div>
-                    {uploadingCatalogue && <p style={{ marginTop: '8px', fontSize: '0.875rem', color: '#6b7280' }}>
-                        Uploading: {uploadProgress}% - Please wait...
-                    </p>}
+                    {uploadingCatalogue && <p style={{ marginTop: '8px', fontSize: '0.875rem', color: '#6b7280' }}>Please wait, uploading large files may take a moment...</p>}
                 </div>
             </div>
 
