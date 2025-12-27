@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSiteConfig, ClientLogo } from '../../context/SiteConfigContext';
 import { auth } from '../../lib/firebase';
 import { convertImageToBase64 } from '../../lib/imageUtils';
-import { uploadFile } from '../../lib/fileUpload';
+import { convertFileToBase64 } from '../../lib/base64Utils';
 import styles from './page.module.css';
 import Image from 'next/image';
 
@@ -127,16 +127,21 @@ export default function DashboardPage() {
             return;
         }
 
+        // 750KB Check (approx 768,000 bytes) to save room for Base64 overhead (1MB Firestore limit)
+        if (file.size > 768000) {
+            setUploadError("File is too large! For database storage, please upload a PDF smaller than 750KB.");
+            return;
+        }
+
         try {
             setUploadingCatalogue(true);
             setUploadError(null);
 
-            // Upload to Firestore Storage
-            // Using a constant path so it overwrites the old one (optional strategy, or use unique names)
-            const downloadUrl = await uploadFile(file, `catalogue/catalogue_${Date.now()}.pdf`);
+            // Convert to Base64
+            const base64String = await convertFileToBase64(file);
 
-            // Update Context/DB
-            await updateCatalogueUrl(downloadUrl);
+            // Update Context/DB with Base64 String directly
+            await updateCatalogueUrl(base64String);
 
             setShowSuccess(true);
             setTimeout(() => setShowSuccess(false), 3000);
