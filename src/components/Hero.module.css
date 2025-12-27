@@ -127,7 +127,7 @@
     height: 55px;
     position: absolute;
     top: -55px;
-    right: -10px;
+    right: 0;
     /* Aligns to right edge instead of fixed left pixel value */
 
     display: block;
