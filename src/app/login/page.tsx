@@ -20,8 +20,14 @@ export default function LoginPage() {
         setError('');
         try {
             await signInWithGoogle();
-        } catch (err) {
-            setError('Failed to sign in. Please try again.');
+        } catch (err: any) {
+            console.error("Login Error:", err);
+            // Display the actual error message if it's an access denied error
+            if (err.message && (err.message.includes('Access denied') || err.message.includes('popup'))) {
+                setError(err.message);
+            } else {
+                setError('Failed to sign in. Please try again. Check console for details.');
+            }
         }
     };
 
