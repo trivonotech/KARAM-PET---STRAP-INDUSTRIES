@@ -7,19 +7,7 @@ import Image from 'next/image';
 export default function Catalogue() {
     const { config } = useSiteConfig();
 
-    const handleDownload = () => {
-        if (config.catalogueUrl) {
-            // Create a temporary link element
-            const link = document.createElement('a');
-            link.href = config.catalogueUrl;
-            link.download = 'KARAM-PET-Catalogue.pdf'; // Force download name
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        } else {
-            alert('The catalogue is currently being updated. Please check back soon!');
-        }
-    };
+
 
     return (
         <section className={styles.catalogueSection}>
@@ -40,13 +28,25 @@ export default function Catalogue() {
                         Expertise, Strong Manufacturing, And Customer-First Operations.
                     </p>
 
-                    <button
-                        className={styles.downloadButton}
-                        onClick={handleDownload}
-                        title={config.catalogueUrl ? "Click to download PDF" : "Catalogue unavailable"}
-                    >
-                        Download Catalogue ⬇
-                    </button>
+                    {config.catalogueUrl ? (
+                        <a
+                            href={config.catalogueUrl}
+                            download="KARAM-PET-Catalogue.pdf"
+                            className={styles.downloadButton}
+                            style={{ textDecoration: 'none', display: 'inline-flex' }} // Ensure flex persistence if not in class
+                            title="Click to download PDF"
+                        >
+                            Download Catalogue ⬇
+                        </a>
+                    ) : (
+                        <button
+                            className={styles.downloadButton}
+                            onClick={() => alert('The catalogue is currently being updated. Please check back soon!')}
+                            title="Catalogue unavailable"
+                        >
+                            Download Catalogue ⬇
+                        </button>
+                    )}
                     {!config.catalogueUrl && (
                         <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '8px' }}>
                             * Catalogue update in progress
