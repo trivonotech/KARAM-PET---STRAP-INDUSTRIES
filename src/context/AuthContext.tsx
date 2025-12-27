@@ -3,16 +3,16 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
     User,
-    signInWithPopup,
+    signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged
 } from 'firebase/auth';
-import { auth, googleProvider } from '../lib/firebase';
+import { auth } from '../lib/firebase';
 
 interface AuthContextType {
     user: User | null;
     loading: boolean;
-    signInWithGoogle: () => Promise<void>;
+    login: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
 }
 
@@ -27,6 +27,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
+                // strict check for admin email
                 if (currentUser.email === ADMIN_EMAIL) {
                     setUser(currentUser);
                 } else {
@@ -42,15 +43,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return () => unsubscribe();
     }, []);
 
-    const signInWithGoogle = async () => {
+    const login = async (email: string, password: string) => {
         try {
-            const result = await signInWithPopup(auth, googleProvider);
-            if (result.user.email !== ADMIN_EMAIL) {
-                await signOut(auth);
-                throw new Error(`Access denied. Please log in with ${ADMIN_EMAIL}`);
+            if (email !== ADMIN_EMAIL) {
+                throw new Error("Invalid admin email.");
             }
+            await signInWithEmailAndPassword(auth, email, password);
         } catch (error) {
-            console.error("Error signing in with Google", error);
+            console.error("Error signing in", error);
             throw error;
         }
     };
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, signInWithGoogle, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
