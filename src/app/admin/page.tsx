@@ -127,11 +127,14 @@ export default function DashboardPage() {
             return;
         }
 
-        // 750KB Check (approx 768,000 bytes) to save room for Base64 overhead (1MB Firestore limit)
+        // 750KB Check REMOVED as per user request.
+        // NOTE: Firestore limit is 1MB. Files > ~750KB might still fail in database save.
+        /*
         if (file.size > 768000) {
             setUploadError("File is too large! For database storage, please upload a PDF smaller than 750KB.");
             return;
         }
+        */
 
         try {
             setUploadingCatalogue(true);

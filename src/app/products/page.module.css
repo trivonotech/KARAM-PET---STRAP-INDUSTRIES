@@ -14,11 +14,24 @@
     padding: 0 1rem;
 }
 
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    text-align: left;
+}
+
+.textContent {
+    flex: 1;
+    max-width: 800px;
+}
+
 .title {
     font-size: 3rem;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: #000;
 }
 
@@ -27,11 +40,10 @@
 }
 
 .description {
-    max-width: 800px;
-    margin: 0 auto;
     color: #666;
     line-height: 1.6;
     font-size: 1rem;
+    margin: 0;
 }
 
 /* Product Section Layout */
@@ -125,6 +137,10 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+    .headerContent {
+        flex-direction: column;
+        text-align: center;
+    }
 
     .productSection,
     .productSection.reversed {

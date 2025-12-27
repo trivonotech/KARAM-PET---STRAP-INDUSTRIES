@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './page.module.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import DownloadCatalogueButton from '@/components/DownloadCatalogueButton';
 
 // Type definitions for product data
 interface Spec {
@@ -110,10 +111,15 @@ export default function ProductsPage() {
             <Navbar />
             <div className={styles.mainWrapper}>
                 <div className={styles.headerSection}>
-                    <h1 className={styles.title}>OUR <span>PRODUCTS</span></h1>
-                    <p className={styles.description}>
-                        Explore our comprehensive range of ISO-certified strapping solutions designed for durability, shock absorption, and industrial-grade performance. From PET to PP and Cord straps, we deliver consistent quality for all your packaging needs.
-                    </p>
+                    <div className={styles.headerContent}>
+                        <div className={styles.textContent}>
+                            <h1 className={styles.title}>OUR <span>PRODUCTS</span></h1>
+                            <p className={styles.description}>
+                                Explore our comprehensive range of ISO-certified strapping solutions designed for durability, shock absorption, and industrial-grade performance. From PET to PP and Cord straps, we deliver consistent quality for all your packaging needs.
+                            </p>
+                        </div>
+                        <DownloadCatalogueButton />
+                    </div>
                 </div>
 
                 {products.map((product, index) => (
