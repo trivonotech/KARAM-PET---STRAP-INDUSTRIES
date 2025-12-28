@@ -74,47 +74,23 @@
     object-fit: cover;
 }
 
-.moreButton {
+.cornerDecoration {
     position: absolute;
     bottom: 0;
     right: 0;
     background-color: #FFC98D;
-    color: #E67E22;
-    border: none;
-    padding: 1rem 3rem;
-    border-top-left-radius: 20px;
-    /* "Cutout" logic: Button sits in corner? Actually image shows rounded button Floating or attached? */
-    /* Image shows White Button with orange text, sitting on top of image at bottom right? 
-       Actually, looking at "products_section.png", the button is `More ↗` inside a white shape that looks like an inverted border-radius cut into the image, 
-       OR just a white block at the bottom right corner of the *orange* background? 
-       Wait, the image shows the IMAGE is on the right. The BUTTON is on the bottom right of the IMAGE? 
-       Actually, it looks like a white rectangular-ish tab adjacent to the image.
-       Let's stick to a clean rounded pill button floating on the image for now or the previous design. 
-       The previous CSS had `.moreButton` absolute bottom right. I will keep it but refine visual.*/
-    border-radius: 2rem 0 0 0;
-    /* Try an inverted feel? Or just pill? Image 1 shows a white "More" button with a arrow. */
-    border-radius: 20px 0 20px 0;
-    /* Let's try to match the "corner" look if visible */
-    border-radius: 12px;
-
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-    /* Ensure the button itself has the specific rounding */
+    /* Orange background surface */
     border-radius: 20px 0 0 0;
-    /* Top-Left rounded only? matches "cutout" visual usually. 
-       If it sits in bottom right:
-       [.....Image.....]
-       [.....Image..(\_] < Button
-                     ^ Curve
-    */
+    /* Leaf/Cutout shape */
+    padding: 10px;
+    /* Space for the button inside */
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.moreButton::before {
+.cornerDecoration::before {
     content: "";
     position: absolute;
     top: -20px;
@@ -124,11 +100,12 @@
     background: transparent;
     border-bottom-right-radius: 10px;
     box-shadow: 5px 5px 0 5px #FFC98D;
-    /* White fill to match button bg */
+    /* Match decoration bg */
     display: block;
+    z-index: -1;
 }
 
-.moreButton::after {
+.cornerDecoration::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -138,12 +115,36 @@
     background: transparent;
     border-bottom-right-radius: 10px;
     box-shadow: 5px 5px 0 5px #FFC98D;
+    /* Match decoration bg */
     display: block;
+    z-index: -1;
+}
+
+.moreButton {
+    /* Reset absolute position since it's now inside the flex container */
+    position: static;
+
+    background-color: #FFFFFF;
+    color: #F09800;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    /* Standard pill shape */
+
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .moreButton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 900px) {

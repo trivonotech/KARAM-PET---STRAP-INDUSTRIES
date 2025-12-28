@@ -28,9 +28,11 @@ export default function Products() {
                             fill
                             className={styles.productImage}
                         />
-                        <button className={styles.moreButton}>
-                            More ↗
-                        </button>
+                        <div className={styles.cornerDecoration}>
+                            <button className={styles.moreButton}>
+                                More ↗
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
