@@ -110,15 +110,12 @@
 .cardShape::after {
     content: "";
     position: absolute;
-    bottom: 90px;
-    /* Align with bottom of Right Header */
+    bottom: 50px;
+    /* Align top with bottom of Right Header (90px) */
     right: -40px;
-    /* Stick into the cutout space */
     width: 40px;
     height: 40px;
-    background: transparent;
-    border-top-left-radius: 20px;
-    box-shadow: -10px -10px 0 10px #ffffff;
+    background: radial-gradient(circle at 100% 100%, transparent 40px, #ffffff 40.5px);
     z-index: 1;
 }
 
@@ -139,8 +136,8 @@
     border: none;
     border-radius: 12px;
     /* Standard Rounded Corners */
-    border-top-left-radius: 16px;
-    /* Smooth inner corner match */
+    border-top-left-radius: 40px;
+    /* Matched inner corner curve */
 
     font-weight: 600;
     font-size: 1.1rem;
