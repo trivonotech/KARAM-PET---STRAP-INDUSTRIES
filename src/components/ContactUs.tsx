@@ -64,7 +64,7 @@ export default function ContactUs() {
                                 <textarea className={styles.textarea} placeholder="Company name..."></textarea>
                             </div>
 
-                            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+                            <div className={styles.cutoutWrapper}>
                                 <button type="submit" className={styles.submitButton}>
                                     Get PET Strap Pricing ↗
                                 </button>

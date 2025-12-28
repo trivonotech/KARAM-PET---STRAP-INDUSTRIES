@@ -55,99 +55,87 @@
     z-index: 2;
     background: #fff;
     border-radius: 16px;
-    padding: 3rem;
+    /* Increased padding bottom to prevent button overlap */
+    padding: 3rem 3rem 5rem 3rem;
     width: 100%;
     max-width: 600px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     /* Cutout Effect for Form Card */
     border-radius: 16px;
     border-bottom-right-radius: 0;
-    /* We flat the corner where the cutout connects? 
-       Actually, if the "cutout" is like the Hero card, it's an external connector.
-       Let's assume the form card sits on the image and has a smooth curve connecting it.
-       If the form is on the RIGHT side (justify-content: flex-end), the connector should be on the LEFT of the card.
-    */
 }
 
-/* Connector Top-Left of the Form Card? */
-.formCard::before {
+/* ... existing pseudo-elements ... */
+
+/* Cutout Wrapper (White to match Card) */
+.cutoutWrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #FFFFFF;
+    /* Match Form Card */
+    border-radius: 20px 0 0 0;
+    /* Leaf shape */
+    padding: 10px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Connectors for the Wrapper (White matching wrapper/card) */
+.cutoutWrapper::before {
     content: "";
     position: absolute;
-    background-color: transparent;
-    bottom: -40px;
+    top: -20px;
     right: 0;
-    /* Wait, if card is on the right, and we want a connector...
-       Let's assume the User wants the "Hero Stats Card" look on the "Contact Form".
-       The Hero card was bottom-right.
-       The Contact Form is also effectively "floating" or overlapping an image.
-       Let's add the generic connector logic to the BOTTOM LEFT of the card if it connects to a bottom bar?
-       OR Top Left?
-       Let's look at the image 'contact_us.png' if possible. 
-       Wait, I can't see the image again easily without scrolling far up.
-       But the user said "also in CONTACT US". 
-       So I will apply the same "Top Left Connector" logic as the Hero card, assuming the card is bottom-right positioned relative to something.
-       In `ContactUs.module.css`, .formSectionWrapper has `justify-content: flex-end`. So the card is on the RIGHT.
-       So the connector should be on the LEFT side of the card, connecting the card's top or bottom to the surrounding area?
-       Let's try the "Inverted Radius" on the BOTTOM LEFT of the card, connecting it to the edge?
-       Actually, Hero card had `top: -55px, left: 479px`.
-       Let's try a corner connector.
-    */
-    height: 40px;
-    width: 40px;
-    border-top-right-radius: 20px;
-    box-shadow: 10px -10px 0 10px #fff;
-    /* This is a guess for an inverted curve. 
-       Actually, let's copy the Hero logic but adapted. 
-       If I want a smooth curve on the *Create* of the card...
-       Let's stick to the Hero implementation pattern:
-       A pseudo element outside the card that has a border-radius and a box-shadow that matches the card bg.
-    */
-    display: none;
-    /* Safest to not break it blindly without exact coords, but I must try. */
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 5px 0 5px #FFFFFF;
+    display: block;
+    z-index: -1;
 }
+
+.cutoutWrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 5px 0 5px #FFFFFF;
+    display: block;
+    z-index: -1;
+}
+
+/* Inner Button (Orange Pill) */
+.submitButton {
+    background-color: #F39C12;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 32px;
+    border-radius: 10px;
+    /* Rectangular pill */
+
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
 
 /* Re-enabling with "Hero-like" visual guess based on "also in Contact Us" */
-/* Bottom Connector (was ::after) moved to Bottom-Right */
-.formCard::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    /* Align to right edge */
-    left: auto;
-    /* Reset left */
-    bottom: -24px;
-    /* Push to bottom */
-    height: 24px;
-    width: 24px;
-    background: transparent;
-    border-top-right-radius: 12px;
-    /* Curve connects Top-Right of this box (Bottom-Right of Card) */
-    box-shadow: 0 -12px 0 white;
-    /* Shadow acts as the connector fill UPWARDS */
-    display: block;
-}
 
-/* Side Connector (was ::before) moved to Right-Bottom */
-.formCard::before {
-    content: '';
-    position: absolute;
-    right: -24px;
-    /* Push to right */
-    left: auto;
-    /* Reset left */
-    bottom: 0;
-    /* Align to bottom edge */
-    top: auto;
-    /* Reset top */
-    height: 24px;
-    width: 24px;
-    background: transparent;
-    border-bottom-left-radius: 12px;
-    /* Curve connects Bottom-Left of this box (Bottom-Right of Card) */
-    box-shadow: -12px 0 0 white;
-    /* Shadow acts as the connector fill LEFTWARDS */
-    display: block;
-}
 
 .formGrid {
     display: grid;
@@ -190,22 +178,7 @@
     resize: vertical;
 }
 
-.submitButton {
-    background-color: #F39C12;
-    /* Fallback if var(--primary) not set */
-    color: #fff;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    float: right;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
+
 
 .submitButton:hover {
     background-color: #E67E22;
