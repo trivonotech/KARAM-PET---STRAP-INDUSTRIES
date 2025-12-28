@@ -53,83 +53,106 @@
 .formCard {
     position: relative;
     z-index: 2;
-    background: #fff;
-    border-radius: 16px;
-    /* Increased padding bottom to prevent button overlap */
-    padding: 3rem 3rem 5rem 3rem;
+    background: transparent !important;
+    padding: 3rem;
+    padding-bottom: 2rem;
     width: 100%;
-    max-width: 600px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    /* Cutout Effect for Form Card */
-    border-radius: 16px;
-    border-bottom-right-radius: 0;
+    max-width: 800px;
+    min-height: 650px;
+    box-shadow: none;
+    /* Remove rect shadow */
+    border-radius: 20px;
 }
 
-/* ... existing pseudo-elements ... */
-
-/* Cutout Wrapper (White to match Card) */
-.cutoutWrapper {
+/* L-SHAPED BACKGROUND COMPOSITION */
+.cardShape {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #FFFFFF;
-    /* Match Form Card */
-    border-radius: 20px 0 0 0;
-    /* Leaf shape */
-    padding: 10px;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Apply shadow to the composite shape */
+    filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.15));
 }
 
-/* Connectors for the Wrapper (White matching wrapper/card) */
-.cutoutWrapper::before {
+/* 1. Left Column (Full Height) */
+.cardShape {
+    background-color: #ffffff;
+    height: 100%;
+    /* Full height removes left-edge seam */
+    width: calc(100% - 280px);
+    /* Left part width */
+    top: 0;
+    left: 0;
+    /* Round Top-Left, Bottom-Left, and Bottom-Right (Side Wall of cutout) */
+    /* Top-Right is 0 to merge with Header */
+    border-radius: 20px 0 20px 20px;
+}
+
+/* 2. Right Header (Partial Height) */
+.cardShape::before {
     content: "";
     position: absolute;
-    top: -20px;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-bottom-right-radius: 10px;
-    box-shadow: 5px 5px 0 5px #FFFFFF;
+    top: 0;
+    left: 100%;
+    /* Attached to right of Left Column */
+    width: 280px;
+    /* Remainder width */
+    height: calc(100% - 90px);
+    /* Stop above cutout */
+    background-color: #ffffff;
+    /* Round Top-Right, Bottom-Right (Overhang) */
+    /* Left corners are 0 to merge with Left Column */
+    border-radius: 0 20px 20px 0;
     display: block;
-    z-index: -1;
 }
 
-.cutoutWrapper::after {
+/* 3. Fillet Connector (Inverted Curve) */
+.cardShape::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: -20px;
-    width: 20px;
-    height: 20px;
+    bottom: 90px;
+    /* Align with bottom of Right Header */
+    right: -40px;
+    /* Stick into the cutout space */
+    width: 40px;
+    height: 40px;
     background: transparent;
-    border-bottom-right-radius: 10px;
-    box-shadow: 5px 5px 0 5px #FFFFFF;
-    display: block;
-    z-index: -1;
+    border-top-left-radius: 20px;
+    box-shadow: -10px -10px 0 10px #ffffff;
+    z-index: 1;
 }
 
-/* Inner Button (Orange Pill) */
+/* Button in Cutout */
+/* Button Floating in Cutout */
 .submitButton {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 260px;
+    /* Smaller than 280px gap */
+    height: 70px;
+    /* Smaller than 90px gap */
+    margin: 0;
+
     background-color: #F39C12;
     color: #FFFFFF;
     border: none;
-    padding: 10px 32px;
-    border-radius: 10px;
-    /* Rectangular pill */
+    border-radius: 12px;
+    /* Standard Rounded Corners */
+    border-top-left-radius: 16px;
+    /* Smooth inner corner match */
 
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
 }
 
 
@@ -191,8 +214,26 @@
     }
 
     .formCard {
+        background: #fff;
+        /* Restore solid bg */
         max-width: 100%;
         padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: none;
+    }
+
+    .cardShape {
+        display: none;
+        /* Hide fancy shape */
+    }
+
+    .submitButton {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 1.5rem;
+        border-radius: 8px;
+        padding: 1rem;
     }
 }
 

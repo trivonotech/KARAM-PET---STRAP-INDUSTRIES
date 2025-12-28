@@ -25,51 +25,55 @@ export default function ContactUs() {
 
                     {/* Floating Form */}
                     <div className={styles.formCard}>
-                        <form className={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
-                            <div className={styles.formGrid}>
-                                <div className={styles.formGroup}>
-                                    <label className={styles.label}>Name *</label>
-                                    <input type="text" className={styles.input} placeholder="Your Name" />
-                                </div>
-                                <div className={styles.formGroup}>
-                                    <label className={styles.label}>E-mail *</label>
-                                    <input type="email" className={styles.input} placeholder="your@company.com" />
-                                </div>
-                            </div>
+                        {/* L-Shaped Background */}
+                        <div className={styles.cardShape}></div>
 
-                            <div className={styles.formGrid}>
-                                <div className={styles.formGroup}>
-                                    <label className={styles.label}>Number</label>
-                                    <input type="tel" className={styles.input} placeholder="Phone Number" />
+                        <div style={{ position: 'relative', zIndex: 2 }}>
+                            <form id="contactForm" className={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
+                                <div className={styles.formGrid}>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>Name *</label>
+                                        <input type="text" className={styles.input} placeholder="Your Name" />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>E-mail *</label>
+                                        <input type="email" className={styles.input} placeholder="your@company.com" />
+                                    </div>
                                 </div>
-                                <div className={styles.formGroup}>
-                                    <label className={styles.label}>Required strap specification</label>
-                                    <input type="text" className={styles.input} placeholder="ABC" />
-                                </div>
-                            </div>
 
-                            <div className={styles.formGrid}>
-                                <div className={styles.formGroup}>
-                                    <label className={styles.label}>Company name</label>
-                                    <input type="text" className={styles.input} placeholder="Company name" />
+                                <div className={styles.formGrid}>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>Number</label>
+                                        <input type="tel" className={styles.input} placeholder="Phone Number" />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>Required strap specification</label>
+                                        <input type="text" className={styles.input} placeholder="ABC" />
+                                    </div>
                                 </div>
-                                <div className={styles.formGroup}>
-                                    <label className={styles.label}>Quantity</label>
-                                    <input type="text" className={styles.input} placeholder="XYZ" />
+
+                                <div className={styles.formGrid}>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>Company name</label>
+                                        <input type="text" className={styles.input} placeholder="Company name" />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label}>Quantity</label>
+                                        <input type="text" className={styles.input} placeholder="XYZ" />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className={styles.formGroup}>
-                                <label className={styles.label}>Message</label>
-                                <textarea className={styles.textarea} placeholder="Company name..."></textarea>
-                            </div>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.label}>Message</label>
+                                    <textarea className={styles.textarea} placeholder="Company name..."></textarea>
+                                </div>
+                            </form>
+                        </div>
 
-                            <div className={styles.cutoutWrapper}>
-                                <button type="submit" className={styles.submitButton}>
-                                    Get PET Strap Pricing ↗
-                                </button>
-                            </div>
-                        </form>
+                        {/* Button Positioned in Cutout (Relative to formCard) */}
+                        <button type="submit" form="contactForm" className={styles.submitButton}>
+                            Get PET Strap Pricing ↗
+                        </button>
                     </div>
                 </div>
             </div>
