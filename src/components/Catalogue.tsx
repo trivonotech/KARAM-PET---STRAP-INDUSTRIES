@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useSiteConfig } from '../context/SiteConfigContext';
 import styles from './Catalogue.module.css';
 import Image from 'next/image';
@@ -8,6 +9,22 @@ export default function Catalogue() {
     const { config } = useSiteConfig();
 
 
+
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Prevent hydration mismatch by rendering a consistent server state (e.g., the 'unavailable' button)
+    // or nothing, until mounted. Since the default config is 'unavailable', 
+    // we can just wait for mount to show the 'Download' link if it exists.
+    // However, simplest fix is to just not render the specific varying part until mount, 
+    // OR render the 'unavailable' state by default server-side if that matches initialization.
+
+    // Actually, looking at SiteConfigContext, the initial state is empty strings or defaults.
+    // But localStorage might populate it immediately on client, causing mismatch.
+    // So we should verify `mounted` before showing the 'real' config-based link if it differs from default.
 
     return (
         <section className={styles.catalogueSection}>
@@ -28,12 +45,13 @@ export default function Catalogue() {
                         Expertise, Strong Manufacturing, And Customer-First Operations.
                     </p>
 
-                    {config.catalogueUrl ? (
+                    {/* Only show the "live" link if mounted. Otherwise (SSR), show fallback to match initial state. */}
+                    {mounted && config.catalogueUrl ? (
                         <a
                             href={config.catalogueUrl}
                             download="KARAM-PET-Catalogue.pdf"
                             className={styles.downloadButton}
-                            style={{ textDecoration: 'none', display: 'inline-flex' }} // Ensure flex persistence if not in class
+                            style={{ textDecoration: 'none', display: 'inline-flex' }}
                             title="Click to download PDF"
                         >
                             Download Catalogue ⬇
@@ -41,8 +59,9 @@ export default function Catalogue() {
                     ) : (
                         <button
                             className={styles.downloadButton}
-                            onClick={() => alert('The catalogue is currently being updated. Please check back soon!')}
+                            onClick={() => mounted ? alert('The catalogue is currently being updated. Please check back soon!') : null}
                             title="Catalogue unavailable"
+                            disabled={!mounted} // Optional: disable interactions during hydration
                         >
                             Download Catalogue ⬇
                         </button>

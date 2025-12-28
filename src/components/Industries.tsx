@@ -1,11 +1,18 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 import styles from './Industries.module.css';
 import { useSiteConfig } from '../context/SiteConfigContext';
 
 export default function Industries() {
     const { config } = useSiteConfig();
+
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // 1. Get all valid uploaded logos
     const allUploaded = config.clientLogos.filter(item => item.url && item.url.length > 0);
@@ -35,6 +42,26 @@ export default function Industries() {
     // Duplicate the final set for the seamless marquee loop
     const marqueeLogos = [...displayLogos, ...displayLogos];
 
+    if (!mounted) {
+        return (
+            <section className={styles.industriesSection}>
+                <div className={styles.container}>
+                    <h2 className={styles.heading}>
+                        <span className={styles.blackText}>INDUSTRIES</span>{' '}
+                        <span className={styles.orangeText}>SERVED</span>
+                    </h2>
+                    <div className={styles.marqueeContainer}>
+                        {/* Render empty track or loading state to match server if needed, 
+                           or just empty to avoid mismatch. 
+                           For now, rendering nothing inside marqueeContainer matches the initial "empty" expectation if we are careful.
+                           Actually, to be safe, I'll render the header but keep the marquee empty until hydration.
+                       */}
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
     return (
         <section className={styles.industriesSection}>
             <div className={styles.container}>
@@ -49,7 +76,6 @@ export default function Industries() {
                             <div key={index} className={styles.logoItem}>
                                 <div
                                     style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    suppressHydrationWarning
                                 >
                                     {logoUrl ? (
                                         <Image

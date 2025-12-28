@@ -105,9 +105,17 @@ export default function DashboardPage() {
         }
     };
 
+    const addStat = () => {
+        setStats([...stats, { value: '', label: '' }]);
+    };
+
+    const removeStat = (index: number) => {
+        const newStats = stats.filter((_, i) => i !== index);
+        setStats(newStats);
+    };
+
     const handleSave = () => {
         updateHomeContent({
-
             stats
         });
         updateClientLogos(clientInputs); // Save Clients
@@ -135,7 +143,7 @@ export default function DashboardPage() {
 
                 <div className={styles.statsGrid}>
                     {stats.map((stat, index) => (
-                        <div key={index} className={styles.statItem}>
+                        <div key={index} className={styles.statItem} style={{ position: 'relative' }}>
                             <div style={{ marginBottom: '12px' }}>
                                 <label className={styles.label} style={{ fontSize: '0.75rem' }}>
                                     Value
@@ -159,8 +167,56 @@ export default function DashboardPage() {
                                     className={styles.input}
                                 />
                             </div>
+
+                            {/* Remove Stat Button */}
+                            <button
+                                onClick={() => removeStat(index)}
+                                style={{
+                                    position: 'absolute',
+                                    top: '-10px',
+                                    right: '-10px',
+                                    background: '#ef4444',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    width: '24px',
+                                    height: '24px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '14px',
+                                    boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                                }}
+                                title="Remove Statistic"
+                            >
+                                ✕
+                            </button>
                         </div>
                     ))}
+
+                    {/* Add Stat Button - Appended as the last item in the grid usually, or below */}
+                    <button
+                        onClick={addStat}
+                        style={{
+                            minHeight: '150px', // Match roughly with stat item height
+                            border: '2px dashed #e5e7eb',
+                            borderRadius: '12px',
+                            background: '#f9fafb',
+                            color: '#6b7280',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            transition: 'all 0.2s ease'
+                        }}
+                        className={styles.statItem} // Re-use basic grid sizing if applicable, strict typing might complain if className is not perfectly matching
+                    >
+                        <span style={{ fontSize: '24px', fontWeight: 'bold' }}>+</span>
+                        <span style={{ fontSize: '14px', fontWeight: 500 }}>Add Statistic</span>
+                    </button>
                 </div>
             </div>
 
