@@ -10,8 +10,7 @@ import Image from 'next/image';
 
 export default function DashboardPage() {
     const { config, updateHomeContent, updateClientLogos } = useSiteConfig();
-    const [heroTitle, setHeroTitle] = useState('');
-    const [heroSubtitle, setHeroSubtitle] = useState('');
+
     const [stats, setStats] = useState<{ value: string; label: string }[]>([]);
 
     // Client Logos Logic
@@ -25,8 +24,7 @@ export default function DashboardPage() {
 
     useEffect(() => {
         if (config.homeContent) {
-            setHeroTitle(config.homeContent.heroTitle);
-            setHeroSubtitle(config.homeContent.heroSubtitle);
+
             setStats(config.homeContent.stats);
         }
         if (config.clientLogos) {
@@ -109,8 +107,7 @@ export default function DashboardPage() {
 
     const handleSave = () => {
         updateHomeContent({
-            heroTitle,
-            heroSubtitle,
+
             stats
         });
         updateClientLogos(clientInputs); // Save Clients
@@ -128,40 +125,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Hero Section Card */}
-            <div className={styles.card}>
-                <div className={styles.cardHeader}>
-                    <h2 className={styles.cardTitle}>Hero Section</h2>
-                </div>
 
-                <div style={{ marginBottom: '24px' }}>
-                    <label className={styles.label}>
-                        Hero Title
-                    </label>
-                    <textarea
-                        value={heroTitle}
-                        onChange={(e) => setHeroTitle(e.target.value)}
-                        rows={3}
-                        className={styles.textarea}
-                        placeholder="Enter main headline..."
-                    />
-                    <p className={styles.helperText}>
-                        Use line 1, line 2 etc. for breaks if needed based on design.
-                    </p>
-                </div>
-
-                <div>
-                    <label className={styles.label}>
-                        Hero Subtitle
-                    </label>
-                    <textarea
-                        value={heroSubtitle}
-                        onChange={(e) => setHeroSubtitle(e.target.value)}
-                        rows={3}
-                        className={styles.textarea}
-                        placeholder="Enter subtitle description..."
-                    />
-                </div>
-            </div>
 
             {/* Stats Section Card */}
             <div className={styles.card}>

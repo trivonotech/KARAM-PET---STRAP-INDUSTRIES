@@ -6,7 +6,12 @@ import { useSiteConfig } from '../context/SiteConfigContext';
 
 export default function Hero() {
     const { config } = useSiteConfig();
-    const { heroTitle, heroSubtitle, stats } = config.homeContent;
+    const { stats } = config.homeContent;
+
+    const heroTitle = 'Manufacturer Of High-Performance\nPET, PP & Cord Strapping Solutions';
+    const heroSubtitle = 'Serving Steel, Aluminium, Packaging And Export Industries With Durable, Shock-Absorbent And Machine-Compatible Strapping Made Using 100% Recycled Raw Materials.';
+
+
 
     return (
         <section className={styles.heroWrapper}>
@@ -32,11 +37,11 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} suppressHydrationWarning>
                 {stats.map((stat, index) => (
                     <div key={index} className={styles.statItem}>
-                        <span className={styles.statValue}>{stat.value}</span>
-                        <span className={styles.statLabel} style={{ whiteSpace: 'pre-line' }}>{stat.label}</span>
+                        <span className={styles.statValue} suppressHydrationWarning>{stat.value}</span>
+                        <span className={styles.statLabel} style={{ whiteSpace: 'pre-line' }} suppressHydrationWarning>{stat.label}</span>
                     </div>
                 ))}
             </div>

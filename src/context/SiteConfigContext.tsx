@@ -11,8 +11,7 @@ interface StatItem {
 }
 
 interface HomeContent {
-    heroTitle: string;
-    heroSubtitle: string;
+
     stats: StatItem[];
 }
 
@@ -40,22 +39,33 @@ const defaultLogos = Array(7).fill('');
 const defaultClientLogos: ClientLogo[] = [];
 
 const defaultHomeContent: HomeContent = {
-    heroTitle: 'Manufacturer Of High-Performance\nPET, PP & Cord Strapping Solutions',
-    heroSubtitle: 'Serving Steel, Aluminium, Packaging And Export Industries With Durable, Shock-Absorbent And Machine-Compatible Strapping Made Using 100% Recycled Raw Materials.',
+
     stats: [
-        { value: '14+', label: 'Years\nExperience' },
-        { value: '9001:2015', label: 'Iso' },
-        { value: '11 T', label: 'Monthly\nCapacity' },
+        { value: '', label: '' },
+        { value: '', label: '' },
+        { value: '', label: '' },
     ]
 };
 
 const SiteConfigContext = createContext<SiteConfigContextType | undefined>(undefined);
 
 export function SiteConfigProvider({ children }: { children: React.ReactNode }) {
-    const [config, setConfig] = useState<SiteConfig>({
-        industryLogos: defaultLogos,
-        clientLogos: defaultClientLogos,
-        homeContent: defaultHomeContent,
+    const [config, setConfig] = useState<SiteConfig>(() => {
+        if (typeof window !== 'undefined') {
+            try {
+                const cached = localStorage.getItem('siteConfigCache_v1');
+                if (cached) {
+                    return JSON.parse(cached);
+                }
+            } catch (error) {
+                console.warn('Failed to parse cached site config:', error);
+            }
+        }
+        return {
+            industryLogos: defaultLogos,
+            clientLogos: defaultClientLogos,
+            homeContent: defaultHomeContent,
+        };
     });
 
     useEffect(() => {
@@ -78,12 +88,20 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
                         });
                     }
 
-                    setConfig(prev => ({
-                        ...prev,
-                        ...data,
-                        clientLogos: normalizedClientLogos,
-                        homeContent: { ...prev.homeContent, ...(data.homeContent || {}) }
-                    }));
+                    setConfig(prev => {
+                        const newConfig = {
+                            ...prev,
+                            ...data,
+                            clientLogos: normalizedClientLogos,
+                            homeContent: { ...prev.homeContent, ...(data.homeContent || {}) }
+                        };
+                        try {
+                            localStorage.setItem('siteConfigCache_v1', JSON.stringify(newConfig));
+                        } catch (e) {
+                            console.warn('Failed to cache site config:', e);
+                        }
+                        return newConfig;
+                    });
                 }
             },
             (error) => {
