@@ -107,31 +107,46 @@
 }
 
 /* Re-enabling with "Hero-like" visual guess based on "also in Contact Us" */
+/* Bottom Connector (was ::after) moved to Bottom-Right */
 .formCard::after {
     content: '';
     position: absolute;
-    left: -24px;
-    bottom: 0;
+    right: 0;
+    /* Align to right edge */
+    left: auto;
+    /* Reset left */
+    bottom: -24px;
+    /* Push to bottom */
     height: 24px;
     width: 24px;
     background: transparent;
-    border-bottom-right-radius: 12px;
-    box-shadow: 12px 0 0 white;
+    border-top-right-radius: 12px;
+    /* Curve connects Top-Right of this box (Bottom-Right of Card) */
+    box-shadow: 0 -12px 0 white;
+    /* Shadow acts as the connector fill UPWARDS */
     display: block;
 }
 
+/* Side Connector (was ::before) moved to Right-Bottom */
 .formCard::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: -24px;
+    right: -24px;
+    /* Push to right */
+    left: auto;
+    /* Reset left */
+    bottom: 0;
+    /* Align to bottom edge */
+    top: auto;
+    /* Reset top */
     height: 24px;
     width: 24px;
     background: transparent;
-    border-bottom-right-radius: 12px;
-    box-shadow: 0 12px 0 white;
+    border-bottom-left-radius: 12px;
+    /* Curve connects Bottom-Left of this box (Bottom-Right of Card) */
+    box-shadow: -12px 0 0 white;
+    /* Shadow acts as the connector fill LEFTWARDS */
     display: block;
-    /* This creates a curve at the top-left corner connection if we flattened the corner. */
 }
 
 .formGrid {
