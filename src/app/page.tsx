@@ -6,6 +6,7 @@ import Industries from '@/components/Industries';
 import Products from '@/components/Products';
 import Catalogue from '@/components/Catalogue';
 import QualityControl from '@/components/QualityControl';
+import VisionMission from '@/components/VisionMission';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import ContactUs from '@/components/ContactUs';
 
@@ -21,6 +22,7 @@ export default function Home() {
         <Industries />
         <Products />
         <QualityControl />
+        <VisionMission />
         <Catalogue />
         <WhyChooseUs />
         <ContactUs />
