@@ -247,6 +247,7 @@ export default function DashboardPage() {
                                             fill
                                             style={{ objectFit: 'contain', padding: '12px' }}
                                             unoptimized
+                                            suppressHydrationWarning
                                         />
                                         {/* Favorite Toggle */}
                                         <button

@@ -69,6 +69,7 @@ export default function LoginPage() {
                         fill
                         style={{ objectFit: 'contain' }}
                         priority
+                        suppressHydrationWarning
                     />
                 </div>
 

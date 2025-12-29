@@ -27,6 +27,7 @@ export default function Hero() {
                     fill
                     className={styles.backgroundImage}
                     priority
+                    suppressHydrationWarning
                 />
 
                 <div className={styles.content}>

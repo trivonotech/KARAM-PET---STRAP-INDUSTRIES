@@ -37,6 +37,7 @@ export default function WhyChooseUs() {
                                 alt="Feature"
                                 fill
                                 className={styles.cardImage}
+                                suppressHydrationWarning
                             />
                             <div className={styles.textOverlay}>
                                 {item.text}

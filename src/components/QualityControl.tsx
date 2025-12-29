@@ -25,6 +25,7 @@ export default function QualityControl() {
                                 alt={img.alt}
                                 fill
                                 className={styles.qcImage}
+                                suppressHydrationWarning
                             />
                         </div>
                     ))}

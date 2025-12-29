@@ -84,6 +84,7 @@ export default function Industries() {
                                             fill
                                             style={{ objectFit: 'contain' }}
                                             sizes="(max-width: 768px) 150px, 200px"
+                                            suppressHydrationWarning
                                         />
                                     ) : null}
                                 </div>

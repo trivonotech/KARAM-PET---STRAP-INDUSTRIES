@@ -27,6 +27,7 @@ export default function Products() {
                             alt="PET Polyester Strap Rolls"
                             fill
                             className={styles.productImage}
+                            suppressHydrationWarning
                         />
                         <div className={styles.cornerDecoration}>
                             <button className={styles.moreButton}>

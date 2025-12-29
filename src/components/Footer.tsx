@@ -9,7 +9,7 @@ export default function Footer() {
                 {/* Column 1: Brand & Address */}
                 <div className={styles.brandColumn}>
                     <div className={styles.logoContainer}>
-                        <Image src="/logo.png" alt="KARAM PET Logo" fill className={styles.logoImage} objectFit="contain" />
+                        <Image src="/logo.png" alt="KARAM PET Logo" fill className={styles.logoImage} objectFit="contain" suppressHydrationWarning />
                     </div>
 
                     <div className={styles.addressGroup}>

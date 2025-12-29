@@ -50,25 +50,23 @@ const defaultHomeContent: HomeContent = {
 const SiteConfigContext = createContext<SiteConfigContextType | undefined>(undefined);
 
 export function SiteConfigProvider({ children }: { children: React.ReactNode }) {
-    const [config, setConfig] = useState<SiteConfig>(() => {
-        if (typeof window !== 'undefined') {
-            try {
-                const cached = localStorage.getItem('siteConfigCache_v1');
-                if (cached) {
-                    return JSON.parse(cached);
-                }
-            } catch (error) {
-                console.warn('Failed to parse cached site config:', error);
-            }
-        }
-        return {
-            industryLogos: defaultLogos,
-            clientLogos: defaultClientLogos,
-            homeContent: defaultHomeContent,
-        };
+    const [config, setConfig] = useState<SiteConfig>({
+        industryLogos: defaultLogos,
+        clientLogos: defaultClientLogos,
+        homeContent: defaultHomeContent,
     });
 
     useEffect(() => {
+        // Load from local storage on mount to ensure hydration matches server but we get cached data fast
+        try {
+            const cached = localStorage.getItem('siteConfigCache_v1');
+            if (cached) {
+                setConfig(JSON.parse(cached));
+            }
+        } catch (error) {
+            console.warn('Failed to parse cached site config:', error);
+        }
+
         // Real-time listener for configuration changes
         const docRef = doc(db, 'settings', 'global');
         const unsubscribe = onSnapshot(

@@ -149,6 +149,7 @@ export default function ProductsPage() {
                                     alt={product.title}
                                     fill
                                     className={styles.productImage}
+                                    suppressHydrationWarning
                                 />
                             </div>
                         </section>

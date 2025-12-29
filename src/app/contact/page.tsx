@@ -81,6 +81,7 @@ export default function ContactPage() {
                                 fill
                                 className={styles.formBgImage}
                                 priority
+                                suppressHydrationWarning
                             />
                         </div>
 

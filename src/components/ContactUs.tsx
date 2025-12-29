@@ -20,6 +20,7 @@ export default function ContactUs() {
                             alt="Factory Background"
                             fill
                             className={styles.formBgImage}
+                            suppressHydrationWarning
                         />
                     </div>
 

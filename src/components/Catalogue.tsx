@@ -76,6 +76,7 @@ export default function Catalogue() {
                             alt="Catalogue Preview"
                             fill
                             className={styles.catalogueImage}
+                            suppressHydrationWarning
                         />
                     </div>
                 </div>

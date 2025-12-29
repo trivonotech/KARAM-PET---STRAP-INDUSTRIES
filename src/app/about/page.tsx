@@ -21,6 +21,7 @@ export default function AboutPage() {
                         alt={`Client ${index + 1}`}
                         fill
                         style={{ objectFit: 'contain', padding: '15px' }}
+                        suppressHydrationWarning
                     />
                 ) : null}
             </div>
@@ -50,6 +51,7 @@ export default function AboutPage() {
                             alt="Factory Operations"
                             fill
                             className={styles.heroImage}
+                            suppressHydrationWarning
                         />
                     </div>
                 </div>
@@ -153,7 +155,7 @@ export default function AboutPage() {
                 <div className={styles.featuresGrid}>
                     <div className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
-                            <Image src="/icons/1.svg" alt="Uniform Dimensions" width={50} height={50} />
+                            <Image src="/icons/1.svg" alt="Uniform Dimensions" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Ensures Uniform<br />Dimensions And<br />Strength
@@ -161,7 +163,7 @@ export default function AboutPage() {
                     </div>
                     <div className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
-                            <Image src="/icons/2.svg" alt="Approved Inputs" width={50} height={50} />
+                            <Image src="/icons/2.svg" alt="Approved Inputs" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Only Approved And<br />Tested Raw Inputs
@@ -169,7 +171,7 @@ export default function AboutPage() {
                     </div>
                     <div className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
-                            <Image src="/icons/3.svg" alt="Lab Tested" width={50} height={50} />
+                            <Image src="/icons/3.svg" alt="Lab Tested" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Lab-Tested For Break<br />Strength & Elongation
@@ -177,7 +179,7 @@ export default function AboutPage() {
                     </div>
                     <div className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
-                            <Image src="/icons/4.svg" alt="Reliable Production" width={50} height={50} />
+                            <Image src="/icons/4.svg" alt="Reliable Production" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Reliable Production<br />For Heavy Industrial<br />Demand
@@ -251,6 +253,7 @@ export default function AboutPage() {
                             alt="Trust Us"
                             fill
                             className={styles.heroImage}
+                            suppressHydrationWarning
                         />
                     </div>
                     <div className={styles.trustTextContent}>

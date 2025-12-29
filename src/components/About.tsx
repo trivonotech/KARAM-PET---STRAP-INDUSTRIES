@@ -24,6 +24,7 @@ export default function About() {
                             alt="Factory Machine"
                             fill
                             className={styles.aboutImage}
+                            suppressHydrationWarning
                         />
                     </div>
                 </div>

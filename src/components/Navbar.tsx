@@ -18,6 +18,7 @@ export default function Navbar() {
             fill
             className={styles.logoImage}
             priority
+            suppressHydrationWarning
           />
         </div>
         <ul className={styles.navLinks}>
