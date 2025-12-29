@@ -4,9 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
+import { useState } from 'react';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <nav className={styles.navbar}>
@@ -21,6 +23,8 @@ export default function Navbar() {
             suppressHydrationWarning
           />
         </div>
+
+        {/* Desktop Navigation */}
         <ul className={styles.navLinks}>
           <li>
             <Link
@@ -54,11 +58,74 @@ export default function Navbar() {
               Infrastructure
             </Link>
           </li>
-
         </ul>
-        <Link href="/contact" className={styles.contactButton}>
+
+        {/* Desktop Contact Button */}
+        <Link href="/contact" className={`${styles.contactButton} ${styles.desktopOnly}`}>
           <span>📞</span> Contact
         </Link>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          className={styles.hamburgerButton}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`${styles.bar} ${isMobileMenuOpen ? styles.barOpen1 : ''}`}></span>
+          <span className={`${styles.bar} ${isMobileMenuOpen ? styles.barOpen2 : ''}`}></span>
+          <span className={`${styles.bar} ${isMobileMenuOpen ? styles.barOpen3 : ''}`}></span>
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+        <ul className={styles.mobileNavLinks}>
+          <li>
+            <Link
+              href="/"
+              className={`${styles.mobileNavLink} ${pathname === '/' ? styles.active : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className={`${styles.mobileNavLink} ${pathname === '/about' ? styles.active : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/products"
+              className={`${styles.mobileNavLink} ${pathname.startsWith('/products') ? styles.active : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/infrastructure"
+              className={`${styles.mobileNavLink} ${pathname === '/infrastructure' ? styles.active : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Infrastructure
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className={`${styles.mobileNavLink} ${pathname === '/contact' ? styles.active : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contact Us
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   );

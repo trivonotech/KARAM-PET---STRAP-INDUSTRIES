@@ -89,3 +89,22 @@
     color: #666;
     opacity: 0.8;
 }
+
+@media (max-width: 768px) {
+    .heading {
+        font-size: 2rem;
+        padding-left: 0;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .logoItem {
+        min-width: 140px;
+        /* Ensure decent size on mobile */
+        height: 90px;
+    }
+
+    .marqueeTrack {
+        gap: 1.5rem;
+    }
+}

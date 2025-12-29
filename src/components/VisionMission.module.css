@@ -122,6 +122,16 @@
     }
 
     .section {
-        padding: 4rem 0;
+        padding: 4rem 0 2rem 0;
+        /* Reduced bottom padding */
+    }
+
+    .headingWrapper {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .heading {
+        font-size: 2rem;
     }
 }

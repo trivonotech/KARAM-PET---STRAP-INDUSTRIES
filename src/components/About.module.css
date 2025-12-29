@@ -39,7 +39,9 @@
     line-height: 1.6;
     color: #4a4a4a;
     margin-bottom: 3rem;
-    text-align: justify;
+    margin-bottom: 3rem;
+    text-align: left;
+    /* No justify on mobile to prevent rivers */
 }
 
 .moreButton {
@@ -80,7 +82,12 @@
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
-        padding: 0 2rem;
+        padding: 0 1.5rem;
+    }
+
+    .heading {
+        font-size: 2rem;
+        /* Reduce heading size */
     }
 
     .contentColumn {

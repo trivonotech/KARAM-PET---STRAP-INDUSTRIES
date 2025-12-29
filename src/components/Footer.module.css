@@ -140,6 +140,27 @@
 @media (max-width: 600px) {
     .container {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .brandColumn,
+    .linkColumn {
+        align-items: center;
+    }
+
+    .addressGroup,
+    .linkList {
+        align-items: center;
+    }
+
+    .logoContainer {
+        margin: 0 auto;
+    }
+
+    .iconLink {
+        width: 44px;
+        height: 44px;
+        /* Larger touch target */
     }
 }

@@ -208,7 +208,7 @@
 @media (max-width: 900px) {
     .formSectionWrapper {
         justify-content: center;
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
     .formCard {

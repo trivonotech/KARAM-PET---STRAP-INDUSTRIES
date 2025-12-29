@@ -82,4 +82,9 @@
     .featureGrid {
         grid-template-columns: 1fr;
     }
+
+    .featureCard {
+        aspect-ratio: 16/9;
+        /* Shorter cards on mobile */
+    }
 }
