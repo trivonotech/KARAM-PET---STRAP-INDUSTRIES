@@ -208,20 +208,24 @@
 @media (max-width: 900px) {
     .formSectionWrapper {
         justify-content: center;
-        padding: 1.5rem;
+        padding: 1rem;
+        /* Reduce padding to give form more width */
     }
 
     .contactSection {
-        padding: 3rem 0;
+        padding: 1rem 0;
+        /* Reduced top/bottom padding */
     }
 
     .formCard {
-        background: #fff;
-        /* Restore solid bg */
+        background: #ffffff !important;
+        /* Restore solid bg override */
         max-width: 100%;
-        padding: 1.5rem;
-        border-radius: 16px;
-        box-shadow: none;
+        padding: 1.5rem 1rem;
+        /* Reduced internal padding */
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        /* Add shadow for depth */
     }
 
     .cardShape {
@@ -236,6 +240,26 @@
         margin-top: 1.5rem;
         border-radius: 8px;
         padding: 1rem;
+    }
+
+    .input,
+    .textarea {
+        padding: 0.6rem;
+        /* Slightly compacted */
+    }
+
+    .formGrid {
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .formGroup {
+        gap: 0.3rem;
+    }
+
+    .heading {
+        margin-bottom: 1rem;
+        font-size: 2.2rem;
     }
 }
 

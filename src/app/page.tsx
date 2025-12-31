@@ -21,7 +21,7 @@ export default function Home() {
         <About />
         <Industries />
         <Products />
-        <QualityControl />
+
         <VisionMission />
         <Catalogue />
         <WhyChooseUs />

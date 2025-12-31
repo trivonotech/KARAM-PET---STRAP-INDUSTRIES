@@ -101,8 +101,26 @@
     transition: width 0.3s ease;
 }
 
-.card:hover .cardTitle::after {
-    width: 60px;
+/* Dots Pagination */
+.dotsContainer {
+    display: none;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activeDot {
+    background-color: var(--primary);
+    transform: scale(1.2);
 }
 
 @media (max-width: 1024px) {
@@ -117,8 +135,28 @@
     }
 
     .grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 1rem;
+        /* Hide scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+    }
+
+    .grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .card {
+        min-width: 100%;
+        scroll-snap-align: center;
+    }
+
+    .dotsContainer {
+        display: flex;
     }
 
     .section {

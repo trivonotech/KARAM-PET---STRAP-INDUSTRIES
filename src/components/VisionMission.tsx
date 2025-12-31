@@ -1,7 +1,47 @@
-import React from 'react';
+"use client";
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './VisionMission.module.css';
 
 const VisionMission = () => {
+    const [activeCard, setActiveCard] = useState(0);
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Auto-swipe functionality
+    useEffect(() => {
+        const interval = setInterval(() => {
+            // Only auto-swipe on mobile where grid is a flex container (overflowing)
+            // We can check this by seeing if scrollWidth > clientWidth
+            if (scrollRef.current && scrollRef.current.scrollWidth > scrollRef.current.clientWidth) {
+                const nextCard = (activeCard + 1) % 3; // Cycle through 0, 1, 2
+                scrollToCard(nextCard);
+            }
+        }, 3000); // Swipe every 3 seconds
+
+        return () => clearInterval(interval);
+    }, [activeCard]);
+
+    const handleScroll = () => {
+        if (scrollRef.current) {
+            const scrollLeft = scrollRef.current.scrollLeft;
+            const cardWidth = scrollRef.current.clientWidth;
+            const newActiveCard = Math.round(scrollLeft / cardWidth);
+            if (newActiveCard !== activeCard) {
+                setActiveCard(newActiveCard);
+            }
+        }
+    };
+
+    const scrollToCard = (index: number) => {
+        if (scrollRef.current) {
+            const cardWidth = scrollRef.current.clientWidth;
+            scrollRef.current.scrollTo({
+                left: index * cardWidth,
+                behavior: 'smooth'
+            });
+            setActiveCard(index);
+        }
+    };
+
     return (
         <section className={styles.section}>
             <div className={styles.container}>
@@ -11,7 +51,11 @@ const VisionMission = () => {
                     </h2>
                 </div>
 
-                <div className={styles.grid}>
+                <div
+                    className={styles.grid}
+                    ref={scrollRef}
+                    onScroll={handleScroll}
+                >
                     {/* Vision Card */}
                     <div className={styles.card}>
                         <div className={styles.iconWrapper}>
@@ -56,6 +100,17 @@ const VisionMission = () => {
                             Our strength lies in our robust infrastructure, skilled workforce, and unyielding commitment to quality control. We combine years of expertise with cutting-edge technology.
                         </p>
                     </div>
+                </div>
+
+                {/* Pagination Dots */}
+                <div className={styles.dotsContainer}>
+                    {[0, 1, 2].map((index) => (
+                        <div
+                            key={index}
+                            className={`${styles.dot} ${activeCard === index ? styles.activeDot : ''}`}
+                            onClick={() => scrollToCard(index)}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
