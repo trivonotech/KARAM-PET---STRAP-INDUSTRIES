@@ -211,6 +211,10 @@
         padding: 1.5rem;
     }
 
+    .contactSection {
+        padding: 3rem 0;
+    }
+
     .formCard {
         background: #fff;
         /* Restore solid bg */

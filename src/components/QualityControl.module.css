@@ -69,6 +69,10 @@
         grid-template-columns: 1fr;
     }
 
+    .qcSection {
+        padding: 3rem 0;
+    }
+
     .heading,
     .whyHeading {
         font-size: 2rem;

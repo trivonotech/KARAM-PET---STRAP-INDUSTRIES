@@ -154,6 +154,10 @@
         padding: 0 2rem;
     }
 
+    .productsSection {
+        padding: 3rem 0;
+    }
+
     .contentColumn {
         max-width: 100%;
         margin-bottom: 3rem;

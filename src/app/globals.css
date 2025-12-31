@@ -35,9 +35,4 @@ html {
     text-align: left;
     /* specific mobile override if needed, though body default is usually left. checking if components overwrite it. */
   }
-
-  p {
-    text-align: left !important;
-    /* Force left align to fix rivers in justified text */
-  }
 }

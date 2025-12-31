@@ -144,6 +144,10 @@
         text-align: center;
     }
 
+    .footer {
+        padding-top: 3rem;
+    }
+
     .brandColumn,
     .linkColumn {
         align-items: center;

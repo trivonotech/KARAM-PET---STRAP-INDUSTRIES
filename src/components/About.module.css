@@ -41,6 +41,7 @@
     margin-bottom: 3rem;
     margin-bottom: 3rem;
     text-align: left;
+    text-align: justify;
     /* No justify on mobile to prevent rivers */
 }
 
@@ -80,19 +81,26 @@
 }
 
 @media (max-width: 900px) {
+    .imageColumn {
+        display: none;
+    }
+
     .container {
         flex-direction: column;
         padding: 0 1.5rem;
-    }
-
-    .heading {
-        font-size: 2rem;
-        /* Reduce heading size */
+        gap: 0;
     }
 
     .contentColumn {
         max-width: 100%;
         margin-bottom: 3rem;
+        
+        /* Remove margin bottom on mobile as image handles spacing or container padding */
+    }
+
+    .aboutSection {
+        padding: 3rem 0 0 0;
+        
     }
 
     .imageWrapper {

@@ -98,6 +98,11 @@
         margin-bottom: 2rem;
     }
 
+    .industriesSection {
+        padding: 0 0 3rem 0;
+        /* Eliminated top padding as requested */
+    }
+
     .logoItem {
         min-width: 140px;
         /* Ensure decent size on mobile */

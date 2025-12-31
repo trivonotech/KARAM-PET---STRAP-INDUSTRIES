@@ -122,8 +122,8 @@
     }
 
     .section {
-        padding: 4rem 0 2rem 0;
-        /* Reduced bottom padding */
+        padding: 3rem 0;
+        /* Standardized mobile padding */
     }
 
     .headingWrapper {

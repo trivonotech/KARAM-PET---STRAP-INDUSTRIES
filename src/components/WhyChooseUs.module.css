@@ -81,10 +81,16 @@
 @media (max-width: 600px) {
     .featureGrid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .featureCard {
-        aspect-ratio: 16/9;
-        /* Shorter cards on mobile */
+        aspect-ratio: 4/3;
+        /* Slightly taller than 16/9 for better text fit */
+        width: 100%;
+    }
+
+    .wcuSection {
+        padding: 3rem 0;
     }
 }
