@@ -163,6 +163,10 @@
         margin-bottom: 3rem;
     }
 
+    .imageColumn {
+        width: 100%;
+    }
+
     .imageWrapper {
         height: 300px;
     }
