@@ -199,30 +199,33 @@
     }
 
     .content {
-        padding: 2rem;
-        text-align: center;
+        padding: 1.5rem;
+        text-align: left;
+        /* Better readability than justify */
         max-width: 100%;
-        padding-top: 2rem;
-        text-align: justify;
+        padding-top: 1rem;
     }
 
     .title {
-        font-size: 2.5rem;
+        font-size: 1.75rem;
+        line-height: 1.25;
         margin-bottom: 2rem;
+        font-weight: 700;
     }
 
     .statsCard {
         position: relative;
         width: 100%;
-        border-radius: 20px;
-        /* Restore rounded corners */
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        padding: 2rem;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
         margin-top: 2rem;
-        /* Spacing from content */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        /* Add shadow back */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        background: #ffffff;
+        gap: 0.5rem;
     }
 
     /* Hide the stats connectors on mobile as they break the flow */
@@ -231,7 +234,26 @@
         display: none;
     }
 
+    .statItem {
+        flex: 1;
+        min-width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
     .statValue {
-        font-size: 2rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .statLabel {
+        font-size: 0.7rem;
+        line-height: 1.1;
+        color: #666;
+        white-space: normal !important;
+        max-width: none;
     }
 }
