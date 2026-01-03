@@ -1,5 +1,6 @@
 import styles from './Products.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Products() {
     return (
@@ -30,9 +31,9 @@ export default function Products() {
                             suppressHydrationWarning
                         />
                         <div className={styles.cornerDecoration}>
-                            <button className={styles.moreButton}>
+                            <Link href="/products" className={styles.moreButton}>
                                 More ↗
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

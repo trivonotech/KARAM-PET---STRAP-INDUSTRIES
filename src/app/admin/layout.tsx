@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import AdminSidebar from '../../components/AdminSidebar';
+import styles from './admin-layout.module.css';
 
 export default function DashboardLayout({
     children,
@@ -12,6 +13,7 @@ export default function DashboardLayout({
 }) {
     const { user, loading } = useAuth();
     const router = useRouter();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     useEffect(() => {
         if (!loading && !user) {
@@ -32,9 +34,26 @@ export default function DashboardLayout({
     }
 
     return (
-        <div style={{ display: 'flex', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
-            <AdminSidebar />
-            <main style={{ marginLeft: '260px', width: 'calc(100% - 260px)', padding: '32px' }}>
+        <div className={styles.layoutContainer}>
+            <header className={styles.mobileHeader}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <button
+                        className={styles.menuBtn}
+                        onClick={() => setIsSidebarOpen(true)}
+                    >
+                        ☰
+                    </button>
+                    <span className={styles.mobileTitle}>KARAM ADMIN</span>
+                </div>
+                <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #e11d48 0%, #be123c 100%)', borderRadius: 8 }}></div>
+            </header>
+
+            <AdminSidebar
+                isOpen={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+            />
+
+            <main className={styles.mainContent}>
                 {children}
             </main>
         </div>
