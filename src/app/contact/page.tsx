@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Navbar from '@/components/layout/Navbar/Navbar';
+import Footer from '@/components/layout/Footer/Footer';
 import styles from './page.module.css';
 
 export default function ContactPage() {

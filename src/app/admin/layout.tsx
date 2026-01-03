@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../context/AuthContext';
-import AdminSidebar from '../../components/AdminSidebar';
+import { useAuth } from '@/context/AuthContext';
+import AdminSidebar from '@/components/layout/AdminSidebar/AdminSidebar';
 import styles from './admin-layout.module.css';
 
 export default function DashboardLayout({

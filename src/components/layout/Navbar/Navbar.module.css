@@ -9,6 +9,7 @@
   padding: 0;
   /* Removing padding from outer shell */
   font-family: var(--font-outfit), sans-serif;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.2);
 }
 
 .navContent {

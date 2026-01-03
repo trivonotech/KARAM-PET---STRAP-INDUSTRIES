@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from './page.module.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import DownloadCatalogueButton from '@/components/DownloadCatalogueButton';
+import Navbar from '@/components/layout/Navbar/Navbar';
+import Footer from '@/components/layout/Footer/Footer';
+import DownloadCatalogueButton from '@/components/ui/DownloadCatalogueButton';
 
 // Type definitions for product data
 interface Spec {

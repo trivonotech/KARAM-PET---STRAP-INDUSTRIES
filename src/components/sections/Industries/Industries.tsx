@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './Industries.module.css';
-import { useSiteConfig } from '../context/SiteConfigContext';
+import { useSiteConfig } from '@/context/SiteConfigContext';
 
 export default function Industries() {
     const { config } = useSiteConfig();

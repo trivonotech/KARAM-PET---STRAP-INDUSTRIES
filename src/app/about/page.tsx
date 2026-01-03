@@ -2,8 +2,8 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Navbar from '@/components/layout/Navbar/Navbar';
+import Footer from '@/components/layout/Footer/Footer';
 import { useSiteConfig } from '@/context/SiteConfigContext';
 
 export default function AboutPage() {

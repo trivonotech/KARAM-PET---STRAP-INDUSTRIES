@@ -2,8 +2,10 @@
 
 import styles from './Hero.module.css';
 import Image from 'next/image';
-import { useSiteConfig } from '../context/SiteConfigContext';
+import { useSiteConfig } from '@/context/SiteConfigContext';
 import { useState, useEffect } from 'react';
+
+import { SITE_CONTENT } from '@/lib/constants';
 
 export default function Hero() {
     const { config } = useSiteConfig();
@@ -15,8 +17,7 @@ export default function Hero() {
         setMounted(true);
     }, []);
 
-    const heroTitle = 'Manufacturer Of High-Performance\nPET, PP & Cord Strapping Solutions';
-    const heroSubtitle = 'Serving Steel, Aluminium, Packaging And Export Industries With Durable, Shock-Absorbent And Machine-Compatible Strapping Made Using 100% Recycled Raw Materials.';
+    const { title, subtitle, cta } = SITE_CONTENT.hero;
 
     return (
         <section className={styles.heroWrapper}>
@@ -32,13 +33,13 @@ export default function Hero() {
 
                 <div className={styles.content}>
                     <h1 className={styles.title}>
-                        {heroTitle}
+                        {title}
                     </h1>
                     <p className={styles.subtitle}>
-                        {heroSubtitle}
+                        {subtitle}
                     </p>
                     <button className={styles.ctaButton}>
-                        Request A Quotation ›
+                        {cta}
                     </button>
                 </div>
             </div>
