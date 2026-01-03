@@ -89,7 +89,9 @@
 .cardContent {
     padding: 1.5rem 1.5rem;
     font-size: 0.9rem;
-    color: #555;
+    color: #ffffff;
+    background-color: #666666;
+    /* User requested #666 for text section */
     line-height: 1.6;
     flex: 1;
     text-align: justify;
@@ -293,6 +295,15 @@
 /* Trust Section */
 .trustSection {
     padding-bottom: 6rem;
+    background-color: #666666;
+    /* User requested #666 */
+    padding-top: 6rem;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+.trustSection .sectionTitle {
+    color: #ffffff;
 }
 
 .trustContent {
@@ -323,7 +334,8 @@
     margin-bottom: 0.8rem;
     padding-left: 1.5rem;
     position: relative;
-    color: #555;
+    color: #ffffff;
+    /* White text for contrast against #666 bg */
     font-weight: 500;
     line-height: 1.5;
 }

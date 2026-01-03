@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSiteConfig } from '../context/SiteConfigContext';
+
 import styles from './Catalogue.module.css';
 import Image from 'next/image';
 
 export default function Catalogue() {
-    const { config } = useSiteConfig();
+
 
 
 
@@ -46,26 +46,15 @@ export default function Catalogue() {
                     </p>
 
                     {/* Only show the "live" link if mounted. Otherwise (SSR), show fallback to match initial state. */}
-                    {mounted && config.catalogueUrl ? (
-                        <a
-                            href={config.catalogueUrl}
-                            download="KARAM-PET-Catalogue.pdf"
-                            className={styles.downloadButton}
-                            style={{ textDecoration: 'none', display: 'inline-flex' }}
-                            title="Click to download PDF"
-                        >
-                            Download Catalogue ⬇
-                        </a>
-                    ) : (
-                        <button
-                            className={styles.downloadButton}
-                            onClick={() => mounted ? alert('The catalogue is currently being updated. Please check back soon!') : null}
-                            title="Catalogue unavailable"
-                            disabled={!mounted} // Optional: disable interactions during hydration
-                        >
-                            Download Catalogue ⬇
-                        </button>
-                    )}
+                    <a
+                        href="/KARAM-PET-Catalogue.pdf"
+                        download="KARAM-PET-Catalogue.pdf"
+                        className={styles.downloadButton}
+                        style={{ textDecoration: 'none', display: 'inline-flex' }}
+                        title="Click to download PDF"
+                    >
+                        Download Catalogue ⬇
+                    </a>
 
                 </div>
 
