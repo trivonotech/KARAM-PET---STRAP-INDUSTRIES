@@ -268,7 +268,7 @@ export default function DashboardPage() {
                                             }}
                                             title={item.isFavorite ? "Remove from Industries Served" : "Add to Industries Served"}
                                         >
-                                            {item.isFavorite ? '⭐' : '☆'}
+                                            {item.isFavorite ? '❤️' : '♡'}
                                         </button>
 
                                         <button

@@ -18,7 +18,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 52px;
     background: white;
     border-bottom: 1px solid #e5e7eb;
     z-index: 40;
@@ -48,11 +48,16 @@
     .mainContent {
         margin-left: 0;
         width: 100%;
-        padding: 80px 16px 32px 16px;
-        /* Top padding for fixed header */
+        padding: 68px 16px 32px 16px;
+        /* 52px header + 16px gap */
     }
 
     .mobileHeader {
         display: flex;
+        height: 52px;
+    }
+
+    .mobileTitle {
+        font-size: 1rem;
     }
 }
