@@ -212,6 +212,10 @@
         /* Reduce padding to give form more width */
     }
 
+    .formBackground {
+        display: none;
+    }
+
     .contactSection {
         padding: 1rem 0;
         /* Reduced top/bottom padding */

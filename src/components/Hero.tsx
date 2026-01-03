@@ -31,7 +31,7 @@ export default function Hero() {
                 />
 
                 <div className={styles.content}>
-                    <h1 className={styles.title} style={{ whiteSpace: 'pre-line' }}>
+                    <h1 className={styles.title}>
                         {heroTitle}
                     </h1>
                     <p className={styles.subtitle}>
@@ -48,7 +48,7 @@ export default function Hero() {
                     stats.map((stat, index) => (
                         <div key={index} className={styles.statItem}>
                             <span className={styles.statValue}>{stat.value}</span>
-                            <span className={styles.statLabel} style={{ whiteSpace: 'pre-line' }}>{stat.label}</span>
+                            <span className={styles.statLabel}>{stat.label}</span>
                         </div>
                     ))
                 ) : (

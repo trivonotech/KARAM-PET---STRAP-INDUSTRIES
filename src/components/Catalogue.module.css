@@ -97,4 +97,8 @@
         max-width: 100%;
         margin-bottom: 3rem;
     }
+
+    .catalogueSection {
+        padding: 2rem 0;
+    }
 }
