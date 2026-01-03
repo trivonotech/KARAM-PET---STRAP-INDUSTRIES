@@ -22,16 +22,39 @@ export default function DashboardPage() {
 
     const [uploadError, setUploadError] = useState<string | null>(null);
 
+    const [isSaving, setIsSaving] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
+
     useEffect(() => {
         if (config.homeContent) {
-
             setStats(config.homeContent.stats);
         }
         if (config.clientLogos) {
-            // Load exact logos from DB, do not pad or slice
             setClientInputs(config.clientLogos);
         }
+        setInitialLoad(false);
     }, [config]);
+
+    // Auto-save Stats
+    useEffect(() => {
+        if (initialLoad) return;
+
+        const timeoutId = setTimeout(async () => {
+            setIsSaving(true);
+            try {
+                await updateHomeContent({ stats });
+                setShowSuccess(true);
+                setTimeout(() => setShowSuccess(false), 2000);
+            } catch (error) {
+                console.error("Auto-save failed", error);
+                setUploadError("Auto-save failed");
+            } finally {
+                setIsSaving(false);
+            }
+        }, 1000); // 1 second debounce
+
+        return () => clearTimeout(timeoutId);
+    }, [stats, initialLoad]);
 
     const handleStatChange = (index: number, field: 'value' | 'label', text: string) => {
         const newStats = [...stats];
@@ -114,14 +137,7 @@ export default function DashboardPage() {
         setStats(newStats);
     };
 
-    const handleSave = () => {
-        updateHomeContent({
-            stats
-        });
-        updateClientLogos(clientInputs); // Save Clients
-        setShowSuccess(true);
-        setTimeout(() => setShowSuccess(false), 3000);
-    };
+
 
 
 
@@ -394,19 +410,15 @@ export default function DashboardPage() {
 
 
 
-            {/* Floating Save Bar */}
-            <div className={styles.saveBar}>
-                {showSuccess && (
+            {/* Floating Save Status */}
+            <div className={styles.saveBar} style={{ pointerEvents: 'none', justifyContent: 'center' }}>
+                {isSaving ? (
+                    <span style={{ color: '#6b7280', fontWeight: 600 }}>Saving...</span>
+                ) : showSuccess ? (
                     <span className={styles.successMessage}>
-                        ✓ Saved Successfully
+                        ✓ Saved
                     </span>
-                )}
-                <button
-                    onClick={handleSave}
-                    className={styles.saveButton}
-                >
-                    Save Changes
-                </button>
+                ) : null}
             </div>
         </div >
     );
