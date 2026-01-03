@@ -58,16 +58,14 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    /* Fixed height for consistency */
     height: 140px;
     padding: 1.5rem;
 
-    /* Blur effect with transparency */
-    background-color: rgba(50, 50, 50, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 
     color: #fff;
     font-weight: 600;
@@ -78,7 +76,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
 }
+
 
 @media (max-width: 900px) {
     .featureGrid {
@@ -103,13 +103,19 @@
     }
 
     .textOverlay {
-        padding: 0.75rem;
-        font-size: 0.8rem;
-        min-height: 70px;
+        padding: 1rem;
+        font-size: 0.85rem;
+        height: auto;
+        /* Allow height to adjust */
+        min-height: 80px;
+        /* Minimum tappable area */
         line-height: 1.3;
+        backdrop-filter: blur(20px);
+        /* Ensure it applies here too if needed, though inherited */
+        -webkit-backdrop-filter: blur(20px);
     }
 
     .wcuSection {
-        padding: 1rem 0;
+        padding: 3rem 0;
     }
 }
