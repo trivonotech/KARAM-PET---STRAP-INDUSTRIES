@@ -10,7 +10,7 @@
     border-radius: 24px;
     overflow: hidden;
     color: white;
-    min-height: 105vh;
+    min-height: calc(100vh - 130px);
     display: flex;
     align-items: center;
     /* Vertically center the content */
@@ -193,7 +193,7 @@
 
 @media (max-width: 768px) {
     .imageContainer {
-        min-height: 700px;
+        min-height: calc(100vh - 100px);
         flex-direction: column;
         justify-content: center;
     }

@@ -98,6 +98,20 @@
         margin-bottom: 3rem;
     }
 
+    .heading {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+
+    .downloadButton {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.5rem;
+    }
+
     .catalogueSection {
         padding: 2rem 0;
     }

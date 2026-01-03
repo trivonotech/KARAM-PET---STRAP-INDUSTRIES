@@ -50,19 +50,12 @@ export default function Navbar() {
               Products
             </Link>
           </li>
-          <li>
-            <Link
-              href="/infrastructure"
-              className={`${styles.navLink} ${pathname === '/infrastructure' ? styles.active : ''}`}
-            >
-              Infrastructure
-            </Link>
-          </li>
+
         </ul>
 
         {/* Desktop Contact Button */}
         <Link href="/contact" className={`${styles.contactButton} ${styles.desktopOnly}`}>
-          <span>📞</span> Contact
+          Contact
         </Link>
 
         {/* Mobile Hamburger Button */}
@@ -107,15 +100,7 @@ export default function Navbar() {
               Products
             </Link>
           </li>
-          <li>
-            <Link
-              href="/infrastructure"
-              className={`${styles.mobileNavLink} ${pathname === '/infrastructure' ? styles.active : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Infrastructure
-            </Link>
-          </li>
+
           <li>
             <Link
               href="/contact"

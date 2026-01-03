@@ -88,6 +88,7 @@
     font-size: 1rem;
     color: #666;
     line-height: 1.6;
+    text-align: justify;
 }
 
 /* Decorative line */
@@ -131,7 +132,7 @@
 
 @media (max-width: 768px) {
     .heading {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
     }
 
     .grid {
@@ -166,10 +167,18 @@
 
     .headingWrapper {
         margin-bottom: 2rem;
-        text-align: center;
+        text-align: left;
     }
 
     .heading {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .cardTitle {
+        font-size: 1.1rem;
+    }
+
+    .cardText {
+        font-size: 0.9rem;
     }
 }

@@ -208,8 +208,8 @@
 @media (max-width: 900px) {
     .formSectionWrapper {
         justify-content: center;
-        padding: 1rem;
-        /* Reduce padding to give form more width */
+        padding: 0;
+        background-color: transparent;
     }
 
     .formBackground {
@@ -222,14 +222,11 @@
     }
 
     .formCard {
-        background: #ffffff !important;
-        /* Restore solid bg override */
+        background: transparent !important;
         max-width: 100%;
-        padding: 1.5rem 1rem;
-        /* Reduced internal padding */
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        /* Add shadow for depth */
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .cardShape {
@@ -243,13 +240,19 @@
         height: auto;
         margin-top: 1.5rem;
         border-radius: 8px;
-        padding: 1rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .label {
+        font-size: 0.85rem;
     }
 
     .input,
     .textarea {
-        padding: 0.6rem;
-        /* Slightly compacted */
+        padding: 0.8rem;
+        background-color: #f9f9f9;
+        border: 1px solid #eee;
     }
 
     .formGrid {
@@ -263,7 +266,8 @@
 
     .heading {
         margin-bottom: 1rem;
-        font-size: 2.2rem;
+        font-size: 1.5rem;
+        text-align: left;
     }
 }
 

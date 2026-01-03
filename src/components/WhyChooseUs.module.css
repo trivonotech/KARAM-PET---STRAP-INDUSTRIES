@@ -76,6 +76,11 @@
     .featureGrid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .heading {
+        font-size: 1.5rem;
+        text-align: left;
+    }
 }
 
 @media (max-width: 600px) {
