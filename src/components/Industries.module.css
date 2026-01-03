@@ -17,14 +17,7 @@
     font-weight: 600;
     margin-bottom: 3rem;
     text-align: left;
-    /* Wait, mockup shows heading left aligned or centered? */
-    /* Re-checking mockup: "INDUSTRIES SERVED" is left aligned above the logos? 
-     Actually looking at the second crop in the user prompt... 
-     "INDUSTRIES SERVED" seems aligned to the start of the logo row, but the row fades out on the sides.
-     It looks left-aligned relative to the content width. */
-    text-align: left;
-    padding-left: 2rem;
-    /* Match container padding/alignment */
+    /* Removed padding-left to align with container edge */
 }
 
 .blackText {
@@ -47,7 +40,7 @@
 
 .marqueeTrack {
     display: flex;
-    gap: 2rem;
+    /* Removed gap to fix seamless loop math */
     width: max-content;
     animation: scroll 30s linear infinite;
 }
@@ -70,18 +63,16 @@
     min-width: 150px;
     height: 100px;
     background: #ffffff;
-    /* border: 1px solid #e5e5e5; REMOVED */
-    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); REMOVED */
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.2s;
+    margin-right: 2rem;
+    /* Replaces gap for seamless looping */
 }
 
-.logoItem:hover {
-    transform: scale(1.05);
-}
+
 
 .logoText {
     font-size: 1.5rem;
@@ -93,7 +84,6 @@
 @media (max-width: 768px) {
     .heading {
         font-size: 1.5rem;
-        padding-left: 0;
         text-align: left;
         margin-bottom: 2rem;
     }
@@ -107,9 +97,9 @@
         min-width: 140px;
         /* Ensure decent size on mobile */
         height: 90px;
+        margin-right: 1.5rem;
+        /* Smaller margin for mobile */
     }
 
-    .marqueeTrack {
-        gap: 1.5rem;
-    }
+    /* Track doesn't need gap override since it's removed */
 }
