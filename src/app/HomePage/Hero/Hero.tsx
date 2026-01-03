@@ -6,6 +6,7 @@ import { useSiteConfig } from '@/context/SiteConfigContext';
 import { useState, useEffect } from 'react';
 
 import { SITE_CONTENT } from '@/lib/constants';
+import Button from '@/components/ui/Button';
 
 export default function Hero() {
     const { config } = useSiteConfig();
@@ -38,9 +39,9 @@ export default function Hero() {
                     <p className={styles.subtitle}>
                         {subtitle}
                     </p>
-                    <button className={styles.ctaButton}>
+                    <Button>
                         {cta}
-                    </button>
+                    </Button>
                 </div>
             </div>
 

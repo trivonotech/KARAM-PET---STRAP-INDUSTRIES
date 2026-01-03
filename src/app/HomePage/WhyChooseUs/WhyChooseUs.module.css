@@ -11,21 +11,7 @@
     padding: 0;
 }
 
-.heading {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 3rem;
-    text-align: left;
-    text-transform: uppercase;
-}
 
-.blackText {
-    color: #000;
-}
-
-.orangeText {
-    color: var(--primary);
-}
 
 .featureGrid {
     display: grid;

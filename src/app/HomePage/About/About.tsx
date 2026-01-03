@@ -1,21 +1,24 @@
 import styles from './About.module.css';
 import Image from 'next/image';
+import Button from '@/components/ui/Button';
+import SectionHeading from '@/components/ui/SectionHeading';
+
 
 export default function About() {
     return (
         <section className={styles.aboutSection}>
             <div className={styles.container}>
                 <div className={styles.contentColumn}>
-                    <h2 className={styles.heading}>
-                        <span className={styles.blackText}>ABOUT</span>{' '}
-                        <span className={styles.orangeText}>THE COMPANY</span>
-                    </h2>
+                    <SectionHeading
+                        title="ABOUT"
+                        highlight="KARAM PET - STRAP INDUSTRIES"
+                    />
                     <p className={styles.description}>
                         "With over 13 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India’s most reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have earned a trustworthy reputation across domestic and international markets. Our focus is simple — deliver superior straps backed by technical expertise, strong manufacturing, and customer-first operations."
                     </p>
-                    <button className={styles.moreButton}>
+                    <Button>
                         More About The Company ›
-                    </button>
+                    </Button>
                 </div>
                 <div className={styles.imageColumn}>
                     <div className={styles.imageWrapper}>

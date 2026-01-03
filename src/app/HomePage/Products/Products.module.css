@@ -21,17 +21,7 @@
     max-width: 600px;
 }
 
-.heading {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-    text-transform: uppercase;
-}
 
-.blackText {
-    color: #000;
-}
 
 .orangeMainText {
     color: #F09800;
@@ -121,27 +111,7 @@
     z-index: -1;
 }
 
-.moreButton {
-    /* Reset absolute position since it's now inside the flex container */
-    position: static;
 
-    background-color: #FFFFFF;
-    color: #F09800;
-    border: none;
-    padding: 10px 48px;
-    border-radius: 10px;
-    /* Standard pill shape */
-
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
 
 .moreButton:hover {
     transform: translateY(-2px);

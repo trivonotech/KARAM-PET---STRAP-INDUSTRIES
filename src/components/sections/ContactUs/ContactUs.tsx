@@ -2,15 +2,14 @@
 
 import styles from './ContactUs.module.css';
 import Image from 'next/image';
+import Button from '@/components/ui/Button';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 export default function ContactUs() {
     return (
         <section className={styles.contactSection}>
             <div className={styles.container}>
-                <h2 className={styles.heading}>
-                    <span className={styles.blackText}>CONTACT</span>{' '}
-                    <span className={styles.orangeText}>US</span>
-                </h2>
+                <SectionHeading title="CONTACT" highlight="US" />
 
                 <div className={styles.formSectionWrapper}>
                     {/* Background Image */}
@@ -72,9 +71,14 @@ export default function ContactUs() {
                         </div>
 
                         {/* Button Positioned in Cutout (Relative to formCard) */}
-                        <button type="submit" form="contactForm" className={styles.submitButton}>
+                        <Button
+                            type="submit"
+                            form="contactForm"
+                            className={styles.submitButton}
+                            radius="md"
+                        >
                             Get PET Strap Pricing ↗
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

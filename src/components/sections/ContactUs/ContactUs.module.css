@@ -10,12 +10,7 @@
     padding: 0;
 }
 
-.heading {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-}
+
 
 .blackText {
     color: #000;
@@ -127,30 +122,12 @@
     bottom: 0px;
     right: 0px;
     width: 350px;
-    /* Smaller than 280px gap */
     height: 40px;
-    /* Smaller than 90px gap */
     margin: 0;
-
-    background-color: #F39C12;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 10px;
-    /* Standard Rounded Corners */
-    border-top-left-radius: 10px;
-    /* Matched inner corner curve */
-
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
     z-index: 10;
     box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+    border-radius: 10px;
+    /* Ensure overrides button default if needed, matches radius="md" */
 }
 
 

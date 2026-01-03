@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './Industries.module.css';
 import { useSiteConfig } from '@/context/SiteConfigContext';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 export default function Industries() {
     const { config } = useSiteConfig();
@@ -46,10 +47,7 @@ export default function Industries() {
         return (
             <section className={styles.industriesSection}>
                 <div className={styles.container}>
-                    <h2 className={styles.heading}>
-                        <span className={styles.blackText}>INDUSTRIES</span>{' '}
-                        <span className={styles.orangeText}>SERVED</span>
-                    </h2>
+                    <SectionHeading title="INDUSTRIES" highlight="SERVED" />
                     <div className={styles.marqueeContainer}>
                         {/* Render empty track or loading state to match server if needed, 
                            or just empty to avoid mismatch. 
@@ -65,10 +63,7 @@ export default function Industries() {
     return (
         <section className={styles.industriesSection}>
             <div className={styles.container}>
-                <h2 className={styles.heading}>
-                    <span className={styles.blackText}>INDUSTRIES</span>{' '}
-                    <span className={styles.orangeText}>SERVED</span>
-                </h2>
+                <SectionHeading title="INDUSTRIES" highlight="SERVED" />
 
                 <div className={styles.marqueeContainer}>
                     <div className={styles.marqueeTrack}>

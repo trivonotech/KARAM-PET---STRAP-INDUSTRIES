@@ -1,5 +1,6 @@
 import styles from './WhyChooseUs.module.css';
 import Image from 'next/image';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 export default function WhyChooseUs() {
     const features = [
@@ -24,10 +25,7 @@ export default function WhyChooseUs() {
     return (
         <section className={styles.wcuSection}>
             <div className={styles.container}>
-                <h2 className={styles.heading}>
-                    <span className={styles.blackText}>WHY</span>{' '}
-                    <span className={styles.orangeText}>CHOOSE US</span>
-                </h2>
+                <SectionHeading title="WHY" highlight="CHOOSE US" />
 
                 <div className={styles.featureGrid}>
                     {features.map((item, index) => (

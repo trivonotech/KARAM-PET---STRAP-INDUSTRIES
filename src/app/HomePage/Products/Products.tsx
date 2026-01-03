@@ -1,19 +1,20 @@
 import styles from './Products.module.css';
 import Image from 'next/image';
-import Link from 'next/link';
+import Button from '@/components/ui/Button';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 export default function Products() {
     return (
         <section className={styles.productsSection}>
             <div className={styles.container}>
                 <div className={styles.contentColumn}>
-                    <h2 className={styles.heading}>
-                        <span className={styles.blackText}>OUR</span>{' '}
-                        <span className={styles.orangeMainText}>PRODUCTS</span>
-                    </h2>
+                    <SectionHeading
+                        title="OUR"
+                        highlight="PRODUCTS"
+                        className={styles.customHeadingMargin}
+                    />
 
                     <h3 className={styles.subHeading}>PET Polyester Strap</h3>
-
                     <p className={styles.description}>
                         High-Strength, Elastic, Shock-Absorbent Straps Made From 100%
                         Recycled Bottle Flakes And Shredded PET. Suitable For Lightweight To
@@ -31,9 +32,9 @@ export default function Products() {
                             suppressHydrationWarning
                         />
                         <div className={styles.cornerDecoration}>
-                            <Link href="/products" className={styles.moreButton}>
+                            <Button href="/products" variant="primary" radius="md" className={styles.moreButton}>
                                 More ↗
-                            </Link>
+                            </Button>
                         </div>
                     </div>
                 </div>

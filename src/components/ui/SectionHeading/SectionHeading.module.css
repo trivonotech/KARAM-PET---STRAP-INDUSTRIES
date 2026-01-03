@@ -1,0 +1,23 @@
+.heading {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.blackText {
+    color: #000;
+}
+
+.orangeText {
+    color: var(--primary);
+}
+
+@media (max-width: 900px) {
+    .heading {
+        font-size: 1.5rem;
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+}

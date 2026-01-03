@@ -12,13 +12,7 @@
     /* Center heading */
 }
 
-.heading {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 3rem;
-    text-align: left;
-    /* Removed padding-left to align with container edge */
-}
+
 
 .blackText {
     color: #000;
