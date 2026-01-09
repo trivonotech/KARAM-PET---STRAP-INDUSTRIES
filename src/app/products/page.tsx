@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import Navbar from '@/components/layout/Navbar/Navbar';
 import Footer from '@/components/layout/Footer/Footer';
 import DownloadCatalogueButton from '@/components/ui/DownloadCatalogueButton';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 // Type definitions for product data
 interface Spec {
@@ -34,18 +35,18 @@ const products: Product[] = [
                 label: 'Color Options :',
                 value: (
                     <div className={styles.colorOptions}>
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#2e7d32' }}></div> {/* Dark Green */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#4caf50' }}></div> {/* Green */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#8bc34a' }}></div> {/* Light Green */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#cddc39' }}></div> {/* Lime */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#3f51b5' }}></div> {/* Indigo */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#03a9f4' }}></div> {/* Light Blue */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#9e9e9e' }}></div> {/* Grey */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ffffff' }}></div> {/* White */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#e0e0e0' }}></div> {/* Light Grey */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ffeb3b' }}></div> {/* Yellow */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#f44336' }}></div> {/* Red */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ff9800' }}></div> {/* Orange */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#2e7d32' }} suppressHydrationWarning={true}></div> {/* Dark Green */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#4caf50' }} suppressHydrationWarning={true}></div> {/* Green */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#8bc34a' }} suppressHydrationWarning={true}></div> {/* Light Green */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#cddc39' }} suppressHydrationWarning={true}></div> {/* Lime */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#3f51b5' }} suppressHydrationWarning={true}></div> {/* Indigo */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#03a9f4' }} suppressHydrationWarning={true}></div> {/* Light Blue */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#9e9e9e' }} suppressHydrationWarning={true}></div> {/* Grey */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ffffff' }} suppressHydrationWarning={true}></div> {/* White */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#e0e0e0' }} suppressHydrationWarning={true}></div> {/* Light Grey */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ffeb3b' }} suppressHydrationWarning={true}></div> {/* Yellow */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#f44336' }} suppressHydrationWarning={true}></div> {/* Red */}
+                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ff9800' }} suppressHydrationWarning={true}></div> {/* Orange */}
                     </div>
                 )
             },
@@ -111,7 +112,7 @@ export default function ProductsPage() {
             <Navbar />
             <div className={styles.mainWrapper}>
                 <div className={styles.headerSection}>
-                    <div className={styles.headerContent}>
+                    <ScrollAnimation variant="fadeUp" className={styles.headerContent}>
                         <div className={styles.textContent}>
                             <h1 className={styles.title}>OUR <span>PRODUCTS</span></h1>
                             <p className={styles.description}>
@@ -122,12 +123,13 @@ export default function ProductsPage() {
                             <span className={styles.downloadLabel}>Get Full Product List</span>
                             <DownloadCatalogueButton />
                         </div>
-                    </div>
+                    </ScrollAnimation>
                 </div>
 
                 {products.map((product, index) => (
                     <React.Fragment key={product.id}>
-                        <section
+                        <ScrollAnimation
+                            variant={index % 2 === 0 ? "slideRight" : "slideLeft"}
                             className={`${styles.productSection} ${index % 2 !== 0 ? styles.reversed : ''}`}
                         >
                             <div className={styles.productInfo}>
@@ -152,7 +154,7 @@ export default function ProductsPage() {
                                     suppressHydrationWarning
                                 />
                             </div>
-                        </section>
+                        </ScrollAnimation>
                         {index < products.length - 1 && <hr className={styles.separator} />}
                     </React.Fragment>
                 ))}

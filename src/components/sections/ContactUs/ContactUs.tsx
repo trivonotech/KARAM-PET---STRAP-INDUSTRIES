@@ -4,6 +4,7 @@ import styles from './ContactUs.module.css';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function ContactUs() {
     return (
@@ -13,7 +14,7 @@ export default function ContactUs() {
 
                 <div className={styles.formSectionWrapper}>
                     {/* Background Image */}
-                    <div className={styles.formBackground}>
+                    <ScrollAnimation variant="scaleIn" className={styles.formBackground}>
                         <Image
                             src="/hero-bg.png"
                             alt="Factory Background"
@@ -21,10 +22,10 @@ export default function ContactUs() {
                             className={styles.formBgImage}
                             suppressHydrationWarning
                         />
-                    </div>
+                    </ScrollAnimation>
 
                     {/* Floating Form */}
-                    <div className={styles.formCard}>
+                    <ScrollAnimation variant="fadeUp" delay={0.2} className={styles.formCard}>
                         {/* L-Shaped Background */}
                         <div className={styles.cardShape}></div>
 
@@ -79,7 +80,7 @@ export default function ContactUs() {
                         >
                             Get PET Strap Pricing ↗
                         </Button>
-                    </div>
+                    </ScrollAnimation>
                 </div>
             </div>
         </section>

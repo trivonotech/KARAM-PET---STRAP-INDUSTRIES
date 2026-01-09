@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 
 import { SITE_CONTENT } from '@/lib/constants';
 import Button from '@/components/ui/Button';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function Hero() {
     const { config } = useSiteConfig();
@@ -33,25 +34,36 @@ export default function Hero() {
                 />
 
                 <div className={styles.content}>
-                    <h1 className={styles.title}>
-                        {title}
-                    </h1>
-                    <p className={styles.subtitle}>
-                        {subtitle}
-                    </p>
-                    <Button>
-                        {cta}
-                    </Button>
+                    <ScrollAnimation variant="fadeUp" delay={0.2}>
+                        <h1 className={styles.title}>
+                            {title}
+                        </h1>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="fadeUp" delay={0.4}>
+                        <p className={styles.subtitle}>
+                            {subtitle}
+                        </p>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="scaleIn" delay={0.6}>
+                        <Button>
+                            {cta}
+                        </Button>
+                    </ScrollAnimation>
                 </div>
             </div>
 
             <div className={styles.statsCard}>
                 {mounted ? (
                     stats.map((stat, index) => (
-                        <div key={index} className={styles.statItem}>
+                        <ScrollAnimation
+                            key={index}
+                            variant="fadeUp"
+                            delay={0.8 + (index * 0.1)}
+                            className={styles.statItem}
+                        >
                             <span className={styles.statValue}>{stat.value}</span>
                             <span className={styles.statLabel}>{stat.label}</span>
-                        </div>
+                        </ScrollAnimation>
                     ))
                 ) : (
                     // Optional: Render placeholders or defaults to prevent layout shift if needed

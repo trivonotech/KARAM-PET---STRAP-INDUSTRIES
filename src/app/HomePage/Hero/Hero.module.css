@@ -43,6 +43,8 @@
     font-family: var(--font-outfit), sans-serif;
     text-transform: capitalize;
     max-width: 1000px;
+    color: #e0e0e0;
+    /* Changed to light gray for visibility */
     /* Increased to allow "Manufacturer Of High-Performance" on one line */
 }
 
@@ -54,6 +56,8 @@
     opacity: 0.95;
     line-height: 1.6;
     font-weight: 400;
+    color: #cccccc;
+    /* Changed to gray */
 }
 
 

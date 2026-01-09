@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './Industries.module.css';
 import { useSiteConfig } from '@/context/SiteConfigContext';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export default function Industries() {
@@ -49,11 +50,7 @@ export default function Industries() {
                 <div className={styles.container}>
                     <SectionHeading title="INDUSTRIES" highlight="SERVED" />
                     <div className={styles.marqueeContainer}>
-                        {/* Render empty track or loading state to match server if needed, 
-                           or just empty to avoid mismatch. 
-                           For now, rendering nothing inside marqueeContainer matches the initial "empty" expectation if we are careful.
-                           Actually, to be safe, I'll render the header but keep the marquee empty until hydration.
-                       */}
+                        {/* Render empty track or loading state to match server if needed */}
                     </div>
                 </div>
             </section>
@@ -65,7 +62,7 @@ export default function Industries() {
             <div className={styles.container}>
                 <SectionHeading title="INDUSTRIES" highlight="SERVED" />
 
-                <div className={styles.marqueeContainer}>
+                <ScrollAnimation variant="fadeIn" delay={0.2} className={styles.marqueeContainer}>
                     <div className={styles.marqueeTrack}>
                         {marqueeLogos.map((logoUrl, index) => (
                             <div key={index} className={styles.logoItem}>
@@ -86,7 +83,7 @@ export default function Industries() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </ScrollAnimation>
             </div>
         </section>
     );

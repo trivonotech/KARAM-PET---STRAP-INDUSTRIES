@@ -12,20 +12,42 @@ import ContactUs from '@/components/sections/ContactUs/ContactUs';
 
 import Footer from '@/components/layout/Footer/Footer';
 
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
+
 export default function Home() {
   return (
     <main>
       <Navbar />
       <div className={styles.mainWrapper}>
         <Hero />
-        <About />
-        <Industries />
-        <Products />
 
-        <VisionMission />
-        <Catalogue />
-        <WhyChooseUs />
-        <ContactUs />
+        <ScrollAnimation delay={0.1}>
+          <About />
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.1}>
+          <Industries />
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.1}>
+          <Products />
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.1}>
+          <VisionMission />
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.1}>
+          <Catalogue />
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.1}>
+          <WhyChooseUs />
+        </ScrollAnimation>
+
+        <ScrollAnimation delay={0.1}>
+          <ContactUs />
+        </ScrollAnimation>
 
       </div>
       <Footer />

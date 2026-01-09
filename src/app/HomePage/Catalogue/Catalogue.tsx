@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import styles from './Catalogue.module.css';
 import Image from 'next/image';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function Catalogue() {
 
@@ -29,7 +30,7 @@ export default function Catalogue() {
     return (
         <section className={styles.catalogueSection}>
             <div className={styles.container}>
-                <div className={styles.contentColumn}>
+                <ScrollAnimation variant="slideRight" className={styles.contentColumn}>
                     <h2 className={styles.heading}>
                         <span className={styles.blackText}>GET</span>{' '}
                         <span className={styles.orangeText}>CATALOGUE</span>
@@ -55,10 +56,9 @@ export default function Catalogue() {
                     >
                         Download Catalogue ⬇
                     </a>
+                </ScrollAnimation>
 
-                </div>
-
-                <div className={styles.imageColumn}>
+                <ScrollAnimation variant="slideLeft" className={styles.imageColumn}>
                     <div className={styles.imageWrapper}>
                         <Image
                             src="/hero-bg.png" /* Placeholder for the catalogue image */
@@ -68,7 +68,7 @@ export default function Catalogue() {
                             suppressHydrationWarning
                         />
                     </div>
-                </div>
+                </ScrollAnimation>
             </div>
         </section>
     );

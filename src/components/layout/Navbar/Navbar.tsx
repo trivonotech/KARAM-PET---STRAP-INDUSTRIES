@@ -15,7 +15,7 @@ export default function Navbar() {
       <div className={styles.navContent}>
         <div className={styles.logoContainer}>
           <Image
-            src="/logo.png"
+            src="/frame.png"
             alt="KARAM PET Logo"
             fill
             className={styles.logoImage}

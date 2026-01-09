@@ -1,6 +1,7 @@
 import styles from './WhyChooseUs.module.css';
 import Image from 'next/image';
 import SectionHeading from '@/components/ui/SectionHeading';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function WhyChooseUs() {
     const features = [
@@ -29,7 +30,12 @@ export default function WhyChooseUs() {
 
                 <div className={styles.featureGrid}>
                     {features.map((item, index) => (
-                        <div key={index} className={styles.featureCard}>
+                        <ScrollAnimation
+                            key={index}
+                            variant="fadeUp"
+                            delay={index * 0.1}
+                            className={styles.featureCard}
+                        >
                             <Image
                                 src={item.image}
                                 alt="Feature"
@@ -40,7 +46,7 @@ export default function WhyChooseUs() {
                             <div className={styles.textOverlay}>
                                 {item.text}
                             </div>
-                        </div>
+                        </ScrollAnimation>
                     ))}
                 </div>
             </div>

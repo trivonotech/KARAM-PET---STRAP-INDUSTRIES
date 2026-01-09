@@ -1,5 +1,7 @@
 import styles from './SectionHeading.module.css';
 
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
+
 interface SectionHeadingProps {
     title: string;
     highlight: string;
@@ -8,9 +10,9 @@ interface SectionHeadingProps {
 
 export default function SectionHeading({ title, highlight, className = '' }: SectionHeadingProps) {
     return (
-        <h2 className={`${styles.heading} ${className}`}>
+        <ScrollAnimation variant="fadeUp" className={`${styles.heading} ${className}`}>
             <span className={styles.blackText}>{title}</span>{' '}
             <span className={styles.orangeText}>{highlight}</span>
-        </h2>
+        </ScrollAnimation>
     );
 }

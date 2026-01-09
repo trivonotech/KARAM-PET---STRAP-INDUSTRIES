@@ -2,12 +2,13 @@ import styles from './Products.module.css';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function Products() {
     return (
         <section className={styles.productsSection}>
             <div className={styles.container}>
-                <div className={styles.contentColumn}>
+                <ScrollAnimation variant="slideRight" className={styles.contentColumn}>
                     <SectionHeading
                         title="OUR"
                         highlight="PRODUCTS"
@@ -20,9 +21,9 @@ export default function Products() {
                         Recycled Bottle Flakes And Shredded PET. Suitable For Lightweight To
                         Heavy Industrial Loads.
                     </p>
-                </div>
+                </ScrollAnimation>
 
-                <div className={styles.imageColumn}>
+                <ScrollAnimation variant="slideLeft" className={styles.imageColumn} delay={0.2}>
                     <div className={styles.imageWrapper}>
                         <Image
                             src="/hero-bg.png" /* Placeholder */
@@ -37,7 +38,7 @@ export default function Products() {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </ScrollAnimation>
             </div>
         </section>
     );

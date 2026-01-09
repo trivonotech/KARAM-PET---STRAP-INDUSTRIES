@@ -5,6 +5,7 @@ import styles from './page.module.css';
 import Navbar from '@/components/layout/Navbar/Navbar';
 import Footer from '@/components/layout/Footer/Footer';
 import { useSiteConfig } from '@/context/SiteConfigContext';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function AboutPage() {
     const { config } = useSiteConfig();
@@ -35,17 +36,21 @@ export default function AboutPage() {
 
             <section className={styles.container}>
                 <div className={styles.headerSection}>
-                    <h1 className={styles.mainTitle}>
-                        ABOUT <span className={styles.orangeText}>COMPANY</span>
-                    </h1>
+                    <ScrollAnimation variant="fadeUp">
+                        <h1 className={styles.mainTitle}>
+                            ABOUT <span className={styles.orangeText}>COMPANY</span>
+                        </h1>
+                    </ScrollAnimation>
                     {/* ... rest of header ... */}
-                    <p className={styles.introText}>
-                        With over 15 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India's most
-                        reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have
-                        earned a trustworthy reputation across domestic and international markets. Our focus is simple — deliver superior straps
-                        backed by technical expertise, strong manufacturing, and customer-first operations.
-                    </p>
-                    <div className={styles.heroImageContainer}>
+                    <ScrollAnimation variant="fadeUp" delay={0.2}>
+                        <p className={styles.introText}>
+                            With over 15 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India's most
+                            reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have
+                            earned a trustworthy reputation across domestic and international markets. Our focus is simple — deliver superior straps
+                            backed by technical expertise, strong manufacturing, and customer-first operations.
+                        </p>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="scaleIn" delay={0.3} className={styles.heroImageContainer}>
                         <Image
                             src="/hero-bg.png" /* Placeholder: Use existing hero image */
                             alt="Factory Operations"
@@ -53,14 +58,14 @@ export default function AboutPage() {
                             className={styles.heroImage}
                             suppressHydrationWarning
                         />
-                    </div>
+                    </ScrollAnimation>
                 </div>
 
                 {/* Cards Section */}
                 <div className={styles.cardsSection}>
                     <div className={styles.cardsGrid}>
                         {/* Card 1 */}
-                        <div className={styles.infoCard}>
+                        <ScrollAnimation variant="fadeUp" className={styles.infoCard} delay={0.1}>
                             <div className={styles.cardHeader}>
                                 <h3 className={styles.cardTitle}>WHO WE ARE</h3>
                             </div>
@@ -71,10 +76,10 @@ export default function AboutPage() {
                                     Operational Expertise.
                                 </p>
                             </div>
-                        </div>
+                        </ScrollAnimation>
 
                         {/* Card 2 */}
-                        <div className={styles.infoCard}>
+                        <ScrollAnimation variant="fadeUp" className={styles.infoCard} delay={0.2}>
                             <div className={styles.cardHeader}>
                                 <h3 className={styles.cardTitle}>WHAT WE MANUFACTURE</h3>
                             </div>
@@ -88,10 +93,10 @@ export default function AboutPage() {
                                     <li>Pneumatic Tools</li>
                                 </ul>
                             </div>
-                        </div>
+                        </ScrollAnimation>
 
                         {/* Card 3 */}
-                        <div className={styles.infoCard}>
+                        <ScrollAnimation variant="fadeUp" className={styles.infoCard} delay={0.3}>
                             <div className={styles.cardHeader}>
                                 <h3 className={styles.cardTitle}>WHO WE SERVE</h3>
                             </div>
@@ -105,21 +110,23 @@ export default function AboutPage() {
                                     <li>Heavy-Duty And High-Volume Production Setups</li>
                                 </ul>
                             </div>
-                        </div>
+                        </ScrollAnimation>
                     </div>
                 </div>
 
                 {/* Leadership Section */}
                 <div className={styles.leadershipSection}>
-                    <h2 className={styles.sectionTitle}>
-                        COMPANY <span className={styles.orangeText}>LEADERSHIP</span>
-                    </h2>
+                    <ScrollAnimation variant="fadeUp">
+                        <h2 className={styles.sectionTitle}>
+                            COMPANY <span className={styles.orangeText}>LEADERSHIP</span>
+                        </h2>
+                    </ScrollAnimation>
 
                     {/* Leader 1 */}
-                    <div className={styles.leaderCard}>
+                    <ScrollAnimation variant="slideRight" className={styles.leaderCard}>
                         <div className={styles.leaderImageContainer}>
                             {/* Placeholder for Leader 1 Image */}
-                            <div style={{ width: '100%', height: '100%', background: '#333' }}></div>
+                            <div style={{ width: '100%', height: '100%', background: '#333' }} suppressHydrationWarning={true}></div>
                         </div>
                         <div className={styles.leaderInfo}>
                             <h3 className={styles.leaderName}>NAME</h3>
@@ -128,13 +135,13 @@ export default function AboutPage() {
                                 With Over 15 Years Of Experience In Strapping Solutions, KARAM PET STRAP INDUSTRIES Has Grown Into One Of India's Most Reliable Manufacturers Of PET And PP Strapping Products. Known For Consistent Quality And Dependable Service, We Have Earned A Trustworthy Reputation Across Domestic And International Markets. Our Focus Is Simple — Deliver Superior Straps Backed By Technical Expertise, Strong Manufacturing, And Customer-First Operations.
                             </p>
                         </div>
-                    </div>
+                    </ScrollAnimation>
 
                     {/* Leader 2 */}
-                    <div className={`${styles.leaderCard} ${styles.leaderCardReverse}`}>
+                    <ScrollAnimation variant="slideLeft" className={`${styles.leaderCard} ${styles.leaderCardReverse}`}>
                         <div className={styles.leaderImageContainer}>
                             {/* Placeholder for Leader 2 Image */}
-                            <div style={{ width: '100%', height: '100%', background: '#333' }}></div>
+                            <div style={{ width: '100%', height: '100%', background: '#333' }} suppressHydrationWarning={true}></div>
                         </div>
                         <div className={styles.leaderInfo}>
                             <h3 className={styles.leaderName}>NAME</h3>
@@ -143,58 +150,62 @@ export default function AboutPage() {
                                 With Over 15 Years Of Experience In Strapping Solutions, KARAM PET STRAP INDUSTRIES Has Grown Into One Of India's Most Reliable Manufacturers Of PET And PP Strapping Products. Known For Consistent Quality And Dependable Service, We Have Earned A Trustworthy Reputation Across Domestic And International Markets. Our Focus Is Simple — Deliver Superior Straps Backed By Technical Expertise, Strong Manufacturing, And Customer-First Operations.
                             </p>
                         </div>
-                    </div>
+                    </ScrollAnimation>
                 </div>
             </section>
 
             {/* Consistency Section */}
             <section className={styles.consistencySection}>
-                <h2 className={styles.consistencyTitle}>
-                    HOW WE <span className={styles.orangeText}>ENSURE CONSISTENCY</span>
-                </h2>
+                <ScrollAnimation variant="fadeUp">
+                    <h2 className={styles.consistencyTitle}>
+                        HOW WE <span className={styles.orangeText}>ENSURE CONSISTENCY</span>
+                    </h2>
+                </ScrollAnimation>
                 <div className={styles.featuresGrid}>
-                    <div className={styles.featureCard}>
+                    <ScrollAnimation variant="fadeUp" delay={0.1} className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
                             <Image src="/icons/1.svg" alt="Uniform Dimensions" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Ensures Uniform<br />Dimensions And<br />Strength
                         </p>
-                    </div>
-                    <div className={styles.featureCard}>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="fadeUp" delay={0.2} className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
                             <Image src="/icons/2.svg" alt="Approved Inputs" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Only Approved And<br />Tested Raw Inputs
                         </p>
-                    </div>
-                    <div className={styles.featureCard}>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="fadeUp" delay={0.3} className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
                             <Image src="/icons/3.svg" alt="Lab Tested" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Lab-Tested For Break<br />Strength & Elongation
                         </p>
-                    </div>
-                    <div className={styles.featureCard}>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="fadeUp" delay={0.4} className={styles.featureCard}>
                         <div className={styles.iconWrapper}>
                             <Image src="/icons/4.svg" alt="Reliable Production" width={50} height={50} suppressHydrationWarning />
                         </div>
                         <p className={styles.featureText}>
                             Reliable Production<br />For Heavy Industrial<br />Demand
                         </p>
-                    </div>
+                    </ScrollAnimation>
                 </div>
             </section>
 
             <section className={styles.container}>
                 {/* Clients Section */}
                 <div className={styles.clientsSection}>
-                    <h2 className={styles.sectionTitle}>
-                        OUR <span className={styles.orangeText}>CLIENTS</span>
-                    </h2>
-                    <div className={styles.clientsContainer}>
+                    <ScrollAnimation variant="fadeUp">
+                        <h2 className={styles.sectionTitle}>
+                            OUR <span className={styles.orangeText}>CLIENTS</span>
+                        </h2>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="fadeIn" delay={0.2} className={styles.clientsContainer}>
                         <div className={styles.clientsMarquee}>
                             {[0, 1].map((copyIndex) => (
                                 <div key={copyIndex} className={styles.clientsGridBlock}>
@@ -242,12 +253,12 @@ export default function AboutPage() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </ScrollAnimation>
                 </div>
 
                 {/* Trust Section */}
                 <div className={`${styles.trustSection} ${styles.trustContent}`}>
-                    <div className={styles.trustImageContainer}>
+                    <ScrollAnimation variant="slideRight" className={styles.trustImageContainer}>
                         <Image
                             src="/hero-bg.png" /* Placeholder */
                             alt="Trust Us"
@@ -255,8 +266,8 @@ export default function AboutPage() {
                             className={styles.heroImage}
                             suppressHydrationWarning
                         />
-                    </div>
-                    <div className={styles.trustTextContent}>
+                    </ScrollAnimation>
+                    <ScrollAnimation variant="slideLeft" className={styles.trustTextContent}>
                         <h2 className={`${styles.sectionTitle} ${styles.sectionTitleLeft}`} style={{ fontSize: '2.5rem' }}>
                             WHY CLIENTS <br /><span className={styles.orangeText}>TRUST US</span>
                         </h2>
@@ -267,7 +278,7 @@ export default function AboutPage() {
                             <li>Fast Communication & Responsive Support</li>
                             <li>15+ Years Of Technical Expertise Backing Every Shipment</li>
                         </ul>
-                    </div>
+                    </ScrollAnimation>
                 </div>
             </section>
 
