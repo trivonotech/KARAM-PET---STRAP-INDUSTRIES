@@ -24,7 +24,7 @@
     width: 100%;
     aspect-ratio: 3/4;
     /* Taller cards */
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     /* Optional: shadow */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

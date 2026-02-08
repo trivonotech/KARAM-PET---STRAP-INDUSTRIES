@@ -7,6 +7,8 @@
   --text-gray: #787874;
   --logo-gray: #666666;
   --hover-gray: #333333;
+  --radius-lg: 24px;
+  --radius-md: 12px;
 }
 
 * {

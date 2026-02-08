@@ -79,7 +79,7 @@
     padding: 2.5rem;
     background: #ffffff;
     border: 1px solid #e0e0e0;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     /* Premium shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -109,7 +109,7 @@
     /* Fixed width for consistency */
     position: relative;
     height: 450px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     background-color: #f9f9f9;
 }
