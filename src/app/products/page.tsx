@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from './page.module.css';
-import Navbar from '@/components/layout/Navbar/Navbar';
-import Footer from '@/components/layout/Footer/Footer';
 import DownloadCatalogueButton from '@/components/ui/DownloadCatalogueButton';
 import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
@@ -109,7 +107,6 @@ const products: Product[] = [
 export default function ProductsPage() {
     return (
         <main>
-            <Navbar />
             <div className={styles.mainWrapper}>
                 <div className={styles.headerSection}>
                     <ScrollAnimation variant="fadeUp" className={styles.headerContent}>
@@ -159,7 +156,6 @@ export default function ProductsPage() {
                     </React.Fragment>
                 ))}
             </div>
-            <Footer />
         </main>
     );
 }

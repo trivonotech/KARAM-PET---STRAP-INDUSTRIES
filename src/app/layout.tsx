@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 
 import { AuthProvider } from "../context/AuthContext";
 
+import Navbar from "@/components/layout/Navbar/Navbar";
+import Footer from "@/components/layout/Footer/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +28,9 @@ export default function RootLayout({
       <body className={outfit.className}>
         <AuthProvider>
           <SiteConfigProvider>
+            <Navbar />
             {children}
+            <Footer />
           </SiteConfigProvider>
         </AuthProvider>
       </body>

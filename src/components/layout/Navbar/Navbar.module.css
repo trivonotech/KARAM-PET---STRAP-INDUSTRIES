@@ -5,26 +5,46 @@
   right: 0;
   z-index: 1000;
   width: 100%;
+  background-color: transparent;
+  /* Start transparent or white? Prompt says "become solid" on scroll. Let's start with white but transparent if atop hero? Actually prompt says "Navbar background becomes solid using the same existing background color". Let's assume it starts transparent or semi-transparent if over hero, or just white. Let's stick to white for now but with transition. */
   background-color: #ffffff;
+  /* Default based on current file */
   padding: 0;
-  /* Removing padding from outer shell */
   font-family: var(--font-outfit), sans-serif;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.2);
+  border-bottom: 1px solid rgba(102, 102, 102, 0.1);
+  /* Subtle border initially */
+  transition: all 0.3s ease-in-out;
+}
+
+.navbarScrolled {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  /* Subtle shadow per prompt */
+  border-bottom: none;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .navContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 4rem;
+  padding: 0.8rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
   gap: 1rem;
+  transition: padding 0.3s ease;
+}
+
+.navbarScrolled .navContent {
+  padding: 0.6rem 2rem;
+  /* Slightly smaller on scroll */
 }
 
 .navLinks {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+  /* Better spacing */
   align-items: center;
   list-style: none;
   margin-right: 1rem;
@@ -35,87 +55,59 @@
   text-decoration: none;
   color: #1a1a1a;
   font-weight: 500;
-  font-size: 0.95rem;
-  /* Slightly smaller, cleaner */
+  font-size: 1rem;
   cursor: pointer;
-  transition: color 0.2s;
-  padding: 1rem 0;
-  /* Add Hit area */
-}
-
-.dropdownItem {
+  transition: color 0.2s ease;
+  padding: 0.5rem 0;
   position: relative;
 }
 
-.dropdownContent {
-  display: none;
+.navLink:after {
+  content: '';
   position: absolute;
-  top: 100%;
-  left: -20px;
-  background-color: #ffffff;
-  min-width: 220px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
-  border-radius: 8px;
-  padding: 0.5rem 0;
-  border-top: 3px solid var(--primary);
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
 }
 
-.dropdownItem:hover .dropdownContent {
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdownContent a {
-  color: #333;
-  padding: 12px 20px;
-  text-decoration: none;
-  display: block;
-  font-size: 0.9rem;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.dropdownContent a:last-child {
-  border-bottom: none;
-}
-
-.dropdownContent a:hover {
-  background-color: #f9f9f9;
-  color: var(--primary);
-  padding-left: 25px;
-  /* Slide effect */
-  transition: all 0.2s;
+.navLink:hover:after,
+.navLink.active:after {
+  width: 100%;
 }
 
 .navLink:hover {
-  color: var(--primary);
+  color: var(--accent);
 }
 
 .navLink.active {
-  color: var(--primary);
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .contactButton {
   background-color: var(--primary);
-  opacity: 0.8;
-  /* Style choice: transparent background or solid? Analysis said solid orange mostly. Let's use solid but maybe lighter opacity for button background? Mockup had light orange. */
-  /* Actually, let's stick to the mockup look but use our brand hue. */
-  background-color: rgba(239, 152, 0, 0.25);
-  /* #ef9800 at 25% */
-  color: #000;
-  padding: 0.6rem 2rem;
-  border-radius: 50px;
+  color: #fff;
+  /* High contrast text */
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  /* Structured feel */
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(243, 156, 18, 0.2);
+  border: 1px solid var(--primary);
 }
 
 .contactButton:hover {
-  background-color: rgba(239, 152, 0, 0.4);
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .logoContainer {
@@ -215,7 +207,7 @@
 
 .mobileNavLink:hover,
 .mobileNavLink.active {
-  color: var(--primary);
+  color: var(--accent);
 }
 
 @media (max-width: 1024px) {

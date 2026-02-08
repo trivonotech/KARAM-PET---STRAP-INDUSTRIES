@@ -40,11 +40,7 @@ const defaultClientLogos: ClientLogo[] = [];
 
 const defaultHomeContent: HomeContent = {
 
-    stats: [
-        { value: '', label: '' },
-        { value: '', label: '' },
-        { value: '', label: '' },
-    ]
+    stats: []
 };
 
 const SiteConfigContext = createContext<SiteConfigContextType | undefined>(undefined);

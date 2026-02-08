@@ -59,10 +59,10 @@ export default function Industries() {
 
     return (
         <section className={styles.industriesSection}>
-            <div className={styles.container}>
+            <ScrollAnimation variant="fadeIn" className={styles.container}>
                 <SectionHeading title="INDUSTRIES" highlight="SERVED" />
 
-                <ScrollAnimation variant="fadeIn" delay={0.2} className={styles.marqueeContainer}>
+                <div className={styles.marqueeContainer}>
                     <div className={styles.marqueeTrack}>
                         {marqueeLogos.map((logoUrl, index) => (
                             <div key={index} className={styles.logoItem}>
@@ -83,8 +83,8 @@ export default function Industries() {
                             </div>
                         ))}
                     </div>
-                </ScrollAnimation>
-            </div>
+                </div>
+            </ScrollAnimation>
         </section>
     );
 }

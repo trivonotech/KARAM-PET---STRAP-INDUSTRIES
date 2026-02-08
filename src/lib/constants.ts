@@ -1,7 +1,7 @@
 export const SITE_CONTENT = {
     hero: {
-        title: 'Manufacturer Of High-Performance\nPET, PP & Cord Strapping Solutions',
-        subtitle: 'Serving Steel, Aluminium, Packaging And Export Industries With Durable, Shock-Absorbent And Machine-Compatible Strapping Made Using 100% Recycled Raw Materials.',
-        cta: 'Request A Quotation ›'
+        title: 'India’s Leading Low-Cost High-Volume PET Strap Manufacturing Plant',
+        subtitle: 'State-of-the-art extrusion facility delivering 500+ tons monthly. Serving Steel, Cotton, and Export industries with precision-engineered strapping solutions.',
+        cta: 'Get Factory Pricing ›'
     }
 };

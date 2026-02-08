@@ -2,8 +2,6 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
-import Navbar from '@/components/layout/Navbar/Navbar';
-import Footer from '@/components/layout/Footer/Footer';
 import { useSiteConfig } from '@/context/SiteConfigContext';
 import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
@@ -32,7 +30,6 @@ export default function AboutPage() {
     return (
         <main className={styles.main}>
             {/* ... header ... */}
-            <Navbar />
 
             <section className={styles.container}>
                 <div className={styles.headerSection}>
@@ -282,7 +279,6 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

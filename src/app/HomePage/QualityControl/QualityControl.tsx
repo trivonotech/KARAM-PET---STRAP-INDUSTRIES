@@ -1,5 +1,6 @@
 import styles from './QualityControl.module.css';
 import Image from 'next/image';
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function QualityControl() {
     const images = [
@@ -11,7 +12,7 @@ export default function QualityControl() {
 
     return (
         <section className={styles.qcSection}>
-            <div className={styles.container}>
+            <ScrollAnimation variant="slideRight" className={styles.container}>
                 <h2 className={styles.heading}>
                     <span className={styles.blackText}>QUALITY CONTROL &</span><br />
                     <span className={styles.orangeText}>CERTIFICATIONS</span>
@@ -30,9 +31,8 @@ export default function QualityControl() {
                         </div>
                     ))}
                 </div>
+            </ScrollAnimation>
 
-
-            </div>
-        </section>
+        </section >
     );
 }

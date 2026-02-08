@@ -19,7 +19,7 @@
 }
 
 .primary:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--hover-gray);
     transform: translateY(-2px);
 }
 

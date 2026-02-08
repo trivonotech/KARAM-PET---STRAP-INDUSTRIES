@@ -2,14 +2,24 @@ import styles from './Footer.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
+
 export default function Footer() {
     return (
         <footer className={styles.footer}>
-            <div className={styles.container}>
+            <ScrollAnimation variant="fadeUp" className={styles.container}>
                 {/* Column 1: Brand & Address */}
                 <div className={styles.brandColumn}>
                     <div className={styles.logoContainer}>
-                        <Image src="/logo.png" alt="KARAM PET Logo" fill className={styles.logoImage} objectFit="contain" suppressHydrationWarning />
+                        <Image
+                            src="/logo.png"
+                            alt="KARAM PET Logo"
+                            fill
+                            className={styles.logoImage}
+                            style={{ objectFit: "contain" }}
+                            sizes="(max-width: 768px) 200px, 200px"
+                            suppressHydrationWarning
+                        />
                     </div>
 
                     <div className={styles.addressGroup}>
@@ -40,9 +50,7 @@ export default function Footer() {
                     </ul>
                 </div>
 
-
-
-                {/* Column 4: Follow On */}
+                {/* Column 3: Follow On */}
                 <div className={styles.linkColumn}>
                     <h3 className={styles.columnTitle}>Follow On</h3>
                     <div className={styles.socialIcons}>
@@ -62,7 +70,7 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
-            </div>
+            </ScrollAnimation>
         </footer>
     );
 }

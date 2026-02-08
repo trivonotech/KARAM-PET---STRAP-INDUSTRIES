@@ -1,5 +1,5 @@
 .industriesSection {
-    padding: 4rem 0 6rem 0;
+    padding: 2rem 0 3rem 0;
     background-color: #ffffff;
 }
 
@@ -8,8 +8,7 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0;
-    text-align: center;
-    /* Center heading */
+    text-align: left;
 }
 
 

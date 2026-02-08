@@ -25,31 +25,63 @@ export default function WhyChooseUs() {
 
     return (
         <section className={styles.wcuSection}>
-            <div className={styles.container}>
-                <SectionHeading title="WHY" highlight="CHOOSE US" />
+            <ScrollAnimation variant="fadeUp" className={styles.container}>
+                <SectionHeading title="INDUSTRIAL" highlight="CAPABILITY" />
 
                 <div className={styles.featureGrid}>
-                    {features.map((item, index) => (
-                        <ScrollAnimation
-                            key={index}
-                            variant="fadeUp"
-                            delay={index * 0.1}
-                            className={styles.featureCard}
-                        >
-                            <Image
-                                src={item.image}
-                                alt="Feature"
-                                fill
-                                className={styles.cardImage}
-                                suppressHydrationWarning
-                            />
-                            <div className={styles.textOverlay}>
-                                {item.text}
-                            </div>
-                        </ScrollAnimation>
-                    ))}
+                    <div className={styles.featureCard}>
+                        <Image
+                            src="/images/why-choose-us/extrusion.png"
+                            alt="Extrusion"
+                            fill
+                            className={styles.cardImage}
+                            suppressHydrationWarning
+                        />
+                        <div className={styles.textOverlay}>
+                            Advanced Extrusion Technology<br />Micro-Precision Control
+                        </div>
+                    </div>
+
+                    <div className={styles.featureCard}>
+                        <Image
+                            src="/images/why-choose-us/testing.png"
+                            alt="Testing"
+                            fill
+                            className={styles.cardImage}
+                            suppressHydrationWarning
+                        />
+                        <div className={styles.textOverlay}>
+                            In-House Load Testing Lab<br />Certified Breaking Strength
+                        </div>
+                    </div>
+
+                    <div className={styles.featureCard}>
+                        <Image
+                            src="/images/why-choose-us/strapping.png"
+                            alt="Production"
+                            fill
+                            className={styles.cardImage}
+                            suppressHydrationWarning
+                        />
+                        <div className={styles.textOverlay}>
+                            High-Volume Production<br />500+ Tons Monthly Capacity
+                        </div>
+                    </div>
+
+                    <div className={styles.featureCard}>
+                        <Image
+                            src="/images/why-choose-us/bulk.png"
+                            alt="Logistics"
+                            fill
+                            className={styles.cardImage}
+                            suppressHydrationWarning
+                        />
+                        <div className={styles.textOverlay}>
+                            Global Export Logistics<br />Shock-Proof Packaging
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </ScrollAnimation>
         </section>
     );
 }

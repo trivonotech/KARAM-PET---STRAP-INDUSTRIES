@@ -1,0 +1,139 @@
+/* Process Section */
+.processSection {
+    padding: 3rem 0;
+    background-color: #f2f2f2;
+}
+
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+
+/* Process Section */
+.timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center align */
+    text-align: center;
+    /* Center text */
+    padding: 0 1rem;
+}
+
+/* Connector Line - Spans from center of this step to center of next */
+.step::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    /* Center of 60px circle */
+    left: 50%;
+    /* Center of current step */
+    width: 100%;
+    /* Spans to center of next step (1fr) */
+    height: 2px;
+    background: #e0e0e0;
+    z-index: -1;
+}
+
+/* Hide line for last step */
+.step:last-child::after {
+    display: none;
+}
+
+.stepNumber {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+    /* Ensure it sits on top of line */
+    position: relative;
+    z-index: 2;
+}
+
+.step:hover .stepNumber {
+    background: var(--primary);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.stepTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.stepDesc {
+    font-size: 0.9rem;
+    color: #000;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    /* Restore vertical continuous line on mobile */
+    .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 30px;
+        /* Center of 60px circle */
+        width: 2px;
+        background: #e0e0e0;
+        z-index: 0;
+        display: block;
+    }
+
+    /* Hide horizontal connectors on mobile */
+    .step::after {
+        display: none;
+    }
+
+    .step {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 1.5rem;
+        width: 100%;
+        padding: 0;
+    }
+
+    .stepNumber {
+        margin-bottom: 0;
+        min-width: 60px;
+        /* Don't shrink */
+    }
+}

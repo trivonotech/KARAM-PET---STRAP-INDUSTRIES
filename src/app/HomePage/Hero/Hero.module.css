@@ -1,63 +1,119 @@
 .heroWrapper {
     position: relative;
+    width: 100%;
+    /* Full width per prompt mostly? "Full-width background image". Existing was 95% max-1400. To get full width bg, wrapper should be full. But maybe "imageContainer" handles that. Let's make wrapper 100% just in case. */
+    width: 98%;
+    margin-top: 110px;
+    /* Moved down slightly to clear navbar more elegantly */
+    position: relative;
     width: 95%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
 
 .imageContainer {
     position: relative;
+    width: 100%;
+    min-height: 85vh;
+    /* Restored taller height */
     border-radius: 24px;
     overflow: hidden;
-    color: white;
-    min-height: calc(100vh - 130px);
+    background-color: #f5f5f5;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    isolation: isolate;
+    transform: translateZ(0);
+    /* Force hardware accelerated clipping */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    /* Safari clipping fix */
+    mask-image: radial-gradient(white, black);
+    /* Standard compatibility */
+    /* Create new stacking context to prevent clipping artifacts */
     display: flex;
     align-items: center;
-    /* Vertically center the content */
     background-color: #000;
+}
+
+.parallaxBg {
+    position: absolute;
+    top: -10%;
+    /* Allow room for movement */
+    left: 0;
+    width: 100%;
+    height: 120%;
+    /* Taller for parallax */
+    z-index: 0;
+    will-change: transform;
 }
 
 .backgroundImage {
     object-fit: cover;
-    z-index: 0;
-    filter: brightness(0.65);
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 1;
 }
 
 .content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     max-width: 1400px;
-    /* Ensure content obeys container max-width */
     padding-left: 6rem;
     padding-right: 2rem;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title {
-    font-size: 4.2rem;
-    /* Adjusted for better fit */
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 4rem;
+    font-size: 3.8rem;
+    /* Slightly smaller to fit shorter height */
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
     font-family: var(--font-outfit), sans-serif;
     text-transform: capitalize;
-    max-width: 1000px;
-    color: #e0e0e0;
-    /* Changed to light gray for visibility */
-    /* Increased to allow "Manufacturer Of High-Performance" on one line */
+    max-width: 900px;
+    color: #ffffff;
+    letter-spacing: -0.02em;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    max-width: 750px;
-    /* Increased for better subtitle flow */
-    opacity: 0.95;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    opacity: 0.9;
     line-height: 1.6;
     font-weight: 400;
-    color: #cccccc;
-    /* Changed to gray */
+    color: #e0e0e0;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.secondaryButton {
+    color: #fff;
+    border-color: #fff;
+}
+
+.secondaryButton:hover {
+    background-color: var(--hover-gray);
+    color: #fff;
+    border-color: var(--hover-gray);
 }
 
 
@@ -68,29 +124,11 @@
     bottom: 0;
     right: 0;
     background-color: #ffffff;
-    padding: 2rem 4rem;
+    padding: 1.5rem 3rem;
 
-    /* Revert to 24px to match the connector system */
     border-top-left-radius: 24px;
-
-    /* Ensure bottom-right matches container if needed, but container clips it usually. 
-       Actually container clips the image, but statsCard is outside 'imageContainer' div?
-       Check DOM structure: 
-       <section styling wrapper>
-         <div imageContainer>...</div>
-         <div statsCard>...</div>
-       </section>
-       
-       So statsCard is SIBLING to imageContainer via absolute pos?
-       If so, it renders ON TOP of imageContainer?
-       Wrapper: relative.
-       ImageContainer: min-height 85vh.
-       StatsCard: absolute bottom 0 right 0.
-       
-       Correct. It sits on top.
-       So putting border-top-left-radius: 40px makes it looked like a rounded card.
-       Perfect.
-    */
+    border-bottom-right-radius: 24px;
+    /* Ensure consistency */
 
     display: flex;
     gap: 4rem;
@@ -178,7 +216,8 @@
 
 @media (max-width: 768px) {
     .imageContainer {
-        min-height: calc(100vh - 100px);
+        min-height: 400px;
+        /* More compact mobile height */
         flex-direction: column;
         justify-content: center;
     }

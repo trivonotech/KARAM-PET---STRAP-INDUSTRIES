@@ -46,13 +46,11 @@ const VisionMission = () => {
 
     return (
         <section className={styles.section}>
-            <div className={styles.container}>
+            <ScrollAnimation variant="scaleIn" className={styles.container}>
                 <div className={styles.headingWrapper}>
-                    <ScrollAnimation variant="fadeUp">
-                        <h2 className={styles.heading}>
-                            Our <span className={styles.orangeText}>Identity</span>
-                        </h2>
-                    </ScrollAnimation>
+                    <h2 className={styles.heading}>
+                        Our <span className={styles.orangeText}>Identity</span>
+                    </h2>
                 </div>
 
                 <div
@@ -61,7 +59,7 @@ const VisionMission = () => {
                     onScroll={handleScroll}
                 >
                     {/* Vision Card */}
-                    <ScrollAnimation variant="fadeUp" delay={0.1} className={styles.card}>
+                    <div className={styles.card}>
                         <div className={styles.iconWrapper}>
                             {/* Eye Icon SVG */}
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -73,10 +71,10 @@ const VisionMission = () => {
                         <p className={styles.cardText}>
                             To be the global leader in sustainable strap manufacturing, delivering excellence through innovation while prioritizing environmental responsibility and customer satisfaction.
                         </p>
-                    </ScrollAnimation>
+                    </div>
 
                     {/* Mission Card */}
-                    <ScrollAnimation variant="fadeUp" delay={0.2} className={styles.card}>
+                    <div className={styles.card}>
                         <div className={styles.iconWrapper}>
                             {/* Target Icon SVG */}
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -89,10 +87,10 @@ const VisionMission = () => {
                         <p className={styles.cardText}>
                             Empowering industries with high-quality, durable strapping solutions. We are dedicated to continuous improvement, technological advancement, and building lasting partnerships with our clients.
                         </p>
-                    </ScrollAnimation>
+                    </div>
 
                     {/* Strength Card */}
-                    <ScrollAnimation variant="fadeUp" delay={0.3} className={styles.card}>
+                    <div className={styles.card}>
                         <div className={styles.iconWrapper}>
                             {/* Anchor/Strength Icon SVG */}
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -103,7 +101,7 @@ const VisionMission = () => {
                         <p className={styles.cardText}>
                             Our strength lies in our robust infrastructure, skilled workforce, and unyielding commitment to quality control. We combine years of expertise with cutting-edge technology.
                         </p>
-                    </ScrollAnimation>
+                    </div>
                 </div>
 
                 {/* Pagination Dots */}
@@ -116,7 +114,7 @@ const VisionMission = () => {
                         />
                     ))}
                 </div>
-            </div>
+            </ScrollAnimation>
         </section>
     );
 };

@@ -2,20 +2,33 @@ import styles from './About.module.css';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import SectionHeading from '@/components/ui/SectionHeading';
-
+import ScrollAnimation from '@/components/animations/ScrollAnimation';
 
 export default function About() {
     return (
         <section className={styles.aboutSection}>
-            <div className={styles.container}>
+            <ScrollAnimation variant="fadeUp" className={styles.container}>
                 <div className={styles.contentColumn}>
                     <SectionHeading
                         title="ABOUT"
                         highlight="KARAM PET - STRAP INDUSTRIES"
                     />
+
                     <p className={styles.description}>
-                        "With over 13 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India’s most reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have earned a trustworthy reputation across domestic and international markets. Our focus is simple — deliver superior straps backed by technical expertise, strong manufacturing, and customer-first operations."
+                        "With over 13 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India’s most reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service."
                     </p>
+
+                    <div className={styles.visualGroups}>
+                        <div className={styles.groupItem}>
+                            <h4 className={styles.groupTitle}>Manufacturing Strength</h4>
+                            <p className={styles.groupText}>State-of-the-art machinery delivering high-precision straps.</p>
+                        </div>
+                        <div className={styles.groupItem}>
+                            <h4 className={styles.groupTitle}>Quality Focus</h4>
+                            <p className={styles.groupText}>Rigorous testing ensuring shock-absorbent and durable products.</p>
+                        </div>
+                    </div>
+
                     <Button>
                         More About The Company ›
                     </Button>
@@ -23,7 +36,7 @@ export default function About() {
                 <div className={styles.imageColumn}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src="/hero-bg.png" /* Using hero-bg as placeholder if no specific image provided, or I can try to generate one or let user valid. Actually the prompt implied I can use generic. I'll use hero-bg but cropped or maybe a color block if no image suitable. Let's stick to hero-bg for now as placeholder. */
+                            src="/hero-bg.png"
                             alt="Factory Machine"
                             fill
                             className={styles.aboutImage}
@@ -31,7 +44,7 @@ export default function About() {
                         />
                     </div>
                 </div>
-            </div>
+            </ScrollAnimation>
         </section>
     );
 }

@@ -2,15 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '@/components/layout/Navbar/Navbar';
-import Footer from '@/components/layout/Footer/Footer';
 import ContactUs from '@/components/sections/ContactUs/ContactUs';
 import styles from './page.module.css';
 
 export default function ContactPage() {
     return (
         <main className={styles.main}>
-            <Navbar />
             <div className={styles.container}>
 
                 {/* Header Section */}
@@ -73,7 +70,6 @@ export default function ContactPage() {
                 <ContactUs />
 
             </div>
-            <Footer />
         </main>
     );
 }

@@ -1,10 +1,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #F39C12;
-  --primary-hover: #E67E22;
+  --primary: #333333;
+  --primary-hover: #555555;
+  --accent: #F39C12;
   --text-gray: #787874;
   --logo-gray: #666666;
+  --hover-gray: #333333;
 }
 
 * {

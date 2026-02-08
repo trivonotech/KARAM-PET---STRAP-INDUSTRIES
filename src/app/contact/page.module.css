@@ -11,7 +11,7 @@
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 0 4rem;
+    padding: 0 2rem 4rem;
 }
 
 /* Header Section */
@@ -50,40 +50,46 @@
 }
 
 .infoCard {
-    background: #fff;
-    border: 1px solid #FFE0B2;
-    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    /* Industrial sharp/slightly rounded */
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
-    text-align: center;
-    transition: transform 0.2s;
+    text-align: left;
+    /* Left align for industrial look */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .infoCard:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(243, 156, 18, 0.15);
+    border-color: var(--primary);
 }
 
 .cardHeader {
-    background-color: #FFCC80;
-    /* Light Orange Header */
-    padding: 1.5rem;
-    font-weight: 600;
+    background-color: #fff;
+    padding: 2rem 2rem 1rem;
+    font-weight: 700;
     font-size: 1.1rem;
     text-transform: uppercase;
-    color: #000;
+    color: #111;
+    border-bottom: 3px solid var(--primary);
+    font-family: var(--font-outfit), sans-serif;
 }
 
 .cardBody {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 2rem 2.5rem;
     color: #555;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.6;
-    min-height: 180px;
+    min-height: 150px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    /* Left align */
+    justify-content: flex-start;
     flex-direction: column;
 }
 

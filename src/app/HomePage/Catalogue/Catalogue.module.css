@@ -28,11 +28,11 @@
 }
 
 .blackText {
-    color: #000;
+    color: var(--primary);
 }
 
 .orangeText {
-    color: var(--primary);
+    color: var(--accent);
     /* Assuming var(--primary) is the orange */
 }
 

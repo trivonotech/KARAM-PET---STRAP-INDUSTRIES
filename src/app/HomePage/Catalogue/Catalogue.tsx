@@ -29,8 +29,8 @@ export default function Catalogue() {
 
     return (
         <section className={styles.catalogueSection}>
-            <div className={styles.container}>
-                <ScrollAnimation variant="slideRight" className={styles.contentColumn}>
+            <ScrollAnimation variant="fadeUp" className={styles.container}>
+                <div className={styles.contentColumn}>
                     <h2 className={styles.heading}>
                         <span className={styles.blackText}>GET</span>{' '}
                         <span className={styles.orangeText}>CATALOGUE</span>
@@ -56,9 +56,9 @@ export default function Catalogue() {
                     >
                         Download Catalogue ⬇
                     </a>
-                </ScrollAnimation>
+                </div>
 
-                <ScrollAnimation variant="slideLeft" className={styles.imageColumn}>
+                <div className={styles.imageColumn}>
                     <div className={styles.imageWrapper}>
                         <Image
                             src="/hero-bg.png" /* Placeholder for the catalogue image */
@@ -68,8 +68,8 @@ export default function Catalogue() {
                             suppressHydrationWarning
                         />
                     </div>
-                </ScrollAnimation>
-            </div>
+                </div>
+            </ScrollAnimation>
         </section>
     );
 }

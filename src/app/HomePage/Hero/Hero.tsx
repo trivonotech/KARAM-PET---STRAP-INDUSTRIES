@@ -14,9 +14,15 @@ export default function Hero() {
     const { stats } = config.homeContent;
 
     const [mounted, setMounted] = useState(false);
+    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         setMounted(true);
+        const handleScroll = () => {
+            setOffset(window.scrollY);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const { title, subtitle, cta } = SITE_CONTENT.hero;
@@ -24,55 +30,46 @@ export default function Hero() {
     return (
         <section className={styles.heroWrapper}>
             <div className={styles.imageContainer}>
-                <Image
-                    src="/hero-bg.png"
-                    alt="Industrial Factory"
-                    fill
-                    className={styles.backgroundImage}
-                    priority
-                    suppressHydrationWarning
-                />
+                <div
+                    className={styles.parallaxBg}
+                    style={{ transform: `translateY(${offset * 0.5}px)` }}
+                >
+                    <Image
+                        src="/hero-bg.png"
+                        alt="Industrial Factory"
+                        fill
+                        className={styles.backgroundImage}
+                        priority
+                        suppressHydrationWarning
+                    />
+                </div>
 
-                <div className={styles.content}>
-                    <ScrollAnimation variant="fadeUp" delay={0.2}>
-                        <h1 className={styles.title}>
-                            {title}
-                        </h1>
-                    </ScrollAnimation>
-                    <ScrollAnimation variant="fadeUp" delay={0.4}>
-                        <p className={styles.subtitle}>
-                            {subtitle}
-                        </p>
-                    </ScrollAnimation>
-                    <ScrollAnimation variant="scaleIn" delay={0.6}>
-                        <Button>
+                <div className={styles.heroOverlay} /> {/* Darken overlay for contrast */}
+
+                <ScrollAnimation variant="fadeUp" className={styles.content}>
+                    <h1 className={styles.title}>
+                        {title}
+                    </h1>
+                    <p className={styles.subtitle}>
+                        {subtitle}
+                    </p>
+                    <div className={styles.buttonGroup}>
+                        <Button href="/products">
                             {cta}
                         </Button>
-                    </ScrollAnimation>
-                </div>
+                        <Button href="/about" variant="outline" className={styles.secondaryButton}>
+                            Learn More
+                        </Button>
+                    </div>
+                </ScrollAnimation>
             </div>
 
             <div className={styles.statsCard}>
-                {mounted ? (
+                {stats.length > 0 && (
                     stats.map((stat, index) => (
-                        <ScrollAnimation
-                            key={index}
-                            variant="fadeUp"
-                            delay={0.8 + (index * 0.1)}
-                            className={styles.statItem}
-                        >
-                            <span className={styles.statValue}>{stat.value}</span>
-                            <span className={styles.statLabel}>{stat.label}</span>
-                        </ScrollAnimation>
-                    ))
-                ) : (
-                    // Optional: Render placeholders or defaults to prevent layout shift if needed
-                    // For now, rendering nothing or a skeleton would be fine.
-                    // Given the design, an empty card might look collapsed.
-                    // Let's render the structural divs but empty content for layout stability if stats exist in default
-                    config.homeContent.stats.map((_, index) => (
                         <div key={index} className={styles.statItem}>
-                            {/* Placeholder or empty to match server output if server renders defaults */}
+                            <span className={styles.statValue}>{stat.value}</span>
+                            <span className={styles.statLabel} style={{ whiteSpace: 'pre-line' }}>{stat.label}</span>
                         </div>
                     ))
                 )}

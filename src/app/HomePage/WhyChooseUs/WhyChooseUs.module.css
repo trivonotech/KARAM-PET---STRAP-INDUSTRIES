@@ -1,6 +1,6 @@
 /* Why Choose Us Section */
 .wcuSection {
-    padding: 6rem 0;
+    padding: 3rem 0;
     background-color: #fff;
 }
 
@@ -35,9 +35,7 @@
     transition: transform 0.3s;
 }
 
-.featureCard:hover .cardImage {
-    transform: scale(1.05);
-}
+/* removed hover scale */
 
 .textOverlay {
     position: absolute;
