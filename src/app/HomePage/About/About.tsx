@@ -18,18 +18,8 @@ export default function About() {
                         "With over 13 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India’s most reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service."
                     </p>
 
-                    <div className={styles.visualGroups}>
-                        <div className={styles.groupItem}>
-                            <h4 className={styles.groupTitle}>Manufacturing Strength</h4>
-                            <p className={styles.groupText}>State-of-the-art machinery delivering high-precision straps.</p>
-                        </div>
-                        <div className={styles.groupItem}>
-                            <h4 className={styles.groupTitle}>Quality Focus</h4>
-                            <p className={styles.groupText}>Rigorous testing ensuring shock-absorbent and durable products.</p>
-                        </div>
-                    </div>
 
-                    <Button>
+                    <Button href="/about">
                         More About The Company ›
                     </Button>
                 </div>

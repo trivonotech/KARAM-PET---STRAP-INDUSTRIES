@@ -37,16 +37,13 @@
     background-color: #000;
 }
 
-.parallaxBg {
+.heroBgContainer {
     position: absolute;
-    top: -10%;
-    /* Allow room for movement */
+    top: 0;
     left: 0;
     width: 100%;
-    height: 120%;
-    /* Taller for parallax */
+    height: 100%;
     z-index: 0;
-    will-change: transform;
 }
 
 .backgroundImage {

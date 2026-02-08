@@ -14,15 +14,9 @@ export default function Hero() {
     const { stats } = config.homeContent;
 
     const [mounted, setMounted] = useState(false);
-    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         setMounted(true);
-        const handleScroll = () => {
-            setOffset(window.scrollY);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const { title, subtitle, cta } = SITE_CONTENT.hero;
@@ -31,8 +25,7 @@ export default function Hero() {
         <section className={styles.heroWrapper}>
             <div className={styles.imageContainer}>
                 <div
-                    className={styles.parallaxBg}
-                    style={{ transform: `translateY(${offset * 0.5}px)` }}
+                    className={styles.heroBgContainer}
                 >
                     <Image
                         src="/hero-bg.png"
