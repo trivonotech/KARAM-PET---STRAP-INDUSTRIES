@@ -32,7 +32,7 @@ export default function Footer() {
                             At Shapar, Rajkot — 360024,<br />
                             Gujarat, India.
                         </p>
-                        <p className={styles.text} style={{ marginTop: '10px' }}>
+                        <p className={styles.contactText}>
                             Email: karampetstrapind@gmail.com<br />
                             Phone: +91 9408213514 / +91 9427172378
                         </p>

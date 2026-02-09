@@ -66,8 +66,8 @@
 .infoCard {
     background: #ffffff;
     border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    /* Sharper corners for industrial look */
+    border-radius: 20px;
+    /* More curved corners */
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
@@ -167,7 +167,7 @@
     flex: 0 0 350px;
     height: 400px;
     position: relative;
-    border-radius: 12px;
+    border-radius: 30px;
     overflow: hidden;
     background: #f0f0f0;
 }
@@ -204,8 +204,10 @@
 /* Consistency Section (Orange BG) */
 .consistencySection {
     background-color: #f2f2f2;
-    padding: 5rem 0;
-    margin-bottom: 6rem;
+    padding: 6rem 0;
+    margin: 0 auto 6rem;
+    width: 94%;
+    border-radius: 60px;
 }
 
 .consistencyTitle {
@@ -348,12 +350,12 @@
 
 /* Trust Section */
 .trustSection {
-    padding-bottom: 6rem;
+    padding: 6rem 4rem;
     background-color: #666666;
-    /* User requested #666 */
-    padding-top: 6rem;
-    margin-bottom: 0;
+    margin: 0 auto 6rem;
     color: #ffffff;
+    border-radius: 80px;
+    width: 94%;
 }
 
 .trustSection .sectionTitle {
@@ -428,6 +430,13 @@
 
     .trustContent {
         flex-direction: column;
+    }
+
+    .trustSection {
+        padding: 4rem 2rem;
+        border-radius: 30px;
+        width: 100%;
+        margin: 0 0 4rem;
     }
 
     .trustImageContainer {

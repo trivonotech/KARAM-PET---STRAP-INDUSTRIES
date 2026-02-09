@@ -1,22 +1,18 @@
 .footer {
-    background-color: #1e1e1e;
-    /* Deep Industrial Gray */
+    background-color: #1a1a1a;
     color: #ffffff;
-    padding: 3rem 5% 1.5rem;
+    padding: 5rem 5% 3rem;
     margin-top: 0;
-    border-top: 1px solid #333;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .container {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    /* 3 column layout: Brand (Wide), Links, Social */
-    gap: 2rem;
-    max-width: 1400px;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+    max-width: 1300px;
     margin: 0 auto;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    padding-bottom: 3rem;
 }
 
 /* Column 1: Brand */
@@ -27,14 +23,11 @@
 }
 
 .logoContainer {
-    width: 220px;
-    height: 80px;
+    width: 200px;
+    height: 70px;
     position: relative;
-    /* Removed white background for seamless look, assuming logo works or adding slight backdrop if needed. 
-       If logo is black text, we might need a background. Keeping it subtle if so. */
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 4px;
-    padding: 12px;
+    background-color: transparent;
+    margin-bottom: 1rem;
 }
 
 .logoImage {
@@ -48,44 +41,50 @@
 }
 
 .columnTitle {
-    color: var(--primary);
-    font-size: 1.2rem;
+    color: #888;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-family: var(--font-outfit), sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
 }
 
 .text {
-    color: #a0a0a0;
-    font-size: 0.95rem;
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 450px;
+}
+
+.contactText {
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
     line-height: 1.6;
-    max-width: 400px;
 }
 
 .pricingButton {
     background-color: #ffffff;
-    color: var(--primary);
-    /* Orange text on white button */
-    padding: 0.9rem 2rem;
-    border-radius: 4px;
+    color: #000000;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
     border: none;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     width: fit-content;
-    margin-top: 1.5rem;
-    transition: all 0.3s ease;
+    margin-top: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
 .pricingButton:hover {
-    opacity: 1;
-    background-color: var(--hover-gray);
+    background-color: var(--primary);
     color: #ffffff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(243, 156, 18, 0.2);
 }
 
 /* Links Lists */
@@ -126,20 +125,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    color: #a0a0a0;
-    transition: all 0.3s;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    color: #888;
+    transition: all 0.3s ease;
 }
 
 .iconLink:hover {
-    background-color: var(--hover-gray);
-    border-color: var(--hover-gray);
-    color: #ffffff;
-    transform: translateY(-3px);
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+    transform: translateY(-5px);
 }
 
 @media (max-width: 1024px) {
