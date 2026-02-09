@@ -58,14 +58,14 @@ export default function Hero() {
             </div>
 
             <div className={styles.statsCard}>
-                {stats.length > 0 && (
+                {stats.length > 0 ? (
                     stats.map((stat, index) => (
                         <div key={index} className={styles.statItem}>
                             <span className={styles.statValue}>{stat.value}</span>
                             <span className={styles.statLabel} style={{ whiteSpace: 'pre-line' }}>{stat.label}</span>
                         </div>
                     ))
-                )}
+                ) : null}
             </div>
         </section>
     );

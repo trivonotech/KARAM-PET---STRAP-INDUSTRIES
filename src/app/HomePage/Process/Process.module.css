@@ -68,7 +68,7 @@
     justify-content: center;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 
     /* Ensure it sits on top of line */
     position: relative;
