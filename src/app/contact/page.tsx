@@ -26,9 +26,10 @@ export default function ContactPage() {
                         <div className={styles.cardBody}>
                             <p>
                                 KARAM PET STRAP INDUSTRIES<br />
-                                Survey No. 258, Plot No. 03, Captain Polyplast Gate,<br />
-                                Near Precision Techno Cast Pvt. Ltd.,<br />
-                                Shapar (Veraval), Rajkot — 360024,<br />
+                                “CAPTAIN GATE”, Plot No. 03, Survey No. 258,<br />
+                                Nr. New Rangani Engineering Pvt. Ltd.,<br />
+                                Nr. Precision Technocast Pvt. Ltd.,<br />
+                                At Shapar, Rajkot — 360024,<br />
                                 Gujarat, India.
                             </p>
                         </div>
@@ -39,8 +40,8 @@ export default function ContactPage() {
                         <div className={styles.cardHeader}>CONTACT & EMAIL</div>
                         <div className={styles.cardBody}>
                             <p>
-                                Sales & Support: +91 94082 13514<br />
-                                Office: +91 94298 72378
+                                Managing Partner: +91 94082 13514<br />
+                                Office: +91 94271 72378
                             </p>
                             <br />
                             <p>

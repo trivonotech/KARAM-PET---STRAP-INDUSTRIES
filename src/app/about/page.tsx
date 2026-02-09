@@ -41,10 +41,7 @@ export default function AboutPage() {
                     {/* ... rest of header ... */}
                     <ScrollAnimation variant="fadeUp" delay={0.2}>
                         <p className={styles.introText}>
-                            With over 15 years of experience in strapping solutions, KARAM PET STRAP INDUSTRIES has grown into one of India's most
-                            reliable manufacturers of PET and PP strapping products. Known for consistent quality and dependable service, we have
-                            earned a trustworthy reputation across domestic and international markets. Our focus is simple — deliver superior straps
-                            backed by technical expertise, strong manufacturing, and customer-first operations.
+                            With over 13 years of operation, KARAM PET STRAP INDUSTRIES is an essential player in Strapping Solutions one of the leading manufacturers of industry with excellent quality products, and dedicated to serve you better; KARAM PET STRAP INDUSTRIES has registered its position as a reputed brand in the market.
                         </p>
                     </ScrollAnimation>
                     <ScrollAnimation variant="scaleIn" delay={0.3} className={styles.heroImageContainer}>
@@ -69,7 +66,7 @@ export default function AboutPage() {
                             <div className={styles.cardContent}>
                                 <p>
                                     We Are A Dedicated Manufacturing Unit Focused On Delivering Reliable, Durable, And Industry-Grade Strapping Solutions.
-                                    With 15+ Years Of Technical And Market Experience, Our Director Leads The Company With Deep Product Knowledge And
+                                    With 13+ Years Of Technical And Market Experience, Our Director Leads The Company With Deep Product Knowledge And
                                     Operational Expertise.
                                 </p>
                             </div>
@@ -119,32 +116,28 @@ export default function AboutPage() {
                         </h2>
                     </ScrollAnimation>
 
-                    {/* Leader 1 */}
+                    {/* Leader 1: Nishant Patel */}
                     <ScrollAnimation variant="slideRight" className={styles.leaderCard}>
                         <div className={styles.leaderImageContainer}>
-                            {/* Placeholder for Leader 1 Image */}
                             <div style={{ width: '100%', height: '100%', background: '#333' }} suppressHydrationWarning={true}></div>
                         </div>
                         <div className={styles.leaderInfo}>
-                            <h3 className={styles.leaderName}>NAME</h3>
-                            <p className={styles.leaderTitle}>(Title / Position)</p>
+                            <h3 className={styles.leaderName}>DIRECTOR : Nishant Patel</h3>
                             <p className={styles.leaderBio}>
-                                With Over 15 Years Of Experience In Strapping Solutions, KARAM PET STRAP INDUSTRIES Has Grown Into One Of India's Most Reliable Manufacturers Of PET And PP Strapping Products. Known For Consistent Quality And Dependable Service, We Have Earned A Trustworthy Reputation Across Domestic And International Markets. Our Focus Is Simple — Deliver Superior Straps Backed By Technical Expertise, Strong Manufacturing, And Customer-First Operations.
+                                Our vision is to ensure consistent and reliable quality in every PET strap we manufacture. Through disciplined production practices, careful material selection, and strict quality checks at each stage, we are committed to delivering products that meet defined standards of strength, durability, and performance.
                             </p>
                         </div>
                     </ScrollAnimation>
 
-                    {/* Leader 2 */}
+                    {/* Leader 2: Denish Patel */}
                     <ScrollAnimation variant="slideLeft" className={`${styles.leaderCard} ${styles.leaderCardReverse}`}>
                         <div className={styles.leaderImageContainer}>
-                            {/* Placeholder for Leader 2 Image */}
                             <div style={{ width: '100%', height: '100%', background: '#333' }} suppressHydrationWarning={true}></div>
                         </div>
                         <div className={styles.leaderInfo}>
-                            <h3 className={styles.leaderName}>NAME</h3>
-                            <p className={styles.leaderTitle}>(Title / Position)</p>
+                            <h3 className={styles.leaderName}>DIRECTOR : Denish Patel</h3>
                             <p className={styles.leaderBio}>
-                                With Over 15 Years Of Experience In Strapping Solutions, KARAM PET STRAP INDUSTRIES Has Grown Into One Of India's Most Reliable Manufacturers Of PET And PP Strapping Products. Known For Consistent Quality And Dependable Service, We Have Earned A Trustworthy Reputation Across Domestic And International Markets. Our Focus Is Simple — Deliver Superior Straps Backed By Technical Expertise, Strong Manufacturing, And Customer-First Operations.
+                                Our vision is to become a trusted name in PET strap manufacturing by delivering uncompromising quality in every product we create. We believe that long-term relationships are built on consistency, reliability, and transparency. By focusing on innovation, precision manufacturing, and customer satisfaction, we aim to provide packaging solutions that add real value to our customers’ operations.
                             </p>
                         </div>
                     </ScrollAnimation>
@@ -275,7 +268,7 @@ export default function AboutPage() {
                             <li>Stable Bulk Supply With Consistent Lead Times</li>
                             <li>Competitive Industrial Pricing</li>
                             <li>Fast Communication & Responsive Support</li>
-                            <li>15+ Years Of Technical Expertise Backing Every Shipment</li>
+                            <li>13+ Years Of Technical Expertise Backing Every Shipment</li>
                         </ul>
                     </ScrollAnimation>
                 </div>

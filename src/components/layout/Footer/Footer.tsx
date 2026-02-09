@@ -26,10 +26,15 @@ export default function Footer() {
                         <h3 className={styles.columnTitle}>Address</h3>
                         <p className={styles.text}>
                             KARAM PET STRAP INDUSTRIES<br />
-                            Survey No. 258, Plot No. 03, Captain Polyplast Gate,<br />
-                            Near Precision Techno Cast Pvt. Ltd.,<br />
-                            Shapar (Veraval), Rajkot — 360024,<br />
+                            “CAPTAIN GATE”, Plot No. 03, Survey No. 258,<br />
+                            Nr. New Rangani Engineering Pvt. Ltd.,<br />
+                            Nr. Precision Technocast Pvt. Ltd.,<br />
+                            At Shapar, Rajkot — 360024,<br />
                             Gujarat, India.
+                        </p>
+                        <p className={styles.text} style={{ marginTop: '10px' }}>
+                            Email: karampetstrapind@gmail.com<br />
+                            Phone: +91 9408213514 / +91 9427172378
                         </p>
                     </div>
 

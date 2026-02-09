@@ -24,31 +24,14 @@ const products: Product[] = [
         title: 'PET POLYESTER STRAPPING ROLLS ( PET STRAP ) MANUFACTURER',
         imageSrc: '/hero-bg.png', // Placeholder
         specs: [
-            { label: 'Material :', value: 'PET-Polyester (100% Polyethylene Terephthalate)' },
-            { label: 'Available Widths :', value: '11mm-25mm In Width Option Available' },
-            { label: 'Thickness Range :', value: '0.6mm-1.3mm' },
-            { label: 'Core Diameter :', value: '406mm (OD), 152mm (Width) As 1.0 Kg' },
-            { label: 'Core Weight :', value: '203mm (OD), 165mm (Width) As 0.5 Kg' },
-            {
-                label: 'Color Options :',
-                value: (
-                    <div className={styles.colorOptions}>
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#2e7d32' }} suppressHydrationWarning={true}></div> {/* Dark Green */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#4caf50' }} suppressHydrationWarning={true}></div> {/* Green */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#8bc34a' }} suppressHydrationWarning={true}></div> {/* Light Green */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#cddc39' }} suppressHydrationWarning={true}></div> {/* Lime */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#3f51b5' }} suppressHydrationWarning={true}></div> {/* Indigo */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#03a9f4' }} suppressHydrationWarning={true}></div> {/* Light Blue */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#9e9e9e' }} suppressHydrationWarning={true}></div> {/* Grey */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ffffff' }} suppressHydrationWarning={true}></div> {/* White */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#e0e0e0' }} suppressHydrationWarning={true}></div> {/* Light Grey */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ffeb3b' }} suppressHydrationWarning={true}></div> {/* Yellow */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#f44336' }} suppressHydrationWarning={true}></div> {/* Red */}
-                        <div className={styles.colorSwatch} style={{ backgroundColor: '#ff9800' }} suppressHydrationWarning={true}></div> {/* Orange */}
-                    </div>
-                )
-            },
-            { label: 'Breaking Strength :', value: 'Up to 200kg-1090kg' },
+            { label: 'Material :', value: 'PET-Polyester' },
+            { label: 'Available Widths :', value: '12mm to 19mm In Width Options Available' },
+            { label: 'Thickness Range :', value: '0.6mm to 1.27mm' },
+            { label: 'Core Diameter :', value: '406mm (OD), 152mm (Width) & 203mm (OD), 165mm (Width)' },
+            { label: 'Core Weight :', value: '1.0 Kg' },
+            { label: 'Standard Packing :', value: '20 kg, 25 kg Net Weight' },
+            { label: 'Breaking Strength :', value: '250kg - 950kg' },
+            { label: 'Printing :', value: 'Sterio Printing Available' },
         ]
     },
     {
@@ -57,11 +40,12 @@ const products: Product[] = [
         imageSrc: '/hero-bg.png', // Placeholder
         specs: [
             { label: 'Material :', value: 'PP - (Polypropylene)' },
-            { label: 'Available Widths :', value: '9mm-19mm In Width Options Available' },
-            { label: 'Thickness Range :', value: '0.6mm-1.0mm' },
-            { label: 'Printing :', value: 'Rubber Stereo Printing Available' },
-            { label: 'Color Options :', value: 'Green/Black/Custom' },
-            { label: 'Breaking Strength :', value: '50kg-200kg' },
+            { label: 'Available Widths :', value: '9mm to 19mm In Width Options Available' },
+            { label: 'Thickness Range :', value: '0.6mm to 1.0mm' },
+            { label: 'Breaking Strength :', value: '50kg to 200kg' },
+            { label: 'Printing :', value: 'Sterio Printing Available' },
+            { label: 'Automatic All Grade :', value: 'Core: 203mm (OD), 187mm (Width) | Weight: 700gm | Packing: 8kg' },
+            { label: 'Semi Automatic All Grade :', value: 'Core: 203mm/76mm (OD), 165mm (Width) | Weight: 150/600/700gms | Packing: 3kg' },
         ]
     },
     {
@@ -70,12 +54,10 @@ const products: Product[] = [
         imageSrc: '/hero-bg.png', // Placeholder
         specs: [
             { label: 'Material :', value: 'Polyester Filaments' },
-            { label: 'Available Widths :', value: '13mm | 16mm | 19mm | 25mm | 32mm' },
-            { label: 'Meters Per Roll :', value: '1100 | 850 | 600 | 500 | 300' },
-            { label: 'Break Load (KgF) :', value: '215 Kg | 300 Kg | 360 Kg | 730 Kg | 1270 Kg' },
-            { label: 'Thickness Range :', value: '0.5 mm-1.3mm' },
-            { label: 'Rolls Per Box :', value: '2' },
-            { label: 'Pack / Box :', value: '1' },
+            { label: 'Available Widths :', value: '13mm, 16mm, 19mm, 25mm, 32mm' },
+            { label: 'Available Lengths :', value: '100m up to 1100m' },
+            { label: 'Breaking Strain :', value: '375kg to 2000kg' },
+            { label: 'Description :', value: 'Innovative material for securing heavy pallets and bulky industrial loads.' },
         ]
     },
     {
@@ -83,9 +65,11 @@ const products: Product[] = [
         title: 'BUCKLES AND SEALS FOR STRAPPING SUPPLIER',
         imageSrc: '/hero-bg.png', // Placeholder
         specs: [
-            { label: 'Buckle Size :', value: '13mm | 16mm | 19mm | 25mm | 32mm' },
-            { label: 'Pieces Per Box :', value: '2000 | 1500 | 1000 | 500 | 250' },
-            { label: 'Pack / Box :', value: '1' },
+            { label: 'Galvanized Buckles :', value: 'Sizes: 13mm, 16mm, 19mm, 25mm, 32mm | Material: Galvanized Steel' },
+            { label: 'Buckle Quantity :', value: '250, 500 or 1000 per box' },
+            { label: 'Strapping Seals :', value: 'Grippers with teeth for increased grip | Sizes: 13mm or 19mm' },
+            { label: 'Seals Strength :', value: 'Up to 660kg breaking strength' },
+            { label: 'Seals Quantity :', value: '2000, 2500 per pack' },
         ]
     },
     {
@@ -93,13 +77,9 @@ const products: Product[] = [
         title: 'PNEUMATIC STRAPPING TOOL SUPPLIER',
         imageSrc: '/hero-bg.png', // Placeholder
         specs: [
-            { label: 'Material :', value: 'Pet' },
-            { label: 'Available Widths :', value: '9mm/12mm/16mm (Adjustable)' },
-            { label: 'Thickness Range :', value: '0.5 mm-1.3mm' },
-            { label: 'Finish :', value: 'Embossed/Smooth' },
-            { label: 'Color Options :', value: 'Green/Black/Custom' },
-            { label: 'Core Size :', value: '203 mm' },
-            { label: 'Breaking Strength :', value: 'Up to 600 Kg' },
+            { label: 'Pneumatic PET Tool :', value: 'AQD 19 | Simple operation, high capacity' },
+            { label: 'Battery Operated Tool :', value: 'ITA 20 | Manufactured by ITA using latest technology' },
+            { label: 'Key Features :', value: 'User-friendly, high performance, less power consumption' },
         ]
     }
 ];

@@ -20,9 +20,7 @@ export default function Products() {
                     </h3>
 
                     <p className={styles.description}>
-                        High-Strength, Elastic, Shock-Absorbent Straps Made From 100%
-                        Recycled Bottle Flakes And Shredded PET. Suitable For Lightweight To
-                        Heavy Industrial Loads. Our PET Straps provide consistent performance and superior durability for all industrial packaging needs.
+                        KARAM PET - Polyester Strapping is very strong and elastic, reliably absorbing shocks during transportation. Made from 100% recycled plastic bottles, it is suitable for both friction and ultrasonic welding, providing high stability and load security.
                     </p>
 
                     <div className={styles.featureGrid}>
